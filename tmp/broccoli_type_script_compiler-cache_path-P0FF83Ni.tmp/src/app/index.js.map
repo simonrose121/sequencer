@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";AAAA,4BAA0B,eAAe,CAAC;AAAlC,gDAAkC;AAC1C,yCAAwC,4BAA4B,CAAC;AAA7D,yFAA6D","sourcesContent":["export {environment} from './environment';\nexport {ScotchyScotchAppComponent} from './scotchy-scotch.component';\n"]}
