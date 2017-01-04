@@ -4,14 +4,15 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher')
+      require('karma-chrome-launcher'),
+      require('karma-phantomjs-launcher')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
       Chrome_travis_ci: {
         base: 'Chrome',
         flags: ['--no-sandbox']
-      }
+      },
     },
     files: [
       { pattern: 'dist/vendor/es6-shim/es6-shim.js', included: true, watched: false },
@@ -20,6 +21,7 @@ module.exports = function (config) {
       { pattern: 'dist/vendor/systemjs/dist/system-polyfills.js', included: true, watched: false },
       { pattern: 'dist/vendor/systemjs/dist/system.src.js', included: true, watched: false },
       { pattern: 'dist/vendor/zone.js/dist/async-test.js', included: true, watched: false },
+      { pattern: 'dist/vendor/dragula/dist/dragula.js', included: true, watched: false },
 
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 
@@ -36,7 +38,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: false
   });
 };
