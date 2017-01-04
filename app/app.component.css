@@ -4,24 +4,17 @@
   min-height: 100%;
 }
 
+.image {
+  width: 200px;
+  height: 200px;
+  background: #222;
+  margin: 10px;
+}
+
 .possible-images {
   float: left;
 }
 
-.possible-images div {
-  width: 200px;
-  height: 200px;
-  background: #222;
-  margin: 10px;
-}
-
 .ordered-images {
   float: right;
-}
-
-.ordered-images div {
-  width: 200px;
-  height: 200px;
-  background: #222;
-  margin: 10px;
 }
