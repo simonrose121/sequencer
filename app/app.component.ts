@@ -15,6 +15,7 @@ import { StoryService } from './story.service';
 export class AppComponent { 
     story;
     firstCard;
+    answer = [];
 
     constructor(private storyService: StoryService) {}
 
@@ -23,9 +24,16 @@ export class AppComponent {
         this.story = stories[0];
         // save the first card
         this.firstCard = this.story.cards[0];
+        // remove the first card from the array
         this.story.cards.shift();
         // randomly sort the rest of the cards
         this.story.cards = this.randomOrder(this.story.cards);
+        console.log(this.story.cards);
+    }
+
+    submit() {
+        this.answer.unshift(this.firstCard);
+        this.storyService.mark(this.answer);
     }
 
     randomOrder(array) {

@@ -69,3 +69,7 @@ ul {
 .ordered-images .image {
   float: left; 
 }
+
+.btn {
+  margin-top: 20px;
+}

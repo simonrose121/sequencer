@@ -4,9 +4,32 @@ export class StoryService {
         return this.stories;
     }
 
+    mark(cards) {
+        /* logic for this:
+            •	Correct sequence - 2 points
+            •	Correct beginning and end - 1 point
+            •	Incorrect sequence - 0 points
+        */
+        console.log(cards);
+        
+        let mark;
+        if ((cards[0].pos === 1) && 
+            (cards[1].pos === 2) && 
+            (cards[2].pos === 3) && 
+            (cards[3].pos === 4)) {
+            mark = 2;
+        } else if ((cards[0].pos === 1) && (cards[3].pos === 4)) {
+            mark = 1;
+        } else {
+            mark = 0;
+        }
+
+        console.log(mark);
+    }
+
     stories = [
         {
-            id: 1,
+            id: 0,
             cards: [
                 {
                     pos: 1,
@@ -27,13 +50,13 @@ export class StoryService {
             ]
         },
         {
+            id: 1
+        },
+        {
             id: 2
         },
         {
             id: 3
-        },
-        {
-            id: 4
         }
     ];
 }
