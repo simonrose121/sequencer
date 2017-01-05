@@ -7,7 +7,8 @@ import { CardService } from './cards.service';
     selector: 'sq-app',
     templateUrl: 'app/app.component.html',
     styleUrls: [
-        'app/app.component.css'
+        'app/app.component.css',
+        'dragula.min.css'
     ],
     viewProviders: [DragulaService],
 })
