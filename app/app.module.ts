@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { AppComponent } from './app.component';
-import { CardService } from './cards.service';
+import { StoryService } from './story.service';
 
 @NgModule({
     imports: [
@@ -14,7 +14,7 @@ import { CardService } from './cards.service';
         AppComponent
     ],
     providers: [
-        CardService
+        StoryService
     ],
     bootstrap: [
         AppComponent

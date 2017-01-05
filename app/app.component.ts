@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
-import { CardService } from './cards.service';
+import { StoryService } from './story.service';
 
 @Component({
     selector: 'sq-app',
@@ -13,11 +13,12 @@ import { CardService } from './cards.service';
     viewProviders: [DragulaService],
 })
 export class AppComponent { 
-    cards;
+    story;
 
-    constructor(private cardsService: CardService) {}
+    constructor(private storyService: StoryService) {}
 
     ngOnInit() {
-        this.cards = this.cardsService.get();
+        const stories = this.storyService.get();
+        this.story = stories[0];
     }
 }

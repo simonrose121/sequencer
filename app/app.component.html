@@ -6,12 +6,15 @@
     </div>
     <div class="col-md-12">
         <div class="possible-images" [dragula]='"row-bag"' [dragulaModel]='items'>
-            <div *ngFor="let card of cards" class="image">{{ card.id }}</div>
+            <div *ngFor="let card of story.cards | slice:1" class="image">{{ card.pos }}</div>
         </div>
     </div>
     <div class="col-md-12">
+        <div class="first-image">
+            <div class="image">{{ story.cards[0].pos }}</div>
+        </div>
         <div class="ordered-images" [dragula]='"row-bag"'>
-            <div class="image"></div>
+            
         </div>
     </div>
 </div>

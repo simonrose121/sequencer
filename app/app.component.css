@@ -47,16 +47,19 @@ ul {
   cursor: move;
 }
 
+.first-image {
+  float: left;
+}
+
 .possible-images {
   float: left;
-  width: 100%;
   height: 220px;
+  width: 100%;
 }
 
 .ordered-images {
-  clear: both;
   float: left;
-  width: 100%;
+  width: 661px;
   background: #689F38;
   height: 220px;
   border-radius: 5px;
