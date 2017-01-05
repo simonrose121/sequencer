@@ -43,7 +43,6 @@
         defaultExtension: 'js' 
       },
       'ng2-dragula': {
-        format: 'cjs',
         defaultExtension: 'js' 
       }
     }

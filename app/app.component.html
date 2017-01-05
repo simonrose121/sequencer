@@ -5,12 +5,12 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="possible-images" [dragula]='"first-bag"'>
+        <div class="possible-images" [dragula]='"row-bag"' [dragulaModel]='items'>
             <div *ngFor="let card of cards" class="image">{{ card.id }}</div>
         </div>
     </div>
     <div class="col-md-12">
-        <div class="ordered-images" [dragula]='"first-bag"'>
+        <div class="ordered-images" [dragula]='"row-bag"'>
             <div class="image"></div>
         </div>
     </div>
