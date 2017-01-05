@@ -14,11 +14,36 @@ import { StoryService } from './story.service';
 })
 export class AppComponent { 
     story;
+    firstCard;
 
     constructor(private storyService: StoryService) {}
 
     ngOnInit() {
         const stories = this.storyService.get();
         this.story = stories[0];
+        // save the first card
+        this.firstCard = this.story.cards[0];
+        this.story.cards.shift();
+        // randomly sort the rest of the cards
+        this.story.cards = this.randomOrder(this.story.cards);
+    }
+
+    randomOrder(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 }

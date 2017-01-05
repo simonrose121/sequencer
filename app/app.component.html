@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-12">
         <div class="possible-images" [dragula]='"row-bag"' [dragulaModel]='items'>
-            <div    *ngFor="let card of story.cards | slice:1" 
+            <div    *ngFor="let card of story.cards" 
                     class="image" 
                     [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
             </div>
@@ -15,7 +15,7 @@
     <div class="col-md-12">
         <div class="first-image">
             <div    class="image" 
-                    [ngStyle]="{'background-image': 'url(assets/' + story.cards[0].img + '.png)'}">
+                    [ngStyle]="{'background-image': 'url(assets/' + firstCard.img + '.png)'}">
             </div>
         </div>
         <div class="ordered-images" [dragula]='"row-bag"'>
