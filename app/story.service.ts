@@ -39,6 +39,27 @@ export class StoryService {
             cards: [
                 {
                     pos: 1,
+                    img: '0/1'
+                },
+                {
+                    pos: 2,
+                    img: '0/2'
+                },
+                {
+                    pos: 3,
+                    img: '0/3'
+                },
+                {
+                    pos: 4,
+                    img: '0/4'
+                }
+            ]
+        },
+        {
+            id: 1,
+            cards: [
+                {
+                    pos: 1,
                     img: '1/1'
                 },
                 {
@@ -56,7 +77,7 @@ export class StoryService {
             ]
         },
         {
-            id: 1,
+            id: 2,
             cards: [
                 {
                     pos: 1,
