@@ -16,6 +16,7 @@ export class QuestionComponent {
     public story;
     public firstCard;
     public answer = [];
+    public finished = false;
 
     private currentStory = 0;
     private stories;
@@ -36,14 +37,19 @@ export class QuestionComponent {
     }
 
     nextStory() {
-        // get the first story
-        this.story = this.stories[this.currentStory];
-        // save the first card
-        this.firstCard = this.story.cards[0];
-        // remove the first card from the array`
-        this.story.cards.shift();
-        // randomly sort the rest of the cards
-        this.story.cards = this.randomOrder(this.story.cards);
+        if (typeof this.stories[this.currentStory] !== "undefined") {
+            // get the first story
+            this.story = this.stories[this.currentStory];
+            // save the first card
+            this.firstCard = this.story.cards[0];
+            // remove the first card from the array`
+            this.story.cards.shift();
+            // randomly sort the rest of the cards
+            this.story.cards = this.randomOrder(this.story.cards);
+        } else {
+            // display well done message
+            this.finished = true;
+        }
     }
 
     randomOrder(array) {
