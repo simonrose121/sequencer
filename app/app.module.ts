@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 import { AppComponent } from './app.component';
+import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
 
 @NgModule({
@@ -11,7 +12,8 @@ import { StoryService } from './story.service';
         DragulaModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        QuestionComponent
     ],
     providers: [
         StoryService

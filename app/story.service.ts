@@ -6,16 +6,14 @@ export class StoryService {
 
     mark(cards) {
         /* logic for this:
-            •	Correct sequence - 2 points
-            •	Correct beginning and end - 1 point
-            •	Incorrect sequence - 0 points
+          Correct sequence - 2 points
+          Correct beginning and end - 1 point
+          Incorrect sequence - 0 points
         */
-        console.log(cards);
-        
         let mark;
-        if ((cards[0].pos === 1) && 
-            (cards[1].pos === 2) && 
-            (cards[2].pos === 3) && 
+        if ((cards[0].pos === 1) &&
+            (cards[1].pos === 2) &&
+            (cards[2].pos === 3) &&
             (cards[3].pos === 4)) {
             mark = 2;
         } else if ((cards[0].pos === 1) && (cards[3].pos === 4)) {
