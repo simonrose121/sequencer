@@ -13,26 +13,37 @@ import { StoryService } from './story.service';
     viewProviders: [DragulaService]
 })
 export class QuestionComponent {
-    story;
-    firstCard;
-    answer = [];
+    public story;
+    public firstCard;
+    public answer = [];
+
+    private currentStory = 0;
+    private stories;
 
     constructor(private storyService: StoryService) {}
 
     ngOnInit() {
-        const stories = this.storyService.get();
-        this.story = stories[0];
+        this.stories = this.storyService.get();
+        this.nextStory();
+    }
+
+    submit() {
+        this.answer.unshift(this.firstCard);
+        this.storyService.mark(this.story.id, this.answer);
+        this.answer = [];
+        this.currentStory++;
+        this.nextStory();
+    }
+
+    nextStory() {
+        // get the first story
+        this.story = this.stories[this.currentStory];
         // save the first card
         this.firstCard = this.story.cards[0];
         // remove the first card from the array`
         this.story.cards.shift();
         // randomly sort the rest of the cards
         this.story.cards = this.randomOrder(this.story.cards);
-    }
-
-    submit() {
-        this.answer.unshift(this.firstCard);
-        this.storyService.mark(this.story.id, this.answer);
     }
 
     randomOrder(array) {

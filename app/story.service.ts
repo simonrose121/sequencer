@@ -56,13 +56,25 @@ export class StoryService {
             ]
         },
         {
-            id: 1
-        },
-        {
-            id: 2
-        },
-        {
-            id: 3
+            id: 1,
+            cards: [
+                {
+                    pos: 1,
+                    img: '2/1'
+                },
+                {
+                    pos: 2,
+                    img: '2/2'
+                },
+                {
+                    pos: 3,
+                    img: '2/3'
+                },
+                {
+                    pos: 4,
+                    img: '2/4'
+                }
+            ]
         }
     ];
 }

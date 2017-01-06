@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataService {
-    private id;
+    private id = 1; // TODO: Change me back
 
     setId(id) {
         this.id = id;

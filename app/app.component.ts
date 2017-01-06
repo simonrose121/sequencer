@@ -10,7 +10,7 @@ import { DataService } from './data.service';
     ]
 })
 export class AppComponent { 
-    id;
+    id = 1; // TODO: Change me back
 
     constructor(private dataService: DataService) {}
 
