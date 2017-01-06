@@ -38,6 +38,10 @@
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.41",
     "concurrently": "2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
     "lite-server": "2.2.2",
     "rimraf": "2.5.4",
     "typescript": "2.0.2"
