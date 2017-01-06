@@ -29,11 +29,13 @@ export class QuestionComponent {
     }
 
     submit() {
-        this.answer.unshift(this.firstCard);
-        this.storyService.mark(this.story.id, this.answer);
-        this.answer = [];
-        this.currentStory++;
-        this.nextStory();
+        if (this.answer.length === 3) {
+            this.answer.unshift(this.firstCard);
+            this.storyService.mark(this.story.id, this.answer);
+            this.answer = [];
+            this.currentStory++;
+            this.nextStory();
+        }
     }
 
     nextStory() {
