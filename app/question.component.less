@@ -1,3 +1,5 @@
+@import "variables";
+
 .question {
   text-align: center;
   margin: 20px 0 10px;
@@ -17,20 +19,20 @@
   cursor: -moz-grab;
   cursor: -webkit-grab;
   background-color: rgba(0, 0, 0, 0.2);
-}
 
-.image.ex-over {
-  background-color: rgba(255, 255, 255, 0.3);
-}
+  .ex-over {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 
-.image.gu-mirror {
-  float: none;
-  cursor: grabbing;
-  cursor: -moz-grabbing;
-  cursor: -webkit-grabbing;
-  width: 200px;
-  height: 200px;
-  display: block;
+  .gu-mirror {
+    float: none;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    width: 200px;
+    height: 200px;
+    display: block;
+  }
 }
 
 .handle {
@@ -51,13 +53,13 @@
 .ordered-images {
   float: left;
   width: 661px;
-  background: #689F38;
+  background: @secondary;
   height: 170px;
   border-radius: 5px;
-}
 
-.ordered-images .image {
-  float: left; 
+  .image {
+    float: left; 
+  }
 }
 
 .btn {
