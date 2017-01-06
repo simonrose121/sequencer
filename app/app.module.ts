@@ -5,6 +5,7 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
+import { DataService } from './data.service';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { StoryService } from './story.service';
         QuestionComponent
     ],
     providers: [
-        StoryService
+        StoryService,
+        DataService
     ],
     bootstrap: [
         AppComponent

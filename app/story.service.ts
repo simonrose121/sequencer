@@ -1,10 +1,18 @@
+import { Injectable } from '@angular/core';
+
+import { DataService } from './data.service';
+
+@Injectable()
 export class StoryService {
+
+    constructor(private dataService: DataService) {}
+
     // public methods
     get() {
         return this.stories;
     }
 
-    mark(cards) {
+    mark(storyId, cards) {
         /* logic for this:
           Correct sequence - 2 points
           Correct beginning and end - 1 point
@@ -22,7 +30,7 @@ export class StoryService {
             mark = 0;
         }
 
-        console.log(mark);
+        this.dataService.storeMark(storyId, mark);
     }
 
     stories = [

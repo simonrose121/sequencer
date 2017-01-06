@@ -32,6 +32,7 @@ export class QuestionComponent {
 
     submit() {
         this.answer.unshift(this.firstCard);
+        this.storyService.mark(this.story.id, this.answer);
     }
 
     randomOrder(array) {
