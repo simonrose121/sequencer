@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="possible-images" [dragula]='"row-bag"' [dragulaModel]='story.cards'>
+            <div class="possible-images" [dragula]='"first-bag"' [dragulaModel]='story.cards'>
                 <div    *ngFor="let card of story.cards" 
                         class="image" 
                         [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
@@ -19,13 +19,16 @@
                         [ngStyle]="{'background-image': 'url(assets/' + firstCard.img + '.png)'}">
                 </div>
             </div>
-            <div class="ordered-images" [dragula]='"row-bag"' [dragulaModel]='answer'>
-                <div    *ngFor="let card of answer" 
-                        class="image" 
-                        [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
+            <div id="a1" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a1'>
+                <div class="image" *ngFor="let card of a1" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
-                <div class="overlay" *ngIf="this.answer.length < 3">
-                    Not enough cards!
+            </div>
+            <div id="a2" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a2'>
+                <div class="image" *ngFor="let card of a2" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
+                </div>
+            </div>
+            <div id="a3" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a3'>
+                <div class="image" *ngFor="let card of a3" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
         </div>

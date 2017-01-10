@@ -15,24 +15,50 @@ import { StoryService } from './story.service';
 export class QuestionComponent {
     public story;
     public firstCard;
-    public answer = [];
+    public a1 = [];
+    public a2 = [];
+    public a3 = [];
     public finished = false;
 
     private currentStory = 0;
     private stories;
 
-    constructor(private storyService: StoryService) {}
+    constructor(private storyService: StoryService, 
+                private dragulaService: DragulaService) {
+
+        dragulaService.setOptions('first-bag', {
+            accepts: (el, target, source) => {
+                return this.canMove(el, target, source);
+            }
+        });
+    }
 
     ngOnInit() {
         this.stories = this.storyService.get();
         this.nextStory();
     }
 
+    canMove(el, target, source) {
+        switch (target.id) {
+            case "a1":
+                return this.a1.length === 0;
+            case "a2":
+                return this.a2.length === 0;
+            case "a3":
+                return this.a3.length === 0;
+            default:
+                return true;
+        }
+    }
+
     submit() {
-        if (this.answer.length === 3) {
-            this.answer.unshift(this.firstCard);
-            this.storyService.mark(this.story.id, this.answer);
-            this.answer = [];
+        const answer = [ this.a1, this.a2, this.a3 ];
+        if (answer.length === 3) {
+            answer.unshift(this.firstCard);
+            this.storyService.mark(this.story.id, answer);
+            this.a1 = null;
+            this.a2 = null;
+            this.a3 = null;
             this.currentStory++;
             this.nextStory();
         }
