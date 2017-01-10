@@ -18,6 +18,7 @@ export class QuestionComponent {
     public a1 = [];
     public a2 = [];
     public a3 = [];
+    public error = false;
     public finished = false;
 
     private currentStory = 0;
@@ -52,17 +53,26 @@ export class QuestionComponent {
     }
 
     submit() {
-        // create an answer array
-        const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
-        if (answer.length === 3) {
-            answer.unshift(this.firstCard);
-            this.storyService.mark(this.story.id, answer);
-            this.a1 = null;
-            this.a2 = null;
-            this.a3 = null;
-            this.currentStory++;
-            this.nextStory();
+        if (this.a1.length === 0 || this.a2.length === 0 || this.a3.length === 0) {
+            // change div colour in a transition
+            this.error = true;
+        } else {
+            // create an answer array
+            const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
+            if (answer.length === 3) {
+                answer.unshift(this.firstCard);
+                this.storyService.mark(this.story.id, answer);
+                this.a1 = null;
+                this.a2 = null;
+                this.a3 = null;
+                this.currentStory++;
+                this.nextStory();
+            }
         }
+        // change error flag back once animation is complete
+        setTimeout(() => {
+            this.error = false
+        }, 1000);
     }
 
     nextStory() {

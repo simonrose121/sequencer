@@ -19,15 +19,15 @@
                         [ngStyle]="{'background-image': 'url(assets/' + firstCard.img + '.png)'}">
                 </div>
             </div>
-            <div id="a1" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a1'>
+            <div id="a1" class="image-box" [ngClass]="{empty: error && a1.length === 0}" [dragula]='"first-bag"' [dragulaModel]='a1'>
                 <div class="image" *ngFor="let card of a1" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
-            <div id="a2" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a2'>
+            <div id="a2" class="image-box" [ngClass]="{empty: error && a2.length === 0}" [dragula]='"first-bag"' [dragulaModel]='a2'>
                 <div class="image" *ngFor="let card of a2" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
-            <div id="a3" class="image-box" [dragula]='"first-bag"' [dragulaModel]='a3'>
+            <div id="a3" class="image-box" [ngClass]="{empty: error && a3.length === 0}" [dragula]='"first-bag"' [dragulaModel]='a3'>
                 <div class="image" *ngFor="let card of a3" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>

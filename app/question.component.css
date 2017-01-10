@@ -52,6 +52,18 @@
 .image-box .image {
   float: left;
 }
+.image-box.empty {
+  animation-name: error;
+  animation-duration: 1000ms;
+}
+@keyframes error {
+  from {
+    background: #FF4D4D;
+  }
+  to {
+    background: #689F38;
+  }
+}
 .btn {
   margin-top: 20px;
 }

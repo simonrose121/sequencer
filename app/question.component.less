@@ -61,6 +61,20 @@
   .image {
     float: left; 
   }
+  
+  &.empty {
+    @keyframes error {
+      from {
+        background: #FF4D4D;
+      }
+
+      to {
+        background: @secondary;
+      }
+    }
+    animation-name: error;
+    animation-duration: 1000ms;
+  }
 }
 
 .btn {
