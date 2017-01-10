@@ -52,7 +52,8 @@ export class QuestionComponent {
     }
 
     submit() {
-        const answer = [ this.a1, this.a2, this.a3 ];
+        // create an answer array
+        const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
         if (answer.length === 3) {
             answer.unshift(this.firstCard);
             this.storyService.mark(this.story.id, answer);
