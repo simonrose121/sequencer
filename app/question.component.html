@@ -15,6 +15,9 @@
         </div>
         <div class="col-md-12">
             <div class="first-image">
+                <div class="beginning ">
+                    Beginning
+                </div>
                 <div    class="image" 
                         [ngStyle]="{'background-image': 'url(assets/' + firstCard.img + '.png)'}">
                 </div>
@@ -27,7 +30,7 @@
                 <div class="image" *ngFor="let card of a2" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
-            <div id="a3" class="image-box" [ngClass]="{empty: error && a3.length === 0}" [dragula]='"first-bag"' [dragulaModel]='a3'>
+            <div id="a3" class="image-box end" [ngClass]="{empty: error && a3.length === 0}" [dragula]='"first-bag"' [dragulaModel]='a3'>
                 <div class="image" *ngFor="let card of a3" [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>

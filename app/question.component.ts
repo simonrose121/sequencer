@@ -28,8 +28,8 @@ export class QuestionComponent {
                 private dragulaService: DragulaService) {
 
         dragulaService.setOptions('first-bag', {
-            accepts: (el, target, source) => {
-                return this.canMove(el, target, source);
+            accepts: (el, target, source, sibling) => {
+                return this.canMove(el, target, source, sibling);
             }
         });
     }
@@ -39,7 +39,7 @@ export class QuestionComponent {
         this.nextStory();
     }
 
-    canMove(el, target, source) {
+    canMove(el, target, source, sibling) {
         switch (target.id) {
             case "a1":
                 return this.a1.length === 0;
