@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
 import { DataService } from './data.service';
+import { UtilitiesService } from './utilities.service';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { DataService } from './data.service';
     ],
     providers: [
         StoryService,
-        DataService
+        DataService,
+        UtilitiesService
     ],
     bootstrap: [
         AppComponent

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 
 import { DataService } from './data.service';
+import { UtilitiesService } from './utilities.service';
 
 @Injectable()
 export class StoryService {
 
-    constructor(private dataService: DataService) {}
+    constructor(private dataService: DataService,
+                private utilitiesService: UtilitiesService) {}
 
     // public methods
     get() {
-        return this.stories;
+        return this.utilitiesService.shuffle(this.stories);
     }
 
     mark(story, cards) {
@@ -145,7 +147,7 @@ export class StoryService {
             ]
         },
         {
-            name: 'Winning a race',
+            action: 'Winning a race',
             type: 'Behavioural 1',
             cards: [
                 {
@@ -167,7 +169,7 @@ export class StoryService {
             ]
         },
         {
-            name: 'Builing a snowman',
+            action: 'Builing a snowman',
             type: 'Behavioural 2',
             cards: [
                 {
@@ -189,7 +191,7 @@ export class StoryService {
             ]
         },
         {
-            name: 'Log falling off waterfall',
+            action: 'Log falling off waterfall',
             type: 'Mechanical 1',
             cards: [
                 {
@@ -211,7 +213,7 @@ export class StoryService {
             ]
         },
         {
-            name: 'Taking bear when not looking',
+            action: 'Taking bear when not looking',
             type: 'Intentional',
             cards: [
                 {

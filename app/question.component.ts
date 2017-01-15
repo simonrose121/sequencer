@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { StoryService } from './story.service';
+import { UtilitiesService } from './utilities.service';
 
 @Component({
     selector: 'question',
@@ -25,6 +26,7 @@ export class QuestionComponent {
     private stories;
 
     constructor(private storyService: StoryService, 
+                private utilitiesService: UtilitiesService,
                 private dragulaService: DragulaService) {
 
         dragulaService.setOptions('first-bag', {
@@ -84,29 +86,12 @@ export class QuestionComponent {
             // remove the first card from the array`
             this.story.cards.shift();
             // randomly sort the rest of the cards
-            this.story.cards = this.randomOrder(this.story.cards);
+            this.story.cards = this.utilitiesService.shuffle(this.story.cards);
         } else {
             // display well done message
             this.finished = true;
         }
     }
 
-    randomOrder(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
+    
 }

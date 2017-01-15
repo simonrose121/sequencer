@@ -9,7 +9,7 @@ export class DataService {
     }
 
     storeMark(story, mark) {
-        console.log('user: ' + this.id + ' has scored: ' + mark + ' for q: '
-                    + story.action + ' of type: ' + story.type);
+        console.log('user: ' + this.id + ' has scored: ' + mark + ' for q: "'
+                    + story.action + '." type: ' + story.type);
     }
 }
