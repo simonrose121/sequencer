@@ -8,7 +8,8 @@ export class DataService {
         this.id = id;
     }
 
-    storeMark(storyId, mark) {
-        console.log('user: ' + this.id + ' has scored: ' + mark + ' for q: ' + storyId);
+    storeMark(story, mark) {
+        console.log('user: ' + this.id + ' has scored: ' + mark + ' for q: '
+                    + story.action + ' of type: ' + story.type);
     }
 }
