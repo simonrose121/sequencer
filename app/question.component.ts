@@ -87,6 +87,7 @@ export class QuestionComponent {
             this.story.cards.shift();
             // randomly sort the rest of the cards
             this.story.cards = this.utilitiesService.shuffle(this.story.cards);
+            this.utilitiesService.startTimer();
         } else {
             // display well done message
             this.finished = true;
