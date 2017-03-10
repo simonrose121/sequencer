@@ -4,8 +4,8 @@ var watch = require('gulp-watch');
 var path = require('path');
 
 gulp.task('less', function() {
-    return gulp.src('app/*.less')
-        .pipe(watch('app/*.less'))
+    return gulp.src('client/app/*.less')
+        .pipe(watch('client/app/*.less'))
         .pipe(less())
-        .pipe(gulp.dest('app'));
+        .pipe(gulp.dest('client/app'));
 });
