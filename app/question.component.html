@@ -1,10 +1,12 @@
-<div class="container">
-    <div *ngIf="!finished">
+<div *ngIf="!finished">
+    <div class="row">
         <div class="col-md-12">
             <div class="question">
                 Look at the pictures and see if you can make a story with them.
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="possible-images" [dragula]='"first-bag"' [dragulaModel]='story.cards'>
                 <div    *ngFor="let card of story.cards" 
@@ -13,6 +15,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="first-image">
                 <div class="beginning ">
@@ -35,13 +39,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 col-md-offset-6">
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
             <div class="btn btn-default btn-lg" (click)="submit()">
                 Finished!
             </div>
         </div>
     </div>
-    <div *ngIf="finished" class="margin">
+</div>
+<div *ngIf="finished" class="margin">
+    <div class="row">
         <div class="col-md-2 col-md-offset-5">
             Well done!
         </div>
