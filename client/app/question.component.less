@@ -1,0 +1,107 @@
+@import "variables";
+
+.question {
+  text-align: center;
+  margin: 50px 0;
+  color: #000;
+  width: 900px;
+  font-size: 40px;
+}
+
+.image {
+  float: left;
+  background-size: 100%;
+  width: 200px;
+  height: 150px;
+  border: solid 1px #000;
+  margin: 10px;
+  transition: opacity 0.4s ease-in-out;
+  border-radius: 5px;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .ex-over {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .gu-mirror {
+    float: none;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    width: 200px;
+    height: 200px;
+    display: block;
+  }
+}
+
+.handle {
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: move;
+}
+
+.first-image {
+  float: left;
+}
+
+.possible-images {
+  float: left;
+  height: 170px;
+  width: 900px;
+  margin-bottom: 70px;
+  background: @secondary;
+  border-radius: 5px;
+}
+
+.image-box {
+  float: left;
+  width: 220px;
+  background: @alt;
+  height: 170px;
+  border-radius: 5px;
+  margin: 20px 10px 0 0;
+
+  .image {
+    float: left; 
+  }
+
+  &.end {
+    background: url('assets/end-image-box.png');
+  }
+  
+  &.empty {
+    @keyframes error {
+      from {
+        background: #FF4D4D;
+      }
+
+      to {
+        background: @alt;
+      }
+    }
+    animation-name: error;
+    animation-duration: 1000ms;
+  }
+}
+
+.beginning {
+  height: 20px;
+  margin-left: 70px;
+  color: #000;
+}
+
+.btn {
+  margin: 40px auto 0; 
+}
+
+.overlay {
+  color: #FFF;
+  z-index: 1;
+  width: 661px;
+  text-align: center;
+  height: 170px;
+  line-height: 170px;
+}
