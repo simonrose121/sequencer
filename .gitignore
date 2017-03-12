@@ -1,7 +1,8 @@
 system-config.js*
-app/**/*.js
-app/**/*.map
+client/app/**/*.js
+client/app/**/*.map
 node_modules
+client/node_modules
 jspm_packages
 bower_components
 aot/*
