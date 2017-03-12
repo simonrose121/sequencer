@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/simonrose121/sequencer.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Simon Rose",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/simonrose121/sequencer/issues"
   },
