@@ -104,19 +104,25 @@ export class QuestionComponent {
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
-                    this.a1 = [];
-                    this.a1.push(this.activeCard);
-                    this.removeCardFromOptions(this.activeCard);
+                    if (this.a1.length === 0) {
+                        this.a1 = [];
+                        this.a1.push(this.activeCard);
+                        this.removeCardFromOptions(this.activeCard);
+                    }               
                     break;
                 case "a2":
-                    this.a2 = [];
-                    this.a2.push(this.activeCard);
-                    this.removeCardFromOptions(this.activeCard);
+                    if (this.a2.length === 0) {
+                        this.a2 = [];
+                        this.a2.push(this.activeCard);
+                        this.removeCardFromOptions(this.activeCard);
+                    }       
                     break;
                 case "a3":
-                    this.a3 = [];
-                    this.a3.push(this.activeCard);
-                    this.removeCardFromOptions(this.activeCard);
+                    if (this.a3.length === 0) {
+                        this.a3 = [];
+                        this.a3.push(this.activeCard);
+                        this.removeCardFromOptions(this.activeCard);
+                    }       
                     break;
             }
 
