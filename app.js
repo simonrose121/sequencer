@@ -1,24 +1,6 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
+"use strict";
 
-var app = express();
+var server = require('./server');
 
-var port = process.env.PORT || 8000;
-
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
-// get POST parameter
-app.use(bodyParser.json());
-
-app.set('views', __dirname + '/client/');
-
-// page routes
-app.get('/', function(req,res) {
-    res.render(__dirname + '/client/index.html');
-});
-
-app.use(express.static(__dirname + '/client/'));
-
-app.listen(port)
+// start up new instance of the app
+var app = server.Server.bootstrap().app;
