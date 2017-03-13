@@ -28,26 +28,27 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                 function StoryService(dataService, utilitiesService) {
                     this.dataService = dataService;
                     this.utilitiesService = utilitiesService;
+                    // TODO: Remove these and pull from server instead
                     this.stories = [
                         {
                             action: 'Kicking ball in to river',
                             type: 'Mechanical 2',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '0/1'
+                                    position: 1,
+                                    imageUrl: '0/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '0/2'
+                                    position: 2,
+                                    imageUrl: '0/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '0/3'
+                                    position: 3,
+                                    imageUrl: '0/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '0/4'
+                                    position: 4,
+                                    imageUrl: '0/4'
                                 }
                             ]
                         },
@@ -56,20 +57,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Behavioural 2',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '1/1'
+                                    position: 1,
+                                    imageUrl: '1/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '1/2'
+                                    position: 2,
+                                    imageUrl: '1/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '1/3'
+                                    position: 3,
+                                    imageUrl: '1/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '1/4'
+                                    position: 4,
+                                    imageUrl: '1/4'
                                 }
                             ]
                         },
@@ -78,20 +79,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Behavioural 2',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '2/1'
+                                    position: 1,
+                                    imageUrl: '2/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '2/2'
+                                    position: 2,
+                                    imageUrl: '2/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '2/3'
+                                    position: 3,
+                                    imageUrl: '2/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '2/4'
+                                    position: 4,
+                                    imageUrl: '2/4'
                                 }
                             ]
                         },
@@ -100,20 +101,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Behavioural 1',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '3/1'
+                                    position: 1,
+                                    imageUrl: '3/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '3/2'
+                                    position: 2,
+                                    imageUrl: '3/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '3/3'
+                                    position: 3,
+                                    imageUrl: '3/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '3/4'
+                                    position: 4,
+                                    imageUrl: '3/4'
                                 }
                             ]
                         },
@@ -122,20 +123,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Mechanical 2',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '4/1'
+                                    position: 1,
+                                    imageUrl: '4/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '4/2'
+                                    position: 2,
+                                    imageUrl: '4/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '4/3'
+                                    position: 3,
+                                    imageUrl: '4/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '4/4'
+                                    position: 4,
+                                    imageUrl: '4/4'
                                 }
                             ]
                         },
@@ -144,20 +145,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Behavioural 1',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '5/1'
+                                    position: 1,
+                                    imageUrl: '5/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '5/2'
+                                    position: 2,
+                                    imageUrl: '5/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '5/3'
+                                    position: 3,
+                                    imageUrl: '5/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '5/4'
+                                    position: 4,
+                                    imageUrl: '5/4'
                                 }
                             ]
                         },
@@ -166,20 +167,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Behavioural 2',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '6/1'
+                                    position: 1,
+                                    imageUrl: '6/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '6/2'
+                                    position: 2,
+                                    imageUrl: '6/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '6/3'
+                                    position: 3,
+                                    imageUrl: '6/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '6/4'
+                                    position: 4,
+                                    imageUrl: '6/4'
                                 }
                             ]
                         },
@@ -188,20 +189,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Mechanical 1',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '7/1'
+                                    position: 1,
+                                    imageUrl: '7/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '7/2'
+                                    position: 2,
+                                    imageUrl: '7/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '7/3'
+                                    position: 3,
+                                    imageUrl: '7/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '7/4'
+                                    position: 4,
+                                    imageUrl: '7/4'
                                 }
                             ]
                         },
@@ -210,20 +211,20 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                             type: 'Intentional',
                             cards: [
                                 {
-                                    pos: 1,
-                                    img: '8/1'
+                                    position: 1,
+                                    imageUrl: '8/1'
                                 },
                                 {
-                                    pos: 2,
-                                    img: '8/2'
+                                    position: 2,
+                                    imageUrl: '8/2'
                                 },
                                 {
-                                    pos: 3,
-                                    img: '8/3'
+                                    position: 3,
+                                    imageUrl: '8/3'
                                 },
                                 {
-                                    pos: 4,
-                                    img: '8/4'
+                                    position: 4,
+                                    imageUrl: '8/4'
                                 }
                             ]
                         },
@@ -240,13 +241,13 @@ System.register(['@angular/core', './data.service', './utilities.service'], func
                       Incorrect sequence - 0 points
                     */
                     var mark;
-                    if ((cards[0].pos === 1) &&
-                        (cards[1].pos === 2) &&
-                        (cards[2].pos === 3) &&
-                        (cards[3].pos === 4)) {
+                    if ((cards[0].position === 1) &&
+                        (cards[1].position === 2) &&
+                        (cards[2].position === 3) &&
+                        (cards[3].position === 4)) {
                         mark = 2;
                     }
-                    else if ((cards[0].pos === 1) && (cards[3].pos === 4)) {
+                    else if ((cards[0].position === 1) && (cards[3].position === 4)) {
                         mark = 1;
                     }
                     else {

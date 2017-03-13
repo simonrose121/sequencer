@@ -4,6 +4,9 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
 
+import { Story } from './../models/story';
+import { Card } from './../models/card';
+
 @Component({
     selector: 'question',
     templateUrl: 'app/question.component.html',
@@ -14,18 +17,18 @@ import { UtilitiesService } from './utilities.service';
     viewProviders: [DragulaService]
 })
 export class QuestionComponent {
-    public story;
-    public firstCard;
-    public a1 = [];
-    public a2 = [];
-    public a3 = [];
-    public error = false;
-    public finished = false;
-    private currentStoryIndex = 0;
-    private activeHover = null;
-    private activeRemoveHover = null;
-    private stories;
-    private activeCard = null;
+    private stories : Array<Story>;
+    private story : Story;
+    private firstCard : Card;
+    private a1 : Array<Card> = [];
+    private a2 : Array<Card> = [];
+    private a3 : Array<Card> = [];
+    private error : boolean = false;
+    private finished : boolean = false;
+    private activeStoryIndex : number = 0;
+    private activeHover : string = null;
+    private activeRemoveHover : string = null;
+    private activeCard : Card = null;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
@@ -38,27 +41,15 @@ export class QuestionComponent {
         });
     }
 
-    ngOnInit() {
+    private ngOnInit() {
         this.stories = this.storyService.get();
         this.nextStory();
     }
 
-    canMove(el, target, source, sibling) {
-        switch (target.id) {
-            case "a1":
-                return this.a1.length === 0;
-            case "a2":
-                return this.a2.length === 0;
-            case "a3":
-                return this.a3.length === 0;
-            default:
-                return true;
-        }
-    }
-    nextStory() {
-        if (typeof this.stories[this.currentStoryIndex] !== "undefined") {
+    private nextStory() {
+        if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
             // get the first story
-            this.story = this.stories[this.currentStoryIndex];
+            this.story = this.stories[this.activeStoryIndex];
             // save the first card
             this.firstCard = this.story.cards[0];
             // remove the first card from the array`
@@ -72,7 +63,7 @@ export class QuestionComponent {
         }
     }
 
-    submit() {
+    private submit() {
         if (this.a1.length === 0 || this.a2.length === 0 || this.a3.length === 0) {
             // change div colour in a transition
             this.error = true;
@@ -85,7 +76,7 @@ export class QuestionComponent {
                 this.a1 = [];
                 this.a2 = [];
                 this.a3 = [];
-                this.currentStoryIndex++;
+                this.activeStoryIndex++;
                 this.nextStory();
             }
         }
@@ -95,12 +86,28 @@ export class QuestionComponent {
         }, 1000);
     }
 
-    setActiveCard(card) {
-        this.activeCard = card;
+    
+
+    // Dragular functions
+    private canMove(el, target, source, sibling) {
+        switch (target.id) {
+            case "a1":
+                return this.a1.length === 0;
+            case "a2":
+                return this.a2.length === 0;
+            case "a3":
+                return this.a3.length === 0;
+            default:
+                return true;
+        }
     }
 
     // Click and click functionality
-    clickToAddOrRemove(pos) {
+    private setActiveCard(card) {
+        this.activeCard = card;
+    }
+
+    private clickToAddOrRemove(pos) {
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
@@ -132,7 +139,7 @@ export class QuestionComponent {
         }
     }
 
-    removeCard(pos) {
+    private removeCard(pos) {
         switch(pos) {
             case "a1":
                 if (this.a1.length > 0) {
@@ -155,14 +162,14 @@ export class QuestionComponent {
         }
     }
 
-    removeCardFromOptions(card) {
+    private removeCardFromOptions(card) {
         var index : number = this.story.cards.indexOf(card, 0);
         if (index > -1) {
             this.story.cards.splice(index, 1);
         }
     }
 
-    hover(pos) {
+    private hover(pos) {
         // handle if activeCard is selected
         if (this.activeCard) {
             // highlight cell
@@ -192,7 +199,7 @@ export class QuestionComponent {
         }
     }
 
-    unhover() {
+    private unhover() {
         this.activeHover = null;
         this.activeRemoveHover = null;
     }
