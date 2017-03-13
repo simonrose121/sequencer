@@ -63,23 +63,39 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     }
                 };
                 QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
+                    if (this.activeCard) {
+                        switch (pos) {
+                            case "a1":
+                                this.a1 = [];
+                                this.a1.push(this.activeCard);
+                                break;
+                            case "a2":
+                                this.a2 = [];
+                                this.a2.push(this.activeCard);
+                                break;
+                            case "a3":
+                                this.a3 = [];
+                                this.a3.push(this.activeCard);
+                                break;
+                        }
+                        this.setActiveCard(null);
+                    }
+                    else {
+                        this.removeCard(pos);
+                    }
+                };
+                QuestionComponent.prototype.removeCard = function (pos) {
                     switch (pos) {
                         case "a1":
                             this.a1 = [];
-                            this.a1.push(this.activeCard);
                             break;
                         case "a2":
                             this.a2 = [];
-                            this.a2.push(this.activeCard);
                             break;
                         case "a3":
                             this.a3 = [];
-                            this.a3.push(this.activeCard);
                             break;
                     }
-                    this.setActiveCard(null);
-                };
-                QuestionComponent.prototype.removeCard = function (pos) {
                 };
                 QuestionComponent.prototype.nextStory = function () {
                     if (typeof this.stories[this.currentStory] !== "undefined") {

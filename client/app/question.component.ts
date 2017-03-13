@@ -55,26 +55,40 @@ export class QuestionComponent {
     }
 
     clickToAddOrRemove(pos) {
-        switch(pos) {
-            case "a1":
-                this.a1 = [];
-                this.a1.push(this.activeCard); 
-                break;
-            case "a2":
-                this.a2 = [];
-                this.a2.push(this.activeCard);
-                break;
-            case "a3":
-                this.a3 = [];
-                this.a3.push(this.activeCard);
-                break;
-        }
+        if (this.activeCard) {
+            switch(pos) {
+                case "a1":
+                    this.a1 = [];
+                    this.a1.push(this.activeCard); 
+                    break;
+                case "a2":
+                    this.a2 = [];
+                    this.a2.push(this.activeCard);
+                    break;
+                case "a3":
+                    this.a3 = [];
+                    this.a3.push(this.activeCard);
+                    break;
+            }
 
-        this.setActiveCard(null);
+            this.setActiveCard(null);
+        } else {
+            this.removeCard(pos);
+        }
     }
 
     removeCard(pos) {
-        
+        switch(pos) {
+            case "a1":
+                this.a1 = [];
+                break;
+            case "a2":
+                this.a2 = [];
+                break;
+            case "a3":
+                this.a3 = [];
+                break;
+        }
     }
 
     nextStory() {
