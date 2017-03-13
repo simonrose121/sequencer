@@ -32,34 +32,43 @@
             </div>
             <div id="a1" 
                  class="image-box" 
-                 [ngClass]="{empty: error && a1.length === 0}"
+                 [ngClass]="{empty: error && a1.length === 0, 'hover': activeCard && activeHover === 'a1'}"
                  [dragula]='"first-bag"' 
                  [dragulaModel]='a1' 
-                 (click)="clickToAddOrRemove('a1')">
+                 (click)="clickToAddOrRemove('a1')"
+                 (mouseover)="hover('a1')"
+                 (mouseleave)="unhover()">
                 <div class="image" 
                      *ngFor="let card of a1" 
+                     [ngClass]="{'remove': activeRemoveHover === 'a1'}"
                      [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
             <div id="a2" 
                  class="image-box" 
-                 [ngClass]="{empty: error && a2.length === 0}" 
+                 [ngClass]="{empty: error && a2.length === 0, 'hover': activeCard && activeHover === 'a2'}" 
                  [dragula]='"first-bag"' 
                  [dragulaModel]='a2'
-                 (click)="clickToAddOrRemove('a2')">
+                 (click)="clickToAddOrRemove('a2')"
+                 (mouseover)="hover('a2')"
+                 (mouseleave)="unhover()">
                 <div class="image" 
-                     *ngFor="let card of a2" 
+                     *ngFor="let card of a2"
+                     [ngClass]="{'remove': activeRemoveHover === 'a2'}"
                      [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
             <div id="a3" 
                  class="image-box end" 
-                 [ngClass]="{empty: error && a3.length === 0}" 
+                 [ngClass]="{empty: error && a3.length === 0, 'hover': activeCard && activeHover === 'a3'}" 
                  [dragula]='"first-bag"' 
                  [dragulaModel]='a3'
-                 (click)="clickToAddOrRemove('a3')">
+                 (click)="clickToAddOrRemove('a3')"
+                 (mouseover)="hover('a3')"
+                 (mouseleave)="unhover()">
                 <div class="image" 
                      *ngFor="let card of a3" 
+                     [ngClass]="{'remove': activeRemoveHover === 'a3'}"
                      [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
                 </div>
             </div>
