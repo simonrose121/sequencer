@@ -16,6 +16,11 @@ import { UtilitiesService } from './utilities.service';
 export class QuestionComponent {
     public story;
     public firstCard;
+    public cardOptions = [
+        { id:'a1'},
+        { id:'a2'},
+        { id:'a3'}
+    ]
     public a1 = [];
     public a2 = [];
     public a3 = [];
@@ -53,6 +58,27 @@ export class QuestionComponent {
             default:
                 return true;
         }
+    }
+
+    clickToAddOrRemove(pos) {
+        switch(pos) {
+            case "a1":
+                this.a1 = [];
+                this.a1.push(this.selectedCard); 
+                break;
+            case "a2":
+                this.a2 = [];
+                this.a2.push(this.selectedCard);
+                break;
+            case "a3":
+                this.a3 = [];
+                this.a3.push(this.selectedCard);
+                break;
+        }
+    }
+
+    removeCard(pos) {
+        
     }
 
     nextStory() {
@@ -94,10 +120,8 @@ export class QuestionComponent {
             this.error = false
         }, 1000);
     }
-    
+
     setCurrent(card) {
-        console.log(card);
         this.selectedCard = card;
-        console.log(this.selectedCard);
     }
 }

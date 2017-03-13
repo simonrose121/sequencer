@@ -33,6 +33,11 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.storyService = storyService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
+                    this.cardOptions = [
+                        { id: 'a1' },
+                        { id: 'a2' },
+                        { id: 'a3' }
+                    ];
                     this.a1 = [];
                     this.a2 = [];
                     this.a3 = [];
@@ -61,6 +66,24 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                         default:
                             return true;
                     }
+                };
+                QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
+                    switch (pos) {
+                        case "a1":
+                            this.a1 = [];
+                            this.a1.push(this.selectedCard);
+                            break;
+                        case "a2":
+                            this.a2 = [];
+                            this.a2.push(this.selectedCard);
+                            break;
+                        case "a3":
+                            this.a3 = [];
+                            this.a3.push(this.selectedCard);
+                            break;
+                    }
+                };
+                QuestionComponent.prototype.removeCard = function (pos) {
                 };
                 QuestionComponent.prototype.nextStory = function () {
                     if (typeof this.stories[this.currentStory] !== "undefined") {
@@ -104,9 +127,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     }, 1000);
                 };
                 QuestionComponent.prototype.setCurrent = function (card) {
-                    console.log(card);
                     this.selectedCard = card;
-                    console.log(this.selectedCard);
                 };
                 QuestionComponent = __decorate([
                     core_1.Component({
