@@ -38,8 +38,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.a3 = [];
                     this.error = false;
                     this.finished = false;
-                    this.currentStory = 0;
-                    this.selectedCard = null;
+                    this.currentStoryIndex = 0;
+                    this.activeHover = null;
+                    this.activeRemoveHover = null;
+                    this.activeCard = null;
                     dragulaService.setOptions('first-bag', {
                         accepts: function (el, target, source, sibling) {
                             return _this.canMove(el, target, source, sibling);
@@ -62,28 +64,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                             return true;
                     }
                 };
-                QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
-                    switch (pos) {
-                        case "a1":
-                            this.a1 = [];
-                            this.a1.push(this.selectedCard);
-                            break;
-                        case "a2":
-                            this.a2 = [];
-                            this.a2.push(this.selectedCard);
-                            break;
-                        case "a3":
-                            this.a3 = [];
-                            this.a3.push(this.selectedCard);
-                            break;
-                    }
-                };
-                QuestionComponent.prototype.removeCard = function (pos) {
-                };
                 QuestionComponent.prototype.nextStory = function () {
-                    if (typeof this.stories[this.currentStory] !== "undefined") {
+                    if (typeof this.stories[this.currentStoryIndex] !== "undefined") {
                         // get the first story
-                        this.story = this.stories[this.currentStory];
+                        this.story = this.stories[this.currentStoryIndex];
                         // save the first card
                         this.firstCard = this.story.cards[0];
                         // remove the first card from the array`
@@ -112,7 +96,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                             this.a1 = [];
                             this.a2 = [];
                             this.a3 = [];
-                            this.currentStory++;
+                            this.currentStoryIndex++;
                             this.nextStory();
                         }
                     }
@@ -121,8 +105,102 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                         _this.error = false;
                     }, 1000);
                 };
-                QuestionComponent.prototype.setCurrent = function (card) {
-                    this.selectedCard = card;
+                QuestionComponent.prototype.setActiveCard = function (card) {
+                    this.activeCard = card;
+                };
+                // Click and click functionality
+                QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
+                    if (this.activeCard) {
+                        switch (pos) {
+                            case "a1":
+                                if (this.a1.length === 0) {
+                                    this.a1 = [];
+                                    this.a1.push(this.activeCard);
+                                    this.removeCardFromOptions(this.activeCard);
+                                }
+                                break;
+                            case "a2":
+                                if (this.a2.length === 0) {
+                                    this.a2 = [];
+                                    this.a2.push(this.activeCard);
+                                    this.removeCardFromOptions(this.activeCard);
+                                }
+                                break;
+                            case "a3":
+                                if (this.a3.length === 0) {
+                                    this.a3 = [];
+                                    this.a3.push(this.activeCard);
+                                    this.removeCardFromOptions(this.activeCard);
+                                }
+                                break;
+                        }
+                        this.setActiveCard(null);
+                    }
+                    else {
+                        this.removeCard(pos);
+                    }
+                };
+                QuestionComponent.prototype.removeCard = function (pos) {
+                    switch (pos) {
+                        case "a1":
+                            if (this.a1.length > 0) {
+                                this.story.cards.push(this.a1[0]);
+                                this.a1 = [];
+                            }
+                            break;
+                        case "a2":
+                            if (this.a2.length > 0) {
+                                this.story.cards.push(this.a2[0]);
+                                this.a2 = [];
+                            }
+                            break;
+                        case "a3":
+                            if (this.a3.length > 0) {
+                                this.story.cards.push(this.a3[0]);
+                                this.a3 = [];
+                            }
+                            break;
+                    }
+                };
+                QuestionComponent.prototype.removeCardFromOptions = function (card) {
+                    var index = this.story.cards.indexOf(card, 0);
+                    if (index > -1) {
+                        this.story.cards.splice(index, 1);
+                    }
+                };
+                QuestionComponent.prototype.hover = function (pos) {
+                    // handle if activeCard is selected
+                    if (this.activeCard) {
+                        // highlight cell
+                        switch (pos) {
+                            case "a1":
+                                this.activeHover = 'a1';
+                                break;
+                            case "a2":
+                                this.activeHover = 'a2';
+                                break;
+                            case "a3":
+                                this.activeHover = 'a3';
+                                break;
+                        }
+                    }
+                    else {
+                        switch (pos) {
+                            case "a1":
+                                this.activeRemoveHover = 'a1';
+                                break;
+                            case "a2":
+                                this.activeRemoveHover = 'a2';
+                                break;
+                            case "a3":
+                                this.activeRemoveHover = 'a3';
+                                break;
+                        }
+                    }
+                };
+                QuestionComponent.prototype.unhover = function () {
+                    this.activeHover = null;
+                    this.activeRemoveHover = null;
                 };
                 QuestionComponent = __decorate([
                     core_1.Component({

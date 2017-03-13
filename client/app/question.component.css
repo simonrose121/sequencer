@@ -32,6 +32,12 @@
   height: 200px;
   display: block;
 }
+.image.active-card {
+  border: solid 3px #FFF;
+}
+.image.remove {
+  border: solid 3px #FF4D4D;
+}
 .handle {
   background-color: rgba(0, 0, 0, 0.4);
   cursor: move;
@@ -72,6 +78,9 @@
   to {
     background: #B2DFDB;
   }
+}
+.image-box.hover {
+  border: solid 3px #FFF;
 }
 .beginning {
   height: 20px;
