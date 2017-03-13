@@ -37,7 +37,7 @@ export class Server {
 
         this.app.set('views', __dirname + '/client/');
 
-        // this.app.use(express.static(__dirname + '/client/'));
+        this.app.use(express.static(__dirname + '/client/'));
     }
 
     public routes() {

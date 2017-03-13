@@ -20,6 +20,7 @@ class Server {
         this.app.engine('html', ejs.renderFile);
         this.app.use(bodyParser.json());
         this.app.set('views', __dirname + '/client/');
+        this.app.use(express.static(__dirname + '/client/'));
     }
     routes() {
         this.app.get('/', function (req, res) {
