@@ -16,17 +16,11 @@ import { UtilitiesService } from './utilities.service';
 export class QuestionComponent {
     public story;
     public firstCard;
-    public cardOptions = [
-        { id:'a1'},
-        { id:'a2'},
-        { id:'a3'}
-    ]
     public a1 = [];
     public a2 = [];
     public a3 = [];
     public error = false;
     public finished = false;
-
     private currentStory = 0;
     private stories;
     private selectedCard = null;

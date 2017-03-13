@@ -33,11 +33,6 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.storyService = storyService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
-                    this.cardOptions = [
-                        { id: 'a1' },
-                        { id: 'a2' },
-                        { id: 'a3' }
-                    ];
                     this.a1 = [];
                     this.a2 = [];
                     this.a3 = [];
