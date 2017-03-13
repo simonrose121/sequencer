@@ -32,6 +32,9 @@
   height: 200px;
   display: block;
 }
+.image.active-card {
+  border: solid 3px #FFF;
+}
 .handle {
   background-color: rgba(0, 0, 0, 0.4);
   cursor: move;

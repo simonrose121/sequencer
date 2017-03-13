@@ -23,7 +23,7 @@ export class QuestionComponent {
     public finished = false;
     private currentStory = 0;
     private stories;
-    private selectedCard = null;
+    private activeCard = null;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
@@ -58,17 +58,19 @@ export class QuestionComponent {
         switch(pos) {
             case "a1":
                 this.a1 = [];
-                this.a1.push(this.selectedCard); 
+                this.a1.push(this.activeCard); 
                 break;
             case "a2":
                 this.a2 = [];
-                this.a2.push(this.selectedCard);
+                this.a2.push(this.activeCard);
                 break;
             case "a3":
                 this.a3 = [];
-                this.a3.push(this.selectedCard);
+                this.a3.push(this.activeCard);
                 break;
         }
+
+        this.setActiveCard(null);
     }
 
     removeCard(pos) {
@@ -115,7 +117,7 @@ export class QuestionComponent {
         }, 1000);
     }
 
-    setCurrent(card) {
-        this.selectedCard = card;
+    setActiveCard(card) {
+        this.activeCard = card;
     }
 }

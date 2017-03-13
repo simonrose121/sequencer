@@ -8,11 +8,14 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="possible-images" [dragula]='"first-bag"' [dragulaModel]='story.cards'>
+            <div class="possible-images" 
+                 [dragula]='"first-bag"' 
+                 [dragulaModel]='story.cards'>
                 <div    *ngFor="let card of story.cards" 
-                        (click)="setCurrent(card)"
+                        (click)="setActiveCard(card)"
                         class="image" 
-                        [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}">
+                        [ngStyle]="{'background-image': 'url(assets/' + card.img + '.png)'}"
+                        [ngClass]="{'active-card': activeCard === card}">
                 </div>
             </div>
         </div>
