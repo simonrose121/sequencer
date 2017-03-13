@@ -39,6 +39,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.error = false;
                     this.finished = false;
                     this.currentStory = 0;
+                    this.selectedCard = null;
                     dragulaService.setOptions('first-bag', {
                         accepts: function (el, target, source, sibling) {
                             return _this.canMove(el, target, source, sibling);
@@ -59,6 +60,23 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                             return this.a3.length === 0;
                         default:
                             return true;
+                    }
+                };
+                QuestionComponent.prototype.nextStory = function () {
+                    if (typeof this.stories[this.currentStory] !== "undefined") {
+                        // get the first story
+                        this.story = this.stories[this.currentStory];
+                        // save the first card
+                        this.firstCard = this.story.cards[0];
+                        // remove the first card from the array`
+                        this.story.cards.shift();
+                        // randomly sort the rest of the cards
+                        this.story.cards = this.utilitiesService.shuffle(this.story.cards);
+                        this.utilitiesService.startTimer();
+                    }
+                    else {
+                        // display well done message
+                        this.finished = true;
                     }
                 };
                 QuestionComponent.prototype.submit = function () {
@@ -85,22 +103,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                         _this.error = false;
                     }, 1000);
                 };
-                QuestionComponent.prototype.nextStory = function () {
-                    if (typeof this.stories[this.currentStory] !== "undefined") {
-                        // get the first story
-                        this.story = this.stories[this.currentStory];
-                        // save the first card
-                        this.firstCard = this.story.cards[0];
-                        // remove the first card from the array`
-                        this.story.cards.shift();
-                        // randomly sort the rest of the cards
-                        this.story.cards = this.utilitiesService.shuffle(this.story.cards);
-                        this.utilitiesService.startTimer();
-                    }
-                    else {
-                        // display well done message
-                        this.finished = true;
-                    }
+                QuestionComponent.prototype.setCurrent = function (card) {
+                    console.log(card);
+                    this.selectedCard = card;
+                    console.log(this.selectedCard);
                 };
                 QuestionComponent = __decorate([
                     core_1.Component({
