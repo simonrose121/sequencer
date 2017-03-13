@@ -41,12 +41,12 @@ export class QuestionComponent {
         });
     }
 
-    ngOnInit() {
+    private ngOnInit() {
         this.stories = this.storyService.get();
         this.nextStory();
     }
 
-    nextStory() {
+    private nextStory() {
         if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
             // get the first story
             this.story = this.stories[this.activeStoryIndex];
@@ -63,7 +63,7 @@ export class QuestionComponent {
         }
     }
 
-    submit() {
+    private submit() {
         if (this.a1.length === 0 || this.a2.length === 0 || this.a3.length === 0) {
             // change div colour in a transition
             this.error = true;
@@ -89,7 +89,7 @@ export class QuestionComponent {
     
 
     // Dragular functions
-    canMove(el, target, source, sibling) {
+    private canMove(el, target, source, sibling) {
         switch (target.id) {
             case "a1":
                 return this.a1.length === 0;
@@ -103,11 +103,11 @@ export class QuestionComponent {
     }
 
     // Click and click functionality
-    setActiveCard(card) {
+    private setActiveCard(card) {
         this.activeCard = card;
     }
-    
-    clickToAddOrRemove(pos) {
+
+    private clickToAddOrRemove(pos) {
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
@@ -139,7 +139,7 @@ export class QuestionComponent {
         }
     }
 
-    removeCard(pos) {
+    private removeCard(pos) {
         switch(pos) {
             case "a1":
                 if (this.a1.length > 0) {
@@ -162,14 +162,14 @@ export class QuestionComponent {
         }
     }
 
-    removeCardFromOptions(card) {
+    private removeCardFromOptions(card) {
         var index : number = this.story.cards.indexOf(card, 0);
         if (index > -1) {
             this.story.cards.splice(index, 1);
         }
     }
 
-    hover(pos) {
+    private hover(pos) {
         // handle if activeCard is selected
         if (this.activeCard) {
             // highlight cell
@@ -199,7 +199,7 @@ export class QuestionComponent {
         }
     }
 
-    unhover() {
+    private unhover() {
         this.activeHover = null;
         this.activeRemoveHover = null;
     }

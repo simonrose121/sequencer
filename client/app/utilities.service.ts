@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
 export class UtilitiesService {
     private startDate;
 
-    startTimer() {
+    public startTimer() {
         this.startDate = new Date();
     }
 
-    secondsElapsed(endDate: Date) {
+    public secondsElapsed(endDate: Date) {
         return (endDate.getTime() - this.startDate.getTime()) / 1000;
     }
 
-    shuffle(array) {
+    public shuffle(array) : Array<any> {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
         // While there remain elements to shuffle...
