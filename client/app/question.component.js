@@ -38,7 +38,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.a3 = [];
                     this.error = false;
                     this.finished = false;
-                    this.currentStoryIndex = 0;
+                    this.activeStoryIndex = 0;
                     this.activeHover = null;
                     this.activeRemoveHover = null;
                     this.activeCard = null;
@@ -52,22 +52,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.stories = this.storyService.get();
                     this.nextStory();
                 };
-                QuestionComponent.prototype.canMove = function (el, target, source, sibling) {
-                    switch (target.id) {
-                        case "a1":
-                            return this.a1.length === 0;
-                        case "a2":
-                            return this.a2.length === 0;
-                        case "a3":
-                            return this.a3.length === 0;
-                        default:
-                            return true;
-                    }
-                };
                 QuestionComponent.prototype.nextStory = function () {
-                    if (typeof this.stories[this.currentStoryIndex] !== "undefined") {
+                    if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
                         // get the first story
-                        this.story = this.stories[this.currentStoryIndex];
+                        this.story = this.stories[this.activeStoryIndex];
                         // save the first card
                         this.firstCard = this.story.cards[0];
                         // remove the first card from the array`
@@ -96,7 +84,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                             this.a1 = [];
                             this.a2 = [];
                             this.a3 = [];
-                            this.currentStoryIndex++;
+                            this.activeStoryIndex++;
                             this.nextStory();
                         }
                     }
@@ -105,10 +93,23 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                         _this.error = false;
                     }, 1000);
                 };
+                // Dragular functions
+                QuestionComponent.prototype.canMove = function (el, target, source, sibling) {
+                    switch (target.id) {
+                        case "a1":
+                            return this.a1.length === 0;
+                        case "a2":
+                            return this.a2.length === 0;
+                        case "a3":
+                            return this.a3.length === 0;
+                        default:
+                            return true;
+                    }
+                };
+                // Click and click functionality
                 QuestionComponent.prototype.setActiveCard = function (card) {
                     this.activeCard = card;
                 };
-                // Click and click functionality
                 QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
                     if (this.activeCard) {
                         switch (pos) {
