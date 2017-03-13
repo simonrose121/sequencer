@@ -21,9 +21,9 @@ export class QuestionComponent {
     public a3 = [];
     public error = false;
     public finished = false;
-
     private currentStory = 0;
     private stories;
+    private selectedCard = null;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
@@ -54,6 +54,44 @@ export class QuestionComponent {
         }
     }
 
+    clickToAddOrRemove(pos) {
+        switch(pos) {
+            case "a1":
+                this.a1 = [];
+                this.a1.push(this.selectedCard); 
+                break;
+            case "a2":
+                this.a2 = [];
+                this.a2.push(this.selectedCard);
+                break;
+            case "a3":
+                this.a3 = [];
+                this.a3.push(this.selectedCard);
+                break;
+        }
+    }
+
+    removeCard(pos) {
+        
+    }
+
+    nextStory() {
+        if (typeof this.stories[this.currentStory] !== "undefined") {
+            // get the first story
+            this.story = this.stories[this.currentStory];
+            // save the first card
+            this.firstCard = this.story.cards[0];
+            // remove the first card from the array`
+            this.story.cards.shift();
+            // randomly sort the rest of the cards
+            this.story.cards = this.utilitiesService.shuffle(this.story.cards);
+            this.utilitiesService.startTimer();
+        } else {
+            // display well done message
+            this.finished = true;
+        }
+    }
+
     submit() {
         if (this.a1.length === 0 || this.a2.length === 0 || this.a3.length === 0) {
             // change div colour in a transition
@@ -77,22 +115,7 @@ export class QuestionComponent {
         }, 1000);
     }
 
-    nextStory() {
-        if (typeof this.stories[this.currentStory] !== "undefined") {
-            // get the first story
-            this.story = this.stories[this.currentStory];
-            // save the first card
-            this.firstCard = this.story.cards[0];
-            // remove the first card from the array`
-            this.story.cards.shift();
-            // randomly sort the rest of the cards
-            this.story.cards = this.utilitiesService.shuffle(this.story.cards);
-            this.utilitiesService.startTimer();
-        } else {
-            // display well done message
-            this.finished = true;
-        }
+    setCurrent(card) {
+        this.selectedCard = card;
     }
-
-    
 }
