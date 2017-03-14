@@ -5,8 +5,8 @@ import * as ejs from "ejs";
 
 declare var __dirname;
 
-// controllers
-import { StoryController } from './server/controllers/story.controller';
+// models
+import { StoryModel } from './server/models/StoryModel';
 
 export class Server {
     public app;
@@ -47,7 +47,7 @@ export class Server {
     }
 
     public api() {
-        // this.app.get('/story/getAll', StoryController.)
+        this.app.get('/api/story/getAll', StoryModel.getAll);
     }
 }
 

@@ -1,4 +1,4 @@
-import { IStory } from './../intefaces/IStory';
+import { IStory } from './../interfaces/IStory';
 import { Card } from './card';
 
 export class Story implements IStory {

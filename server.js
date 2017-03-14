@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const StoryModel_1 = require("./server/models/StoryModel");
 class Server {
     constructor() {
         this.port = 3000;
@@ -28,6 +29,7 @@ class Server {
         });
     }
     api() {
+        this.app.get('/story/getAll', StoryModel_1.StoryModel.getAll);
     }
 }
 exports.Server = Server;
