@@ -6,7 +6,6 @@ class StoryModel {
         this._storyModel = storyModel;
     }
     static getAll(req, res) {
-        console.log('here');
         let repo = new StoryRepository_1.StoryRepository();
         repo.find({}).exec((err, result) => {
             if (err) {
