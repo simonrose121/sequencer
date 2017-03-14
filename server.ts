@@ -20,6 +20,8 @@ export class Server {
     constructor() {
         this.app = express();
 
+        this.connect();
+
         this.config();
 
         this.routes();
@@ -27,6 +29,19 @@ export class Server {
         this.api();
 
         this.app.listen(this.port);
+    }
+
+    public connect() {
+        let uri = 'mongodb://localhost:27017/sequencer-test';
+        mongoose.connect(uri, (err) => {
+            if (err) {
+                console.log(err.message);
+                console.log(err);
+            }
+            else {
+                console.log('Connected to MongoDb');
+            }
+        });
     }
 
     public config() {
@@ -47,7 +62,7 @@ export class Server {
     }
 
     public api() {
-        this.app.get('/api/story/getAll', StoryModel.getAll);
+        this.app.get('/stories/', StoryModel.getAll);
     }
 }
 

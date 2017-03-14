@@ -7,24 +7,16 @@ export class StoryModel {
         this._storyModel = storyModel;
     }
 
-    static getAll() {
-        let p = new Promise((resolve, reject) => {
-            let repo = new StoryRepository();
+    static getAll(req, res) {
+        let repo = new StoryRepository();
 
-            repo.find({}).exec((err, res) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    if (res.length) {
-                        resolve(res[0]);
-                    } else {
-                        resolve(null);
-                    }
-                }
-            });
+        repo.find({}).exec((err, result) => {
+            if (err) {
+                throw err;
+            }
+
+            return res.json(result);
         });
-
-        return p;
     }
 }
 
