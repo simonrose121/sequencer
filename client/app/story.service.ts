@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { UtilitiesService } from './utilities.service';
 
-import { Story } from './../models/story';
-import { Card } from './../models/card';
+import { Card } from './../../shared/models/card';
+import { Story } from './../../shared/models/story';
 
 @Injectable()
 export class StoryService {

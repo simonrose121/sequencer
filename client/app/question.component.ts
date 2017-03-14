@@ -4,8 +4,8 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
 
-import { Story } from './../models/story';
-import { Card } from './../models/card';
+import { Card } from './../../shared/models/card';
+import { Story } from './../../shared/models/story';
 
 @Component({
     selector: 'question',

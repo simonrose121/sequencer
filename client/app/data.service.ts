@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { UtilitiesService } from './utilities.service';
 
-import { Story } from './../models/story';
+import { Story } from './../../shared/models/story';
 
 @Injectable()
 export class DataService {

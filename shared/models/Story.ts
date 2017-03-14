@@ -1,6 +1,7 @@
+import { IStory } from './../intefaces/IStory';
 import { Card } from './card';
 
-export class Story {
+export class Story implements IStory {
     public action: string;
     public type: string;
     public cards: Array<Card>;

@@ -1,4 +1,6 @@
-export class Card {
+import { ICard } from './../interfaces/card';
+
+export class Card implements ICard {
     public position: number;
     public imageUrl: string;
 
