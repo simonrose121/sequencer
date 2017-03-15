@@ -9,8 +9,5 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true
-  },
-  "include": [
-    "app/*"
-  ]
+  }
 }
