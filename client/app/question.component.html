@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="possible-images" 
                  [dragula]='"first-bag"' 
-                 [dragulaModel]='story.cards'>
+                 [dragulaModel]='story?.cards'>
                 <div    *ngFor="let card of story?.cards" 
                         (click)="setActiveCard(card)"
                         class="image" 
@@ -27,7 +27,7 @@
                     Beginning
                 </div>
                 <div    class="image" 
-                        [ngStyle]="{'background-image': 'url(assets/' + firstCard.imageUrl + '.png)'}">
+                        [ngStyle]="{'background-image': 'url(assets/' + firstCard?.imageUrl + '.png)'}">
                 </div>
             </div>
             <div id="a1" 
@@ -41,7 +41,7 @@
                 <div class="image" 
                      *ngFor="let card of a1" 
                      [ngClass]="{'remove': activeRemoveHover === 'a1'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card?.imageUrl + '.png)'}">
                 </div>
             </div>
             <div id="a2" 
@@ -55,7 +55,7 @@
                 <div class="image" 
                      *ngFor="let card of a2"
                      [ngClass]="{'remove': activeRemoveHover === 'a2'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card?.imageUrl + '.png)'}">
                 </div>
             </div>
             <div id="a3" 
@@ -69,7 +69,7 @@
                 <div class="image" 
                      *ngFor="let card of a3" 
                      [ngClass]="{'remove': activeRemoveHover === 'a3'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card?.imageUrl + '.png)'}">
                 </div>
             </div>
         </div>
