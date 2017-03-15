@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
+// models
 const StoryModel_1 = require("./server/models/StoryModel");
 class Server {
     constructor() {

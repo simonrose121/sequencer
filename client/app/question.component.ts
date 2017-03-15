@@ -38,7 +38,7 @@ export class QuestionComponent {
             accepts: (el, target, source, sibling) => {
                 return this.canMove(el, target, source, sibling);
             }
-        });
+        });       
     }
 
     private ngOnInit() {

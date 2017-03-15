@@ -9,5 +9,8 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+  "exclude": [
+    "client/node_modules"
+  ]
 }
