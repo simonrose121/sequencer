@@ -8,7 +8,7 @@ import { Story } from './../../shared/models/story';
 export class DataService {
     constructor(private utilitiesService: UtilitiesService) {}
 
-    private id = 2; // TODO: Change me back
+    private id = 1; // TODO: Change me back
 
     setId(id : number) {
         this.id = id;

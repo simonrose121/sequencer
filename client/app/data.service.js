@@ -24,7 +24,7 @@ System.register(["@angular/core", "./utilities.service"], function (exports_1, c
             DataService = (function () {
                 function DataService(utilitiesService) {
                     this.utilitiesService = utilitiesService;
-                    this.id = 2; // TODO: Change me back
+                    this.id = 1; // TODO: Change me back
                 }
                 DataService.prototype.setId = function (id) {
                     this.id = id;

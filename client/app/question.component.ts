@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { StoryService } from './story.service';
@@ -16,8 +16,8 @@ import { Story } from './../../shared/models/story';
     ],
     viewProviders: [DragulaService]
 })
-export class QuestionComponent {
-    private stories : Array<Story>;
+export class QuestionComponent implements OnInit {
+    private stories : Story[];
     private story : Story;
     private firstCard : Card;
     private a1 : Array<Card> = [];
@@ -29,6 +29,7 @@ export class QuestionComponent {
     private activeHover : string = null;
     private activeRemoveHover : string = null;
     private activeCard : Card = null;
+    private httpError: any;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
@@ -41,9 +42,11 @@ export class QuestionComponent {
         });       
     }
 
-    private ngOnInit() {
-        this.stories = this.storyService.get();
-        this.nextStory();
+    ngOnInit() : void {
+        this.storyService
+            .getStories()
+            .then(stories => this.stories = stories)
+            .catch(error => this.httpError = error);
     }
 
     private nextStory() {
