@@ -49,11 +49,14 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     });
                 }
                 QuestionComponent.prototype.ngOnInit = function () {
+                    this.getStories();
+                };
+                QuestionComponent.prototype.getStories = function () {
                     var _this = this;
-                    this.storyService
-                        .getStories()
-                        .then(function (stories) { return _this.stories = stories; })
-                        .catch(function (error) { return _this.httpError = error; });
+                    this.storyService.getStories()
+                        .subscribe(function (stories) {
+                        _this.stories = stories;
+                    });
                 };
                 QuestionComponent.prototype.nextStory = function () {
                     if (typeof this.stories[this.activeStoryIndex] !== "undefined") {

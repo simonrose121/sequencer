@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise", "./data.service", "./utilities.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "rxjs/add/operator/map", "./data.service", "./utilities.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -21,6 +21,8 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise"
             },
             function (_1) {
             },
+            function (_2) {
+            },
             function (data_service_1_1) {
                 data_service_1 = data_service_1_1;
             },
@@ -38,11 +40,11 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/toPromise"
                 }
                 // public methods
                 StoryService.prototype.getStories = function () {
-                    return this.http
-                        .get(this.storiesUrl)
-                        .toPromise()
-                        .then(function (response) { return response.json().data; })
-                        .catch(this.handleError);
+                    return this.http.get(this.storiesUrl).map(this.extractData);
+                };
+                StoryService.prototype.extractData = function (res) {
+                    var body = res.json();
+                    return body || {};
                 };
                 StoryService.prototype.handleError = function (error) {
                     console.error('An error occurred', error);

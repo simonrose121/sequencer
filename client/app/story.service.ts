@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { DataService } from './data.service';
 import { UtilitiesService } from './utilities.service';
@@ -19,12 +20,14 @@ export class StoryService {
                 private http: Http) {}
 
     // public methods
-    public getStories() : Promise<Story[]> {
-        return this.http
-            .get(this.storiesUrl)
-            .toPromise()
-            .then(response => response.json().data as Story[])
-            .catch(this.handleError);
+    public getStories() : Observable<Story[]> {
+        return this.http.get(this.storiesUrl).map(this.extractData);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        
+        return body || { };
     }
 
     private handleError(error: any): Promise<any> {

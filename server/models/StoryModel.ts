@@ -15,9 +15,6 @@ export class StoryModel {
                 throw err;
             }
 
-            console.log('here');
-            
-
             return res.json(result);
         });
     }

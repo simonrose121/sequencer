@@ -43,10 +43,14 @@ export class QuestionComponent implements OnInit {
     }
 
     ngOnInit() : void {
-        this.storyService
-            .getStories()
-            .then(stories => this.stories = stories)
-            .catch(error => this.httpError = error);
+        this.getStories();
+    }
+
+    getStories() : void {
+        this.storyService.getStories()
+            .subscribe(stories => {
+                this.stories = stories
+            });
     }
 
     private nextStory() {
