@@ -1,6 +1,6 @@
 system-config.js*
-client/app/**/*.js
-client/app/**/*.map
+client/app/*.js
+client/app/*.map
 node_modules
 client/node_modules
 jspm_packages

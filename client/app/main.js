@@ -1,3 +1,4 @@
+///<reference path="../node_modules/typescript/lib/lib.es6.d.ts"/> 
 System.register(['@angular/platform-browser-dynamic', './app.module'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
