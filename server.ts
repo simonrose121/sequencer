@@ -11,7 +11,7 @@ import { StoryModel } from './server/models/StoryModel';
 export class Server {
     public app;
 
-    private port = 3000;
+    private port = 5000;
 
     public static bootstrap(): Server {
         return new Server();

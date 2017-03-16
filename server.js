@@ -8,7 +8,7 @@ const ejs = require("ejs");
 const StoryModel_1 = require("./server/models/StoryModel");
 class Server {
     constructor() {
-        this.port = 3000;
+        this.port = 5000;
         this.app = express();
         this.connect();
         this.config();

@@ -10,14 +10,14 @@ var tsProject = tsc.createProject('client/tsconfig.json');
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		server: {
-			baseDir: "./client"
-		}
+		proxy: "http://localhost:5000",
+		browser: "google chrome",
+		port: 7000
 	});
 });
 
 gulp.task('tsc', function(callback) {
-		runSequence('tsc-client', 'tsc-server');
+	runSequence('less', 'tsc-client', 'tsc-server');
 });
 
 gulp.task('tsc-client', function() {
@@ -37,8 +37,14 @@ gulp.task('tsc-server', function() {
 		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts"], ['tsc']);
+gulp.task('watch', ['browser-sync', 'nodemon'], function() {
+	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts", 'client/app/*.less'], ['tsc']);
+});
+
+gulp.task('less', function() {
+    return gulp.src('client/app/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('client/app'))
 });
 
 gulp.task('nodemon', function (cb) {
@@ -52,11 +58,4 @@ gulp.task('nodemon', function (cb) {
 			started = true; 
 		} 
 	});
-});
-
-gulp.task('less', function() {
-    return gulp.src('client/app/*.less')
-        .pipe(watch('client/app/*.less'))
-        .pipe(less())
-        .pipe(gulp.dest('client/app'));
 });
