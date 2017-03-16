@@ -10,14 +10,14 @@ var tsProject = tsc.createProject('client/tsconfig.json');
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
-		proxy: "http://localhost:5000",
-		browser: "google chrome",
-		port: 7000
+		server: {
+			baseDir: './client'
+		}
 	});
 });
 
 gulp.task('tsc', function(callback) {
-	runSequence('less', 'tsc-client', 'tsc-server');
+	runSequence('tsc-client', 'tsc-server');
 });
 
 gulp.task('tsc-client', function() {
@@ -37,7 +37,7 @@ gulp.task('tsc-server', function() {
 		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', ['browser-sync', 'nodemon'], function() {
+gulp.task('watch', ['browser-sync'], function() {
 	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts", 'client/app/*.less'], ['tsc']);
 });
 
