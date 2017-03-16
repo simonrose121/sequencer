@@ -25,7 +25,6 @@ export class QuestionComponent implements OnInit {
     private a3 : Array<Card> = [];
     private error : boolean = false;
     private finished : boolean = false;
-    private storiesLoaded : boolean = false;
     private activeStoryIndex : number = 0;
     private activeHover : string = null;
     private activeRemoveHover : string = null;
@@ -51,9 +50,6 @@ export class QuestionComponent implements OnInit {
         this.storyService.getStories()
             .subscribe(stories => {
                 this.stories = stories;
-                console.log(this.stories);
-                
-                this.storiesLoaded = true;
             });
     }
 

@@ -37,8 +37,8 @@ gulp.task('tsc-server', function() {
 		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', ['browser-sync'], function() {
-	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts", 'client/app/*.less'], ['tsc']);
+gulp.task('watch', function() {
+	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts"], ['tsc']);
 });
 
 gulp.task('less', function() {

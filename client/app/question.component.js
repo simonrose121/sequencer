@@ -38,7 +38,6 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.a3 = [];
                     this.error = false;
                     this.finished = false;
-                    this.storiesLoaded = false;
                     this.activeStoryIndex = 0;
                     this.activeHover = null;
                     this.activeRemoveHover = null;
@@ -57,8 +56,6 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.storyService.getStories()
                         .subscribe(function (stories) {
                         _this.stories = stories;
-                        console.log(_this.stories);
-                        _this.storiesLoaded = true;
                     });
                 };
                 QuestionComponent.prototype.nextStory = function () {
