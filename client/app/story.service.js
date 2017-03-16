@@ -44,6 +44,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 };
                 StoryService.prototype.extractData = function (res) {
                     var body = res.json();
+                    console.log(body);
                     return body || {};
                 };
                 StoryService.prototype.handleError = function (error) {
