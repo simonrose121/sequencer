@@ -8,10 +8,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="possible-images" 
-                 [dragula]='"first-bag"' 
-                 [dragulaModel]='story.cards'>
-                <div    *ngFor="let card of story.cards" 
+            <div class="possible-images">
+                <div    *ngFor="let card of story?.cards" 
                         (click)="setActiveCard(card)"
                         class="image" 
                         [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}"
@@ -20,21 +18,19 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="firstCard != null">
         <div class="col-md-12">
             <div class="first-image">
                 <div class="beginning ">
                     Beginning
                 </div>
                 <div    class="image" 
-                        [ngStyle]="{'background-image': 'url(assets/' + firstCard.imageUrl + '.png)'}">
+                        [ngStyle]="{'background-image': 'url(assets/' + firstCard?.imageUrl + '.png)'}">
                 </div>
             </div>
             <div id="a1" 
                  class="image-box" 
                  [ngClass]="{empty: error && a1.length === 0, 'hover': activeCard && activeHover === 'a1'}"
-                 [dragula]='"first-bag"' 
-                 [dragulaModel]='a1' 
                  (click)="clickToAddOrRemove('a1')"
                  (mouseover)="hover('a1')"
                  (mouseleave)="unhover()">
@@ -47,8 +43,6 @@
             <div id="a2" 
                  class="image-box" 
                  [ngClass]="{empty: error && a2.length === 0, 'hover': activeCard && activeHover === 'a2'}" 
-                 [dragula]='"first-bag"' 
-                 [dragulaModel]='a2'
                  (click)="clickToAddOrRemove('a2')"
                  (mouseover)="hover('a2')"
                  (mouseleave)="unhover()">
@@ -61,8 +55,6 @@
             <div id="a3" 
                  class="image-box end" 
                  [ngClass]="{empty: error && a3.length === 0, 'hover': activeCard && activeHover === 'a3'}" 
-                 [dragula]='"first-bag"' 
-                 [dragulaModel]='a3'
                  (click)="clickToAddOrRemove('a3')"
                  (mouseover)="hover('a3')"
                  (mouseleave)="unhover()">

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
 
-import { Story } from './../models/story';
-import { Card } from './../models/card';
+import { Card } from './models/card';
+import { Story } from './models/story';
 
 @Component({
     selector: 'question',
@@ -16,34 +16,47 @@ import { Card } from './../models/card';
     ],
     viewProviders: [DragulaService]
 })
-export class QuestionComponent {
-    private stories : Array<Story>;
-    private story : Story;
-    private firstCard : Card;
-    private a1 : Array<Card> = [];
-    private a2 : Array<Card> = [];
-    private a3 : Array<Card> = [];
-    private error : boolean = false;
-    private finished : boolean = false;
-    private activeStoryIndex : number = 0;
-    private activeHover : string = null;
-    private activeRemoveHover : string = null;
-    private activeCard : Card = null;
+export class QuestionComponent implements OnInit {
+    mode = 'Observable';
+    stories : Story[];
+    story : Story;
+    firstCard : Card;
+    a1 = [];
+    a2 = [];
+    a3 = [];
+    error : boolean = false;
+    finished : boolean = false;
+    activeStoryIndex : number = 0;
+    activeHover : string = null;
+    activeRemoveHover : string = null;
+    activeCard : Card = null;
+    httpError: any;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
                 private dragulaService: DragulaService) {
 
-        dragulaService.setOptions('first-bag', {
-            accepts: (el, target, source, sibling) => {
-                return this.canMove(el, target, source, sibling);
-            }
-        });
+        // dragulaService.setOptions('first-bag', {
+        //     accepts: (el, target, source, sibling) => {
+        //         let accepted = this.canMove(el, target, source, sibling);
+        //         console.log('accepted ' + accepted);
+        //         console.log('target ' + target);
+                
+        //         return accepted;
+        //     }
+        // });
     }
 
-    private ngOnInit() {
-        this.stories = this.storyService.get();
-        this.nextStory();
+    ngOnInit() : void {
+        this.getStories();
+    }
+
+    getStories() : void {
+        this.storyService.getStories()
+            .subscribe(stories => {
+                this.stories = stories;
+                this.nextStory();
+            });
     }
 
     private nextStory() {
@@ -86,12 +99,13 @@ export class QuestionComponent {
         }, 1000);
     }
 
-    
-
     // Dragular functions
     private canMove(el, target, source, sibling) {
+        console.log('checking can move:' + target.id);
+        
         switch (target.id) {
             case "a1":
+                console.log(this.a1.length);
                 return this.a1.length === 0;
             case "a2":
                 return this.a2.length === 0;
@@ -108,6 +122,8 @@ export class QuestionComponent {
     }
 
     private clickToAddOrRemove(pos) {
+        console.log('clicked to add or remove');
+        
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
@@ -170,6 +186,7 @@ export class QuestionComponent {
     }
 
     private hover(pos) {
+        console.log('hovering...');
         // handle if activeCard is selected
         if (this.activeCard) {
             // highlight cell

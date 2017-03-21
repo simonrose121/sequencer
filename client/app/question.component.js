@@ -1,6 +1,5 @@
-System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', './utilities.service'], function(exports_1, context_1) {
+System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", "./utilities.service"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,10 +9,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, ng2_dragula_1, story_service_1, utilities_service_1;
-    var QuestionComponent;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, ng2_dragula_1, story_service_1, utilities_service_1, QuestionComponent;
     return {
-        setters:[
+        setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -25,14 +24,20 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
             },
             function (utilities_service_1_1) {
                 utilities_service_1 = utilities_service_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             QuestionComponent = (function () {
                 function QuestionComponent(storyService, utilitiesService, dragulaService) {
-                    var _this = this;
+                    // dragulaService.setOptions('first-bag', {
+                    //     accepts: (el, target, source, sibling) => {
+                    //         let accepted = this.canMove(el, target, source, sibling);
+                    //         console.log('accepted ' + accepted);
+                    //         console.log('target ' + target);
                     this.storyService = storyService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
+                    this.mode = 'Observable';
                     this.a1 = [];
                     this.a2 = [];
                     this.a3 = [];
@@ -42,15 +47,20 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.activeHover = null;
                     this.activeRemoveHover = null;
                     this.activeCard = null;
-                    dragulaService.setOptions('first-bag', {
-                        accepts: function (el, target, source, sibling) {
-                            return _this.canMove(el, target, source, sibling);
-                        }
-                    });
+                    //         return accepted;
+                    //     }
+                    // });
                 }
                 QuestionComponent.prototype.ngOnInit = function () {
-                    this.stories = this.storyService.get();
-                    this.nextStory();
+                    this.getStories();
+                };
+                QuestionComponent.prototype.getStories = function () {
+                    var _this = this;
+                    this.storyService.getStories()
+                        .subscribe(function (stories) {
+                        _this.stories = stories;
+                        _this.nextStory();
+                    });
                 };
                 QuestionComponent.prototype.nextStory = function () {
                     if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
@@ -95,8 +105,10 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                 };
                 // Dragular functions
                 QuestionComponent.prototype.canMove = function (el, target, source, sibling) {
+                    console.log('checking can move:' + target.id);
                     switch (target.id) {
                         case "a1":
+                            console.log(this.a1.length);
                             return this.a1.length === 0;
                         case "a2":
                             return this.a2.length === 0;
@@ -111,6 +123,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.activeCard = card;
                 };
                 QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
+                    console.log('clicked to add or remove');
                     if (this.activeCard) {
                         switch (pos) {
                             case "a1":
@@ -170,6 +183,7 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     }
                 };
                 QuestionComponent.prototype.hover = function (pos) {
+                    console.log('hovering...');
                     // handle if activeCard is selected
                     if (this.activeCard) {
                         // highlight cell
@@ -203,22 +217,25 @@ System.register(['@angular/core', 'ng2-dragula/ng2-dragula', './story.service', 
                     this.activeHover = null;
                     this.activeRemoveHover = null;
                 };
-                QuestionComponent = __decorate([
-                    core_1.Component({
-                        selector: 'question',
-                        templateUrl: 'app/question.component.html',
-                        styleUrls: [
-                            'app/question.component.css',
-                            'dragula.min.css'
-                        ],
-                        viewProviders: [ng2_dragula_1.DragulaService]
-                    }), 
-                    __metadata('design:paramtypes', [story_service_1.StoryService, utilities_service_1.UtilitiesService, ng2_dragula_1.DragulaService])
-                ], QuestionComponent);
                 return QuestionComponent;
             }());
+            QuestionComponent = __decorate([
+                core_1.Component({
+                    selector: 'question',
+                    templateUrl: 'app/question.component.html',
+                    styleUrls: [
+                        'app/question.component.css',
+                        'dragula.min.css'
+                    ],
+                    viewProviders: [ng2_dragula_1.DragulaService]
+                }),
+                __metadata("design:paramtypes", [story_service_1.StoryService,
+                    utilities_service_1.UtilitiesService,
+                    ng2_dragula_1.DragulaService])
+            ], QuestionComponent);
             exports_1("QuestionComponent", QuestionComponent);
         }
-    }
+    };
 });
+
 //# sourceMappingURL=question.component.js.map

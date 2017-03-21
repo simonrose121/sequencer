@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question.component';
@@ -11,7 +12,8 @@ import { UtilitiesService } from './utilities.service';
 @NgModule({
     imports: [
         BrowserModule,
-        DragulaModule
+        DragulaModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,

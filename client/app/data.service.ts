@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
-
-import { Story } from './../models/story';
+import { Story } from './models/Story';
+import { Log } from './models/Log';
+import { Card } from './models/Card';
 
 @Injectable()
 export class DataService {
-    constructor(private utilitiesService: UtilitiesService) {}
+
+    constructor(private utilitiesService: UtilitiesService,
+                private http: Http) {}
 
     private id = 1; // TODO: Change me back
 
@@ -14,12 +21,31 @@ export class DataService {
         this.id = id;
     }
 
-    storeMark(story : Story, mark : number) {
-        console.log('---------------');
-        console.log('user: ' + this.id);
-        console.log('question: ' + story.action);
-        console.log('type: ' + story.type);
-        console.log('score: ' + mark);
-        console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
+    // storeMark(story : Story, mark : number) {
+    //     console.log('---------------');
+    //     console.log('user: ' + this.id);
+    //     console.log('question: ' + story.action);
+    //     console.log('type: ' + story.type);
+    //     console.log('score: ' + mark);
+    //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
+    // }
+
+    createLog(story: Story, mark : number) {
+        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+
+        this.postScore(log).subscribe(data => {
+            console.log(data);
+        })
+    }
+
+    postScore(log: Log) : Observable<Log> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('/log/create', log, options).map(this. extractData);
+    }
+
+    private extractData(res: Response) {
+        return res.json().stories;
     }
 }
