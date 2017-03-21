@@ -29,7 +29,11 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
         execute: function () {
             QuestionComponent = (function () {
                 function QuestionComponent(storyService, utilitiesService, dragulaService) {
-                    var _this = this;
+                    // dragulaService.setOptions('first-bag', {
+                    //     accepts: (el, target, source, sibling) => {
+                    //         let accepted = this.canMove(el, target, source, sibling);
+                    //         console.log('accepted ' + accepted);
+                    //         console.log('target ' + target);
                     this.storyService = storyService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
@@ -43,11 +47,9 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.activeHover = null;
                     this.activeRemoveHover = null;
                     this.activeCard = null;
-                    dragulaService.setOptions('first-bag', {
-                        accepts: function (el, target, source, sibling) {
-                            return _this.canMove(el, target, source, sibling);
-                        }
-                    });
+                    //         return accepted;
+                    //     }
+                    // });
                 }
                 QuestionComponent.prototype.ngOnInit = function () {
                     this.getStories();
@@ -64,7 +66,6 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
                         // get the first story
                         this.story = this.stories[this.activeStoryIndex];
-                        console.log(this.story);
                         // save the first card
                         this.firstCard = this.story.cards[0];
                         // remove the first card from the array`
@@ -104,8 +105,10 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                 };
                 // Dragular functions
                 QuestionComponent.prototype.canMove = function (el, target, source, sibling) {
+                    console.log('checking can move:' + target.id);
                     switch (target.id) {
                         case "a1":
+                            console.log(this.a1.length);
                             return this.a1.length === 0;
                         case "a2":
                             return this.a2.length === 0;
@@ -120,6 +123,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.activeCard = card;
                 };
                 QuestionComponent.prototype.clickToAddOrRemove = function (pos) {
+                    console.log('clicked to add or remove');
                     if (this.activeCard) {
                         switch (pos) {
                             case "a1":
@@ -179,6 +183,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     }
                 };
                 QuestionComponent.prototype.hover = function (pos) {
+                    console.log('hovering...');
                     // handle if activeCard is selected
                     if (this.activeCard) {
                         // highlight cell

@@ -21,9 +21,9 @@ export class QuestionComponent implements OnInit {
     stories : Story[];
     story : Story;
     firstCard : Card;
-    a1 : Array<Card> = [];
-    a2 : Array<Card> = [];
-    a3 : Array<Card> = [];
+    a1 = [];
+    a2 = [];
+    a3 = [];
     error : boolean = false;
     finished : boolean = false;
     activeStoryIndex : number = 0;
@@ -36,11 +36,15 @@ export class QuestionComponent implements OnInit {
                 private utilitiesService: UtilitiesService,
                 private dragulaService: DragulaService) {
 
-        dragulaService.setOptions('first-bag', {
-            accepts: (el, target, source, sibling) => {
-                return this.canMove(el, target, source, sibling);
-            }
-        });       
+        // dragulaService.setOptions('first-bag', {
+        //     accepts: (el, target, source, sibling) => {
+        //         let accepted = this.canMove(el, target, source, sibling);
+        //         console.log('accepted ' + accepted);
+        //         console.log('target ' + target);
+                
+        //         return accepted;
+        //     }
+        // });
     }
 
     ngOnInit() : void {
@@ -59,7 +63,6 @@ export class QuestionComponent implements OnInit {
         if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
             // get the first story
             this.story = this.stories[this.activeStoryIndex];
-            console.log(this.story);
             // save the first card
             this.firstCard = this.story.cards[0];
             // remove the first card from the array`
@@ -96,12 +99,13 @@ export class QuestionComponent implements OnInit {
         }, 1000);
     }
 
-    
-
     // Dragular functions
     private canMove(el, target, source, sibling) {
+        console.log('checking can move:' + target.id);
+        
         switch (target.id) {
             case "a1":
+                console.log(this.a1.length);
                 return this.a1.length === 0;
             case "a2":
                 return this.a2.length === 0;
@@ -118,6 +122,8 @@ export class QuestionComponent implements OnInit {
     }
 
     private clickToAddOrRemove(pos) {
+        console.log('clicked to add or remove');
+        
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
@@ -180,6 +186,7 @@ export class QuestionComponent implements OnInit {
     }
 
     private hover(pos) {
+        console.log('hovering...');
         // handle if activeCard is selected
         if (this.activeCard) {
             // highlight cell

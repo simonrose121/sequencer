@@ -33,11 +33,14 @@ gulp.task('tsc-server', function() {
           	sourceMap: false
 		}))
 		.pipe(gulp.dest('.'))
-		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('watch', function() {
-	gulp.watch(["client/app/\*.ts", "server/\*.ts", "\*.ts"], ['tsc']);
+gulp.task('watch-server', function() {
+	gulp.watch(["server/\*.ts", "\*.ts"], ['tsc-server']);
+});
+
+gulp.task('watch-client', function() {
+	gulp.watch(["client/app/\*.ts"], ['tsc-client']);
 });
 
 gulp.task('less', function() {
