@@ -6,9 +6,7 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             Card = (function () {
-                function Card(position, imageUrl) {
-                    this.position = position;
-                    this.imageUrl = imageUrl;
+                function Card() {
                 }
                 return Card;
             }());

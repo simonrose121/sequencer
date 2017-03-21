@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 import { DataService } from './data.service';
 import { UtilitiesService } from './utilities.service';
 
-import { Card } from './../models/card';
-import { Story } from './../models/story';
+import { Card } from './models/card';
+import { Story } from './models/story';
 
 @Injectable()
 export class StoryService {

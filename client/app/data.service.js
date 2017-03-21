@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "rxjs/add/operator/map", "./utilities.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "rxjs/add/operator/map", "./utilities.service", "./models/Log"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, http_1, utilities_service_1, DataService;
+    var core_1, http_1, utilities_service_1, Log_1, DataService;
     return {
         setters: [
             function (core_1_1) {
@@ -25,6 +25,9 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
             },
             function (utilities_service_1_1) {
                 utilities_service_1 = utilities_service_1_1;
+            },
+            function (Log_1_1) {
+                Log_1 = Log_1_1;
             }
         ],
         execute: function () {
@@ -48,8 +51,8 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 DataService.prototype.createLog = function (story, mark) {
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
-                    //const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
-                    //return this.http.post('/log/create', log, options);
+                    var log = new Log_1.Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+                    this.http.post('/log/create', log, options);
                 };
                 return DataService;
             }());

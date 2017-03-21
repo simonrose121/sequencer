@@ -14,6 +14,7 @@ class LogModel {
         log.type = b.type;
         log.score = b.score;
         log.timeTaken = b.timeTaken;
+        console.log(log);
         repo.create(log, function (err, doc) {
             if (err) {
                 throw err;

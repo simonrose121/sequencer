@@ -1,4 +1,4 @@
-import { ILog } from './../../shared/interfaces/ILog';
+import { ILog } from './../../../shared/interfaces/ILog';
 
 export class Log implements ILog {
     userId: number;
