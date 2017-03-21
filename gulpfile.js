@@ -20,13 +20,13 @@ gulp.task('tsc', ['tsc-client', 'tsc-server'], function(callback) {
 });
 
 gulp.task('tsc-client', function() {
-	gulp.src(["client/app/\*.ts"], { base: '.'})
+	gulp.src(["client/app/\*.ts", "client/models/\*.ts"], { base: '.'})
 		.pipe(tsProject())
 		.pipe(gulp.dest('.'))
 });
 
 gulp.task('tsc-server', function() {
-	gulp.src(["server/\*\*/\*.ts", "\*.ts", "shared/\*.ts"], { base: '.'})
+	gulp.src(["server/\*\*/\*.ts", "\*.ts", "shared/\*\*/\*.ts"], { base: '.'})
 		.pipe(tsc({
 			module: "commonjs",
           	target: "es6",
@@ -40,7 +40,7 @@ gulp.task('watch-server', function() {
 });
 
 gulp.task('watch-client', function() {
-	gulp.watch(["client/app/\*.ts"], ['tsc-client']);
+	gulp.watch(["client/app/\*.ts", "client/models/\*.ts"], ['tsc-client']);
 });
 
 gulp.task('less', function() {

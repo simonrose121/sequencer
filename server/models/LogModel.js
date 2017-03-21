@@ -5,7 +5,7 @@ class LogModel {
     constructor(logModel) {
         this._logModel = logModel;
     }
-    static save(req, res) {
+    static create(req, res) {
         let repo = new LogRepository_1.LogRepository();
         const b = req.body;
         let log;

@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 import { DataService } from './data.service';
 import { UtilitiesService } from './utilities.service';
 
-import { Card } from './../../shared/models/card';
-import { Story } from './../../shared/models/story';
+import { Card } from './../models/card';
+import { Story } from './../models/story';
 
 @Injectable()
 export class StoryService {
@@ -51,6 +51,6 @@ export class StoryService {
             mark = 0;
         }
 
-        this.dataService.storeMark(story, mark);
+        this.dataService.createLog(story, mark);
     }
 }

@@ -62,7 +62,7 @@ export class Server {
     }
 
     public api() {
-        this.app.post('/log/save', LogModel.save);
+        this.app.post('/log/create', LogModel.create);
     }
 }
 

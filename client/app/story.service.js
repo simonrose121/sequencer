@@ -68,7 +68,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                     else {
                         mark = 0;
                     }
-                    this.dataService.storeMark(story, mark);
+                    this.dataService.createLog(story, mark);
                 };
                 return StoryService;
             }());

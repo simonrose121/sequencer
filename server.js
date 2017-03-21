@@ -44,7 +44,7 @@ class Server {
         });
     }
     api() {
-        this.app.post('/log/save', LogModel_1.LogModel.save);
+        this.app.post('/log/create', LogModel_1.LogModel.create);
     }
 }
 exports.Server = Server;

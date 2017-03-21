@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
-
-import { Story } from './../../shared/models/story';
+import { Story } from './../models/Story';
+import { Log } from './../models/Log';
 
 @Injectable()
 export class DataService {
 
-    constructor(private utilitiesService: UtilitiesService) {}
+    constructor(private utilitiesService: UtilitiesService,
+                private http: Http) {}
 
     private id = 1; // TODO: Change me back
 
@@ -19,12 +20,21 @@ export class DataService {
         this.id = id;
     }
 
-    storeMark(story : Story, mark : number) {
-        console.log('---------------');
-        console.log('user: ' + this.id);
-        console.log('question: ' + story.action);
-        console.log('type: ' + story.type);
-        console.log('score: ' + mark);
-        console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
+    // storeMark(story : Story, mark : number) {
+    //     console.log('---------------');
+    //     console.log('user: ' + this.id);
+    //     console.log('question: ' + story.action);
+    //     console.log('type: ' + story.type);
+    //     console.log('score: ' + mark);
+    //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
+    // }
+
+    createLog(story: Story, mark : number) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+
+        return this.http.post('/log/create', log, options);
     }
 }

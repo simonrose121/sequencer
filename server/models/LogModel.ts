@@ -8,7 +8,7 @@ export class LogModel {
         this._logModel = logModel;
     }
 
-    static save(req, res) {
+    static create(req, res) {
         let repo = new LogRepository();
 
         const b = req.body;

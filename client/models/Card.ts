@@ -1,4 +1,4 @@
-import { ICard } from './../interfaces/ICard';
+import { ICard } from './../../shared/interfaces/ICard';
 
 export class Card implements ICard {
     public position: number;
