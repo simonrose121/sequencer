@@ -36,16 +36,14 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                     this.dataService = dataService;
                     this.utilitiesService = utilitiesService;
                     this.http = http;
-                    this.storiesUrl = 'stories/';
+                    this.storiesUrl = 'app/stories.json';
                 }
                 // public methods
                 StoryService.prototype.getStories = function () {
                     return this.http.get(this.storiesUrl).map(this.extractData);
                 };
                 StoryService.prototype.extractData = function (res) {
-                    var body = res.json();
-                    console.log(body);
-                    return body || {};
+                    return res.json().stories;
                 };
                 StoryService.prototype.handleError = function (error) {
                     console.error('An error occurred', error);

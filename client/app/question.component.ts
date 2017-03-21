@@ -50,6 +50,7 @@ export class QuestionComponent implements OnInit {
         this.storyService.getStories()
             .subscribe(stories => {
                 this.stories = stories;
+                console.log(this.stories);
             });
     }
 

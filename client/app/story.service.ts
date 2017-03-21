@@ -13,7 +13,7 @@ import { Story } from './../../shared/models/story';
 @Injectable()
 export class StoryService {
 
-    private storiesUrl = 'stories/';
+    private storiesUrl = 'app/stories.json';
 
     constructor(private dataService: DataService,
                 private utilitiesService: UtilitiesService,
@@ -25,9 +25,7 @@ export class StoryService {
     }
 
     private extractData(res: Response) {
-        let body = res.json();
-        console.log(body);
-        return body || { };
+        return res.json().stories;
     }
 
     private handleError(error: any): Promise<any> {

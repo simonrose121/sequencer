@@ -16,8 +16,7 @@ gulp.task('browser-sync', function() {
 	});
 });
 
-gulp.task('tsc', function(callback) {
-	runSequence('tsc-client', 'tsc-server');
+gulp.task('tsc', ['tsc-client', 'tsc-server'], function(callback) {
 });
 
 gulp.task('tsc-client', function() {

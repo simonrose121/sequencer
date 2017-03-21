@@ -56,6 +56,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.storyService.getStories()
                         .subscribe(function (stories) {
                         _this.stories = stories;
+                        console.log(_this.stories);
                     });
                 };
                 QuestionComponent.prototype.nextStory = function () {
