@@ -69,3 +69,5 @@ System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-
         }
     };
 });
+
+//# sourceMappingURL=app.module.js.map

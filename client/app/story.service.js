@@ -82,3 +82,5 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
         }
     };
 });
+
+//# sourceMappingURL=story.service.js.map

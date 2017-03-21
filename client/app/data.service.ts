@@ -33,8 +33,8 @@ export class DataService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+        //const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
 
-        return this.http.post('/log/create', log, options);
+        //return this.http.post('/log/create', log, options);
     }
 }

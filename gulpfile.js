@@ -7,6 +7,7 @@ var nodemon = require('gulp-nodemon');
 var tsc = require('gulp-typescript');
 var runSequence = require('run-sequence');
 var tsProject = tsc.createProject('client/tsconfig.json');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('browser-sync', function() {
 	browserSync.init({
@@ -21,7 +22,9 @@ gulp.task('tsc', ['tsc-client', 'tsc-server'], function(callback) {
 
 gulp.task('tsc-client', function() {
 	gulp.src(["client/app/\*.ts", "client/models/\*.ts"], { base: '.'})
+		.pipe(sourcemaps.init())
 		.pipe(tsProject())
+		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('.'))
 });
 

@@ -237,3 +237,5 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
         }
     };
 });
+
+//# sourceMappingURL=question.component.js.map
