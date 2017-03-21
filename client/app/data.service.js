@@ -49,10 +49,18 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/catch", "r
                 //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
                 // }
                 DataService.prototype.createLog = function (story, mark) {
+                    var log = new Log_1.Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+                    this.postScore(log).subscribe(function (data) {
+                        console.log(data);
+                    });
+                };
+                DataService.prototype.postScore = function (log) {
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
-                    var log = new Log_1.Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
-                    this.http.post('/log/create', log, options);
+                    return this.http.post('/log/create', log, options).map(this.extractData);
+                };
+                DataService.prototype.extractData = function (res) {
+                    return res.json().stories;
                 };
                 return DataService;
             }());

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -31,11 +31,21 @@ export class DataService {
     // }
 
     createLog(story: Story, mark : number) {
+        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+
+        this.postScore(log).subscribe(data => {
+            console.log(data);
+        })
+    }
+
+    postScore(log: Log) : Observable<Log> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+        return this.http.post('/log/create', log, options).map(this. extractData);
+    }
 
-        this.http.post('/log/create', log, options);
+    private extractData(res: Response) {
+        return res.json().stories;
     }
 }
