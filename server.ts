@@ -6,7 +6,7 @@ import * as ejs from "ejs";
 declare var __dirname;
 
 // models
-import { StoryModel } from './server/models/StoryModel';
+import { LogModel } from './server/models/LogModel';
 
 export class Server {
     public app;
@@ -62,7 +62,7 @@ export class Server {
     }
 
     public api() {
-        this.app.get('/stories/', StoryModel.getAll);
+        this.app.post('/log/save', LogModel.save);
     }
 }
 

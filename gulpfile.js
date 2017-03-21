@@ -26,7 +26,7 @@ gulp.task('tsc-client', function() {
 });
 
 gulp.task('tsc-server', function() {
-	gulp.src(["server/\*.ts", "\*.ts"], { base: '.'})
+	gulp.src(["server/\*\*/\*.ts", "\*.ts", "shared/\*.ts"], { base: '.'})
 		.pipe(tsc({
 			module: "commonjs",
           	target: "es6",

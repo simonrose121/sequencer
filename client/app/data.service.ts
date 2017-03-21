@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
 
@@ -6,6 +10,7 @@ import { Story } from './../../shared/models/story';
 
 @Injectable()
 export class DataService {
+
     constructor(private utilitiesService: UtilitiesService) {}
 
     private id = 1; // TODO: Change me back

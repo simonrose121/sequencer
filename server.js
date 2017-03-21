@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 // models
-const StoryModel_1 = require("./server/models/StoryModel");
+const LogModel_1 = require("./server/models/LogModel");
 class Server {
     constructor() {
         this.port = 3000;
@@ -44,7 +44,7 @@ class Server {
         });
     }
     api() {
-        this.app.get('/stories/', StoryModel_1.StoryModel.getAll);
+        this.app.post('/log/save', LogModel_1.LogModel.save);
     }
 }
 exports.Server = Server;
