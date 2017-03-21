@@ -17,19 +17,20 @@ import { Story } from './../../shared/models/story';
     viewProviders: [DragulaService]
 })
 export class QuestionComponent implements OnInit {
-    private stories : Story[];
-    private story : Story;
-    private firstCard : Card;
-    private a1 : Array<Card> = [];
-    private a2 : Array<Card> = [];
-    private a3 : Array<Card> = [];
-    private error : boolean = false;
-    private finished : boolean = false;
-    private activeStoryIndex : number = 0;
-    private activeHover : string = null;
-    private activeRemoveHover : string = null;
-    private activeCard : Card = null;
-    private httpError: any;
+    mode = 'Observable';
+    stories : Story[];
+    story : Story;
+    firstCard : Card;
+    a1 : Array<Card> = [];
+    a2 : Array<Card> = [];
+    a3 : Array<Card> = [];
+    error : boolean = false;
+    finished : boolean = false;
+    activeStoryIndex : number = 0;
+    activeHover : string = null;
+    activeRemoveHover : string = null;
+    activeCard : Card = null;
+    httpError: any;
 
     constructor(private storyService: StoryService, 
                 private utilitiesService: UtilitiesService,
@@ -50,7 +51,7 @@ export class QuestionComponent implements OnInit {
         this.storyService.getStories()
             .subscribe(stories => {
                 this.stories = stories;
-                console.log(this.stories);
+                this.nextStory();
             });
     }
 
@@ -58,6 +59,7 @@ export class QuestionComponent implements OnInit {
         if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
             // get the first story
             this.story = this.stories[this.activeStoryIndex];
+            console.log(this.story);
             // save the first card
             this.firstCard = this.story.cards[0];
             // remove the first card from the array`

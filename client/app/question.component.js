@@ -33,6 +33,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.storyService = storyService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
+                    this.mode = 'Observable';
                     this.a1 = [];
                     this.a2 = [];
                     this.a3 = [];
@@ -56,13 +57,14 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     this.storyService.getStories()
                         .subscribe(function (stories) {
                         _this.stories = stories;
-                        console.log(_this.stories);
+                        _this.nextStory();
                     });
                 };
                 QuestionComponent.prototype.nextStory = function () {
                     if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
                         // get the first story
                         this.story = this.stories[this.activeStoryIndex];
+                        console.log(this.story);
                         // save the first card
                         this.firstCard = this.story.cards[0];
                         // remove the first card from the array`
