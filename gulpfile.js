@@ -38,21 +38,25 @@ gulp.task('tsc-server', function() {
 		.pipe(gulp.dest('.'))
 });
 
-gulp.task('watch-server', function() {
-	gulp.watch(["server/\*.ts", "\*.ts", "shared/\*.ts"], ['tsc-server']);
-});
-
-gulp.task('watch-client', function() {
-	gulp.watch(["client/app/\*.ts", "client/models/\*.ts"], ['tsc-client']);
-});
-
 gulp.task('less', function() {
     return gulp.src('client/app/*.less')
         .pipe(less())
         .pipe(gulp.dest('client/app'))
 });
 
-gulp.task('nodemon', function (cb) {
+gulp.task('watch-server', function() {
+	gulp.watch(["server/\*\*/.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
+});
+
+gulp.task('watch-client', function() {
+	gulp.watch(["client/app/\*.ts", "client/models/\*.ts"], ['tsc-client']);
+});
+
+gulp.task('watch-less', function() {
+	gulp.watch(["client/app/\*.less"], ['less']);	
+})
+
+gulp.task('nodemon', ['tsc-server', 'tsc-client', 'less'], function (cb) {
 	var started = false;
 	
 	return nodemon({

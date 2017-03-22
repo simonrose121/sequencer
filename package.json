@@ -1,11 +1,11 @@
 {
   "name": "sequencer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "gulp nodemon"
   },
   "repository": {
     "type": "git",
