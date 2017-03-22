@@ -21,7 +21,7 @@ gulp.task('tsc', ['tsc-client', 'tsc-server'], function(callback) {
 });
 
 gulp.task('tsc-client', function() {
-	gulp.src(["client/app/\*.ts", "client/models/\*.ts"], { base: '.'})
+	gulp.src(["client/app/\*.ts", "client/app/models/\*.ts"], { base: '.'})
 		.pipe(sourcemaps.init())
 		.pipe(tsProject())
 		.pipe(sourcemaps.write('.'))
@@ -49,7 +49,7 @@ gulp.task('watch-server', function() {
 });
 
 gulp.task('watch-client', function() {
-	gulp.watch(["client/app/\*.ts", "client/models/\*.ts"], ['tsc-client']);
+	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client']);
 });
 
 gulp.task('watch-less', function() {
