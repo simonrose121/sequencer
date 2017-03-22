@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DataService } from './data.service';
+import { LogService } from './log.service';
 
 @Component({
     selector: 'sq-app',
@@ -12,10 +12,10 @@ import { DataService } from './data.service';
 export class AppComponent { 
     id = 1; // TODO: Change me back
 
-    constructor(private dataService: DataService) {}
+    constructor(private logService: LogService) {}
 
     setId(id) {
         this.id = id;
-        this.dataService.setId(id);
+        this.logService.setId(id);
     }
 }

@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
-import { DataService } from './data.service';
+import { LogService } from './log.service';
 import { UtilitiesService } from './utilities.service';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { UtilitiesService } from './utilities.service';
     ],
     providers: [
         StoryService,
-        DataService,
+        LogService,
         UtilitiesService
     ],
     bootstrap: [

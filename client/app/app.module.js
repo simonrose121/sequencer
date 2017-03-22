@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-dragula", "@angular/http", "./app.component", "./question.component", "./story.service", "./data.service", "./utilities.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-dragula", "@angular/http", "./app.component", "./question.component", "./story.service", "./log.service", "./utilities.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, platform_browser_1, ng2_dragula_1, http_1, app_component_1, question_component_1, story_service_1, data_service_1, utilities_service_1, AppModule;
+    var core_1, platform_browser_1, ng2_dragula_1, http_1, app_component_1, question_component_1, story_service_1, log_service_1, utilities_service_1, AppModule;
     return {
         setters: [
             function (core_1_1) {
@@ -31,8 +31,8 @@ System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-
             function (story_service_1_1) {
                 story_service_1 = story_service_1_1;
             },
-            function (data_service_1_1) {
-                data_service_1 = data_service_1_1;
+            function (log_service_1_1) {
+                log_service_1 = log_service_1_1;
             },
             function (utilities_service_1_1) {
                 utilities_service_1 = utilities_service_1_1;
@@ -57,7 +57,7 @@ System.register(["@angular/core", "@angular/platform-browser", "ng2-dragula/ng2-
                     ],
                     providers: [
                         story_service_1.StoryService,
-                        data_service_1.DataService,
+                        log_service_1.LogService,
                         utilities_service_1.UtilitiesService
                     ],
                     bootstrap: [

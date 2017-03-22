@@ -3,6 +3,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
+import { LogService } from './log.service';
 
 import { Card } from './models/card';
 import { Story } from './models/story';
@@ -33,6 +34,7 @@ export class QuestionComponent implements OnInit {
     httpError: any;
 
     constructor(private storyService: StoryService, 
+                private logService: LogService,
                 private utilitiesService: UtilitiesService,
                 private dragulaService: DragulaService) {
 
@@ -85,7 +87,9 @@ export class QuestionComponent implements OnInit {
             const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
             if (answer.length === 3) {
                 answer.unshift(this.firstCard);
-                this.storyService.mark(this.story, answer);
+                this.logService.mark(this.story, answer).subscribe(data => {
+                    console.log(data);
+                })
                 this.a1 = [];
                 this.a2 = [];
                 this.a3 = [];

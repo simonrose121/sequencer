@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./data.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "./log.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,25 +10,25 @@ System.register(["@angular/core", "./data.service"], function (exports_1, contex
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, data_service_1, AppComponent;
+    var core_1, log_service_1, AppComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (data_service_1_1) {
-                data_service_1 = data_service_1_1;
+            function (log_service_1_1) {
+                log_service_1 = log_service_1_1;
             }
         ],
         execute: function () {
             AppComponent = (function () {
-                function AppComponent(dataService) {
-                    this.dataService = dataService;
+                function AppComponent(logService) {
+                    this.logService = logService;
                     this.id = 1; // TODO: Change me back
                 }
                 AppComponent.prototype.setId = function (id) {
                     this.id = id;
-                    this.dataService.setId(id);
+                    this.logService.setId(id);
                 };
                 return AppComponent;
             }());
@@ -40,7 +40,7 @@ System.register(["@angular/core", "./data.service"], function (exports_1, contex
                         'app/app.component.css',
                     ]
                 }),
-                __metadata("design:paramtypes", [data_service_1.DataService])
+                __metadata("design:paramtypes", [log_service_1.LogService])
             ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }

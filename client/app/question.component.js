@@ -1,4 +1,4 @@
-System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", "./utilities.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", "./utilities.service", "./log.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, ng2_dragula_1, story_service_1, utilities_service_1, QuestionComponent;
+    var core_1, ng2_dragula_1, story_service_1, utilities_service_1, log_service_1, QuestionComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -24,17 +24,21 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
             },
             function (utilities_service_1_1) {
                 utilities_service_1 = utilities_service_1_1;
+            },
+            function (log_service_1_1) {
+                log_service_1 = log_service_1_1;
             }
         ],
         execute: function () {
             QuestionComponent = (function () {
-                function QuestionComponent(storyService, utilitiesService, dragulaService) {
+                function QuestionComponent(storyService, logService, utilitiesService, dragulaService) {
                     // dragulaService.setOptions('first-bag', {
                     //     accepts: (el, target, source, sibling) => {
                     //         let accepted = this.canMove(el, target, source, sibling);
                     //         console.log('accepted ' + accepted);
                     //         console.log('target ' + target);
                     this.storyService = storyService;
+                    this.logService = logService;
                     this.utilitiesService = utilitiesService;
                     this.dragulaService = dragulaService;
                     this.mode = 'Observable';
@@ -90,7 +94,9 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                         var answer = [this.a1[0], this.a2[0], this.a3[0]];
                         if (answer.length === 3) {
                             answer.unshift(this.firstCard);
-                            this.storyService.mark(this.story, answer);
+                            this.logService.mark(this.story, answer).subscribe(function (data) {
+                                console.log(data);
+                            });
                             this.a1 = [];
                             this.a2 = [];
                             this.a3 = [];
@@ -230,6 +236,7 @@ System.register(["@angular/core", "ng2-dragula/ng2-dragula", "./story.service", 
                     viewProviders: [ng2_dragula_1.DragulaService]
                 }),
                 __metadata("design:paramtypes", [story_service_1.StoryService,
+                    log_service_1.LogService,
                     utilities_service_1.UtilitiesService,
                     ng2_dragula_1.DragulaService])
             ], QuestionComponent);

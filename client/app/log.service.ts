@@ -10,7 +10,7 @@ import { Log } from './models/Log';
 import { Card } from './models/Card';
 
 @Injectable()
-export class DataService {
+export class LogService {
 
     constructor(private utilitiesService: UtilitiesService,
                 private http: Http) {}
@@ -30,22 +30,33 @@ export class DataService {
     //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
     // }
 
-    createLog(story: Story, mark : number) {
+    mark(story : Story, cards : Card[]) : Observable<Log> {
+        /* logic for this:
+          Correct sequence - 2 points
+          Correct beginning and end - 1 point
+          Incorrect sequence - 0 points
+        */
+        let mark;
+        if ((cards[0].position === 1) &&
+            (cards[1].position === 2) &&
+            (cards[2].position === 3) &&
+            (cards[3].position === 4)) {
+            mark = 2;
+        } else if ((cards[0].position === 1) && (cards[3].position === 4)) {
+            mark = 1;
+        } else {
+            mark = 0;
+        }
+
         const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
 
-        this.postScore(log).subscribe(data => {
-            console.log(data);
-        })
-    }
-
-    postScore(log: Log) : Observable<Log> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('/log/create', log, options).map(this. extractData);
+        return this.http.post('/log/create', log, options).map(this.extractData);
     }
 
     private extractData(res: Response) {
-        return res.json().stories;
+        return res.json();
     }
 }
