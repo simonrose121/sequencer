@@ -21,10 +21,7 @@
     <div class="row" *ngIf="firstCard != null">
         <div class="col-md-12">
             <div class="first-image">
-                <div class="beginning">
-                    Beginning
-                </div>
-                <div    class="image" 
+                <div    class="image no-move" 
                         [ngStyle]="{'background-image': 'url(assets/' + firstCard?.imageUrl + '.png)'}">
                 </div>
             </div>
@@ -53,7 +50,7 @@
                 </div>
             </div>
             <div id="a3" 
-                 class="image-box end" 
+                 class="image-box" 
                  [ngClass]="{empty: error && a3.length === 0, 'hover': activeCard && activeHover === 'a3'}" 
                  (click)="clickToAddOrRemove('a3')"
                  (mouseover)="hover('a3')"

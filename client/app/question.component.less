@@ -23,6 +23,10 @@
   cursor: -webkit-grab;
   background-color: rgba(0, 0, 0, 0.2);
 
+  &.no-move {
+     cursor: default !important;
+  }
+
   .ex-over {
     background-color: rgba(255, 255, 255, 0.3);
   }
@@ -52,6 +56,7 @@
 }
 
 .first-image {
+  margin-top: 20px;
   float: left;
 }
 
@@ -75,10 +80,6 @@
   .image {
     float: left; 
   }
-
-  &.end {
-    background: url('assets/end-image-box.png') 235px 190px;
-  }
   
   &.empty {
     @keyframes error {
@@ -97,12 +98,6 @@
   &.hover {
     border: solid 3px #FFF;
   }
-}
-
-.beginning {
-  height: 20px;
-  text-align: center;
-  color: #000;
 }
 
 .btn {
