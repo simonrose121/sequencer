@@ -31,7 +31,6 @@ export class QuestionComponent implements OnInit {
     activeHover : string = null;
     activeRemoveHover : string = null;
     activeCard : Card = null;
-    httpError: any;
 
     constructor(private storyService: StoryService, 
                 private logService: LogService,

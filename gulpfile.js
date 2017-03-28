@@ -9,19 +9,10 @@ var runSequence = require('run-sequence');
 var tsProject = tsc.createProject('client/tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('browser-sync', function() {
-	browserSync.init({
-		server: {
-			baseDir: './client'
-		}
-	});
-});
-
-gulp.task('tsc', ['tsc-client', 'tsc-server'], function(callback) {
-});
+gulp.task('default', ['watch']);
 
 gulp.task('tsc-client', function() {
-	gulp.src(["client/app/\*.ts", "client/models/\*.ts"], { base: '.'})
+	gulp.src(["client/app/\*.ts", "client/app/models/\*.ts"], { base: '.'})
 		.pipe(sourcemaps.init())
 		.pipe(tsProject())
 		.pipe(sourcemaps.write('.'))
@@ -44,17 +35,11 @@ gulp.task('less', function() {
         .pipe(gulp.dest('client/app'))
 });
 
-gulp.task('watch-server', function() {
+gulp.task('watch', function() {
 	gulp.watch(["server/\*\*/.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
-});
-
-gulp.task('watch-client', function() {
-	gulp.watch(["client/app/\*.ts", "client/models/\*.ts"], ['tsc-client']);
-});
-
-gulp.task('watch-less', function() {
+	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client']);
 	gulp.watch(["client/app/\*.less"], ['less']);	
-})
+});
 
 gulp.task('nodemon', ['tsc-server', 'tsc-client', 'less'], function (cb) {
 	var started = false;
