@@ -10,7 +10,7 @@ import { LogService } from './log.service';
     ]
 })
 export class AppComponent { 
-    id = 1; // TODO: Change me back
+    id;
 
     constructor(private logService: LogService) {}
 

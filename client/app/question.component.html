@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="possible-images">
+            <div class="possible-images" >
                 <div    *ngFor="let card of story?.cards" 
                         (click)="setActiveCard(card)"
                         class="image" 
@@ -21,10 +21,8 @@
     <div class="row" *ngIf="firstCard != null">
         <div class="col-md-12">
             <div class="first-image">
-                <div class="beginning">
-                    Beginning
-                </div>
-                <div    class="image" 
+                <div class="card-count">1</div>
+                <div    class="image no-move" 
                         [ngStyle]="{'background-image': 'url(assets/' + firstCard?.imageUrl + '.png)'}">
                 </div>
             </div>
@@ -34,6 +32,7 @@
                  (click)="clickToAddOrRemove('a1')"
                  (mouseover)="hover('a1')"
                  (mouseleave)="unhover()">
+                <div class="card-count">2</div>
                 <div class="image" 
                      *ngFor="let card of a1" 
                      [ngClass]="{'remove': activeRemoveHover === 'a1'}"
@@ -46,6 +45,7 @@
                  (click)="clickToAddOrRemove('a2')"
                  (mouseover)="hover('a2')"
                  (mouseleave)="unhover()">
+                <div class="card-count">3</div>
                 <div class="image" 
                      *ngFor="let card of a2"
                      [ngClass]="{'remove': activeRemoveHover === 'a2'}"
@@ -53,11 +53,12 @@
                 </div>
             </div>
             <div id="a3" 
-                 class="image-box end" 
+                 class="image-box" 
                  [ngClass]="{empty: error && a3.length === 0, 'hover': activeCard && activeHover === 'a3'}" 
                  (click)="clickToAddOrRemove('a3')"
                  (mouseover)="hover('a3')"
                  (mouseleave)="unhover()">
+                <div class="card-count">4</div>
                 <div class="image" 
                      *ngFor="let card of a3" 
                      [ngClass]="{'remove': activeRemoveHover === 'a3'}"
