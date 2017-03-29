@@ -14,8 +14,7 @@ export class StoryService {
 
     private storiesUrl = 'app/stories.json';
 
-    constructor(private utilitiesService: UtilitiesService,
-                private http: Http) {}
+    constructor(private http: Http) {}
 
     // public methods
     public getStories() : Observable<Story[]> {

@@ -55,7 +55,7 @@ export class QuestionComponent implements OnInit {
     getStories() : void {
         this.storyService.getStories()
             .subscribe(stories => {
-                this.stories = stories;
+                this.stories = this.utilitiesService.shuffle(stories);
                 this.nextStory();
             });
     }
