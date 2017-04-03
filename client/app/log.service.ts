@@ -15,7 +15,7 @@ export class LogService {
     constructor(private utilitiesService: UtilitiesService,
                 private http: Http) {}
 
-    private id; // TODO: Change me back
+    private id;
 
     setId(id : number) {
         this.id = id;

@@ -9,6 +9,7 @@ import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
 import { LogService } from './log.service';
 import { UtilitiesService } from './utilities.service';
+import { ConfigService } from './config.service';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { UtilitiesService } from './utilities.service';
     providers: [
         StoryService,
         LogService,
-        UtilitiesService
+        UtilitiesService,
+        ConfigService
     ],
     bootstrap: [
         AppComponent
