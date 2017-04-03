@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
@@ -35,7 +36,8 @@ export class QuestionComponent implements OnInit {
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
-                private dragulaService: DragulaService) {
+                private dragulaService: DragulaService,
+                private slimLoadingBarService: SlimLoadingBarService) {
 
         // dragulaService.setOptions('first-bag', {
         //     accepts: (el, target, source, sibling) => {
