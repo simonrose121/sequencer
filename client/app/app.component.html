@@ -12,4 +12,17 @@
         </div>
     </div>
 </div>
-<question *ngIf="this.id">
+<div *ngIf="this.startScreen">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="id-form">       
+                <form>
+                    <div class="form-group">
+                        <span class="btn btn-default margin" (click)="countdown()">{{ countdownText }}</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<question *ngIf="!this.startScreen && this.id">
