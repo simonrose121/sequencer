@@ -1,5 +1,6 @@
 system-config.js*
 client/app/*.js
+client/app/models/*.js
 client/app/*.css
 shared/**/*.js
 server/**/*.js
