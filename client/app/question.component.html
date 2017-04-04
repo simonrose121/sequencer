@@ -1,5 +1,8 @@
 <div *ngIf="!finished">
-    <ng2-slim-loading-bar id="loading-bar" [color]="'white'" [height]="'1px'"></ng2-slim-loading-bar>
+    <ng2-slim-loading-bar [color]="'white'" [height]="'1px'"></ng2-slim-loading-bar>
+    <div class="id">
+        {{ id }}
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="question">
@@ -77,9 +80,14 @@
     </div>
 </div>
 <div *ngIf="finished" class="margin">
+    <div class="id">
+        {{ id }}
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
-            Well done!
+            <div class="question">
+                Well done!                
+            </div>
         </div>
     </div>
 </div>

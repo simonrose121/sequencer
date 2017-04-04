@@ -33,12 +33,15 @@ export class QuestionComponent implements OnInit {
     activeRemoveHover : string = null;
     activeCard : Card = null;
     timeLimit : number;
+    id : number;
 
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService) {
+
+        this.id = logService.getId();
 
         configService.getConfig().subscribe(config => {
             console.log(config);
