@@ -21,6 +21,10 @@ export class LogService {
         this.id = id;
     }
 
+    getId() : number {
+        return this.id;
+    }
+
     // storeMark(story : Story, mark : number) {
     //     console.log('---------------');
     //     console.log('user: ' + this.id);

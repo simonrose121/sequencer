@@ -26,19 +26,22 @@ export class QuestionComponent implements OnInit {
     a2 = [];
     a3 = [];
     error : boolean = false;
-    finished : boolean = false;
+    finished : boolean = true;
     finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;
     activeRemoveHover : string = null;
     activeCard : Card = null;
     timeLimit : number;
+    id : number;
 
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService) {
+
+        this.id = logService.getId();
 
         configService.getConfig().subscribe(config => {
             console.log(config);

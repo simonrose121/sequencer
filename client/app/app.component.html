@@ -1,28 +1,20 @@
-<div *ngIf="!this.id">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="id-form">       
-                <form>
-                    <div class="form-group">
-                        <input class="form-control" type="text" #id>
-                        <span class="btn btn-default margin" (click)="setId(id.value)">Submit</span>
-                    </div>
-                </form>
+<div *ngIf="!this.id" class="full-width">
+    <div class="form">       
+        <form>
+            <div class="form-group">
+                <input class="form-control" type="text" #id>
+                <span class="btn btn-default margin" (click)="setId(id.value)">Submit</span>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-<div *ngIf="this.startScreen">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="id-form">       
-                <form>
-                    <div class="form-group">
-                        <span class="btn btn-default margin" (click)="countdown()">{{ countdownText }}</span>
-                    </div>
-                </form>
+<div *ngIf="this.startScreen" class="full-width">
+    <div class="form">       
+        <form>
+            <div class="form-group">
+                <span class="btn btn-default margin" (click)="countdown()">{{ countdownText }}</span>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-<question *ngIf="!this.startScreen && this.id">
+<question class="col-md-12" *ngIf="!this.startScreen && this.id">
