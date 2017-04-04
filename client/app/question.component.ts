@@ -14,9 +14,7 @@ import { Story } from './models/story';
     templateUrl: 'app/question.component.html',
     styleUrls: [
         'app/question.component.css',
-        'dragula.min.css'
-    ],
-    viewProviders: [DragulaService]
+    ]
 })
 export class QuestionComponent implements OnInit {
     mode = 'Observable';
@@ -36,7 +34,6 @@ export class QuestionComponent implements OnInit {
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
-                private dragulaService: DragulaService,
                 private slimLoadingBarService: SlimLoadingBarService) {
 
         // dragulaService.setOptions('first-bag', {
@@ -52,6 +49,7 @@ export class QuestionComponent implements OnInit {
 
     ngOnInit() : void {
         this.getStories();
+        this.startTimer();
     }
 
     getStories() : void {
@@ -119,6 +117,39 @@ export class QuestionComponent implements OnInit {
             default:
                 return true;
         }
+    }
+
+    // Timer
+    private startTimer() {
+        let value = 0;
+        let percentage = 100;
+        const timeLimit = 300000;
+
+        // capture slimbar to avoid 'this' conflict
+        let slim = this.slimLoadingBarService;
+
+        // decrease timer every 100 milliseconds
+        this.interval(100, function() {
+
+            // set new time
+            value += 100;
+            if (value == timeLimit) {
+                // trigger test finish
+                clearInterval(this);
+                slim.complete();
+                // TODO: stop logging scores but let player finish current question
+            } else {
+                // set percentage of bar
+                const newPercentage = percentage-((value/timeLimit)*percentage);
+                slim.progress = newPercentage;
+            }
+        });
+    }
+    
+    private interval(milliseconds, callback) {
+        setInterval(function() {
+            callback();
+        }, milliseconds);
     }
 
     // Click and click functionality
