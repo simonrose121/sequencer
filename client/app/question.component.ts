@@ -27,6 +27,7 @@ export class QuestionComponent implements OnInit {
     a3 = [];
     error : boolean = false;
     finished : boolean = false;
+    finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;
     activeRemoveHover : string = null;
@@ -42,7 +43,7 @@ export class QuestionComponent implements OnInit {
         configService.getConfig().subscribe(config => {
             console.log(config);
             
-            this.timeLimit = config.timeLimit
+            this.timeLimit = config.timeLimit;
         });
     }
 
@@ -85,14 +86,18 @@ export class QuestionComponent implements OnInit {
             const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
             if (answer.length === 3) {
                 answer.unshift(this.firstCard);
-                this.logService.mark(this.story, answer).subscribe(data => {
-                    console.log(data);
-                })
-                this.a1 = [];
-                this.a2 = [];
-                this.a3 = [];
-                this.activeStoryIndex++;
-                this.nextStory();
+                if (!this.finalQuestion) {
+                    this.logService.mark(this.story, answer).subscribe(data => {
+                        console.log(data);
+                    });
+                    this.a1 = [];
+                    this.a2 = [];
+                    this.a3 = [];
+                    this.activeStoryIndex++;
+                    this.nextStory();
+                } else {
+                    this.finished = true;
+                }
             }
         }
         // change error flag back once animation is complete
@@ -118,6 +123,7 @@ export class QuestionComponent implements OnInit {
                 clearInterval(this);
                 t.slimLoadingBarService.complete();
                 // TODO: stop logging scores but let player finish current question
+                t.finalQuestion = true;
             } else {
                 // set percentage of bar
                 const newPercentage = percentage-((value/t.timeLimit)*percentage);
