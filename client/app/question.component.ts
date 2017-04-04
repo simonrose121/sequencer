@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
 import { LogService } from './log.service';
+import { ConfigService } from './config.service';
 
 import { Card } from './models/card';
 import { Story } from './models/story';
@@ -13,9 +15,7 @@ import { Story } from './models/story';
     templateUrl: 'app/question.component.html',
     styleUrls: [
         'app/question.component.css',
-        'dragula.min.css'
-    ],
-    viewProviders: [DragulaService]
+    ]
 })
 export class QuestionComponent implements OnInit {
     mode = 'Observable';
@@ -26,36 +26,39 @@ export class QuestionComponent implements OnInit {
     a2 = [];
     a3 = [];
     error : boolean = false;
-    finished : boolean = false;
+    finished : boolean = true;
+    finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;
     activeRemoveHover : string = null;
     activeCard : Card = null;
+    timeLimit : number;
+    id : number;
 
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
-                private dragulaService: DragulaService) {
+                private configService: ConfigService,
+                private slimLoadingBarService: SlimLoadingBarService) {
 
-        // dragulaService.setOptions('first-bag', {
-        //     accepts: (el, target, source, sibling) => {
-        //         let accepted = this.canMove(el, target, source, sibling);
-        //         console.log('accepted ' + accepted);
-        //         console.log('target ' + target);
-                
-        //         return accepted;
-        //     }
-        // });
+        this.id = logService.getId();
+
+        configService.getConfig().subscribe(config => {
+            console.log(config);
+            
+            this.timeLimit = config.timeLimit;
+        });
     }
 
     ngOnInit() : void {
         this.getStories();
+        this.startTimer();
     }
 
     getStories() : void {
         this.storyService.getStories()
             .subscribe(stories => {
-                this.stories = stories;
+                this.stories = this.utilitiesService.shuffle(stories);
                 this.nextStory();
             });
     }
@@ -86,14 +89,18 @@ export class QuestionComponent implements OnInit {
             const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
             if (answer.length === 3) {
                 answer.unshift(this.firstCard);
-                this.logService.mark(this.story, answer).subscribe(data => {
-                    console.log(data);
-                })
-                this.a1 = [];
-                this.a2 = [];
-                this.a3 = [];
-                this.activeStoryIndex++;
-                this.nextStory();
+                if (!this.finalQuestion) {
+                    this.logService.mark(this.story, answer).subscribe(data => {
+                        console.log(data);
+                    });
+                    this.a1 = [];
+                    this.a2 = [];
+                    this.a3 = [];
+                    this.activeStoryIndex++;
+                    this.nextStory();
+                } else {
+                    this.finished = true;
+                }
             }
         }
         // change error flag back once animation is complete
@@ -102,21 +109,36 @@ export class QuestionComponent implements OnInit {
         }, 1000);
     }
 
-    // Dragular functions
-    private canMove(el, target, source, sibling) {
-        console.log('checking can move:' + target.id);
-        
-        switch (target.id) {
-            case "a1":
-                console.log(this.a1.length);
-                return this.a1.length === 0;
-            case "a2":
-                return this.a2.length === 0;
-            case "a3":
-                return this.a3.length === 0;
-            default:
-                return true;
-        }
+    // Timer
+    private startTimer() {
+        let value = 0;
+        let percentage = 100;
+
+        // capture this
+        let t = this;
+
+        // decrease timer every 100 milliseconds
+        this.interval(100, function() {
+            // set new time
+            value += 100;
+            if (value == t.timeLimit) {
+                // trigger test finish
+                clearInterval(this);
+                t.slimLoadingBarService.complete();
+                // TODO: stop logging scores but let player finish current question
+                t.finalQuestion = true;
+            } else {
+                // set percentage of bar
+                const newPercentage = percentage-((value/t.timeLimit)*percentage);
+                t.slimLoadingBarService.progress = newPercentage;
+            }
+        });
+    }
+    
+    private interval(milliseconds, callback) {
+        setInterval(function() {
+            callback();
+        }, milliseconds);
     }
 
     // Click and click functionality

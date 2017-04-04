@@ -15,10 +15,14 @@ export class LogService {
     constructor(private utilitiesService: UtilitiesService,
                 private http: Http) {}
 
-    private id = 1; // TODO: Change me back
+    private id;
 
     setId(id : number) {
         this.id = id;
+    }
+
+    getId() : number {
+        return this.id;
     }
 
     // storeMark(story : Story, mark : number) {
@@ -48,6 +52,7 @@ export class LogService {
             mark = 0;
         }
 
+        // post mark
         const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
