@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { HttpModule } from '@angular/http';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './question.component';
 import { StoryService } from './story.service';
 import { LogService } from './log.service';
 import { UtilitiesService } from './utilities.service';
+import { ConfigService } from './config.service';
 
 @NgModule({
     imports: [
         BrowserModule,
         DragulaModule,
-        HttpModule
+        HttpModule,
+        SlimLoadingBarModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -22,10 +25,14 @@ import { UtilitiesService } from './utilities.service';
     providers: [
         StoryService,
         LogService,
-        UtilitiesService
+        UtilitiesService,
+        ConfigService
     ],
     bootstrap: [
         AppComponent
+    ],
+    exports: [
+        SlimLoadingBarModule
     ]
 })
 export class AppModule {}

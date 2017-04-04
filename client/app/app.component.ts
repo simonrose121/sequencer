@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { LogService } from './log.service';
+import { ConfigService } from './config.service';
 
 @Component({
     selector: 'sq-app',
@@ -14,8 +15,19 @@ export class AppComponent {
     startScreen : boolean;
     countdownText : string;
 
-    constructor(private logService: LogService) {
+    constructor(private logService: LogService,
+                private configService: ConfigService) {
         this.countdownText = 'Start';
+        
+        configService.getConfig().subscribe(config => {
+            console.log(config);
+            if (!config.id) {
+                this.setId(1);
+            }
+            if (!config.countdown) {
+                this.startScreen = false;
+            }
+        });
     }
 
     setId(id) {
