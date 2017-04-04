@@ -5,6 +5,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { StoryService } from './story.service';
 import { UtilitiesService } from './utilities.service';
 import { LogService } from './log.service';
+import { ConfigService } from './config.service';
 
 import { Card } from './models/card';
 import { Story } from './models/story';
@@ -30,21 +31,19 @@ export class QuestionComponent implements OnInit {
     activeHover : string = null;
     activeRemoveHover : string = null;
     activeCard : Card = null;
+    timeLimit : number;
 
     constructor(private storyService: StoryService, 
                 private logService: LogService,
                 private utilitiesService: UtilitiesService,
+                private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService) {
 
-        // dragulaService.setOptions('first-bag', {
-        //     accepts: (el, target, source, sibling) => {
-        //         let accepted = this.canMove(el, target, source, sibling);
-        //         console.log('accepted ' + accepted);
-        //         console.log('target ' + target);
-                
-        //         return accepted;
-        //     }
-        // });
+        configService.getConfig().subscribe(config => {
+            console.log(config);
+            
+            this.timeLimit = config.timeLimit
+        });
     }
 
     ngOnInit() : void {
@@ -123,25 +122,24 @@ export class QuestionComponent implements OnInit {
     private startTimer() {
         let value = 0;
         let percentage = 100;
-        const timeLimit = 300000;
 
-        // capture slimbar to avoid 'this' conflict
-        let slim = this.slimLoadingBarService;
+        // capture this
+        let t = this;
 
         // decrease timer every 100 milliseconds
         this.interval(100, function() {
 
             // set new time
             value += 100;
-            if (value == timeLimit) {
+            if (value == t.timeLimit) {
                 // trigger test finish
                 clearInterval(this);
-                slim.complete();
+                t.slimLoadingBarService.complete();
                 // TODO: stop logging scores but let player finish current question
             } else {
                 // set percentage of bar
-                const newPercentage = percentage-((value/timeLimit)*percentage);
-                slim.progress = newPercentage;
+                const newPercentage = percentage-((value/t.timeLimit)*percentage);
+                t.slimLoadingBarService.progress = newPercentage;
             }
         });
     }

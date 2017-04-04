@@ -1,4 +1,5 @@
 {
     "id": false,
-    "countdown": false
+    "countdown": false,
+    "timeLimit": 300000
 }
