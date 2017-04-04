@@ -101,23 +101,6 @@ export class QuestionComponent implements OnInit {
         }, 1000);
     }
 
-    // Dragular functions
-    private canMove(el, target, source, sibling) {
-        console.log('checking can move:' + target.id);
-        
-        switch (target.id) {
-            case "a1":
-                console.log(this.a1.length);
-                return this.a1.length === 0;
-            case "a2":
-                return this.a2.length === 0;
-            case "a3":
-                return this.a3.length === 0;
-            default:
-                return true;
-        }
-    }
-
     // Timer
     private startTimer() {
         let value = 0;
@@ -128,7 +111,6 @@ export class QuestionComponent implements OnInit {
 
         // decrease timer every 100 milliseconds
         this.interval(100, function() {
-
             // set new time
             value += 100;
             if (value == t.timeLimit) {
