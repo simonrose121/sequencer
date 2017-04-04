@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit {
     a2 = [];
     a3 = [];
     error : boolean = false;
-    finished : boolean = false;
+    finished : boolean = true;
     finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;

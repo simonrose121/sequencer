@@ -1,5 +1,5 @@
 {
-    "id": false,
-    "countdown": false,
+    "id": true,
+    "countdown": true,
     "timeLimit": 300000
 }
