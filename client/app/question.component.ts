@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { StoryService } from './story.service';
@@ -26,7 +25,7 @@ export class QuestionComponent implements OnInit {
     a2 = [];
     a3 = [];
     error : boolean = false;
-    finished : boolean = true;
+    finished : boolean = false;
     finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { HttpModule } from '@angular/http';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
@@ -14,7 +13,6 @@ import { ConfigService } from './config.service';
 @NgModule({
     imports: [
         BrowserModule,
-        DragulaModule,
         HttpModule,
         SlimLoadingBarModule.forRoot()
     ],
