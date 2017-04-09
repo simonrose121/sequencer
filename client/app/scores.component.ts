@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { LogService } from "./log.service";
+import { Log } from './models/Log';
 
 @Component({
     templateUrl: 'app/scores.component.html',
@@ -17,7 +18,20 @@ export class ScoresComponent {
     getLogs() {
         console.log('getting logs');
         this.logService.getAll().subscribe(data => {
-            console.log(data);
+            this.process(data);
+        });
+    }
+
+    process(data : Log[]) {
+        // list for each id the total score and questions answered
+        let users = [];
+
+        // for each element
+        data.forEach(element => {
+            // get it's id
+
+            // add the score and total questions to an array of objects with that id
+
         });
     }
 }
