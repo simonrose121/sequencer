@@ -5,7 +5,8 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { QuestionComponent } from './question.component';
+import { QuizComponent } from './quiz.component';
+import { QuestionComponent } from "./question.component";
 import { ScoresComponent } from './scores.component';
 import { StoryService } from './story.service';
 import { LogService } from './log.service';
@@ -20,7 +21,7 @@ const appRoutes: Routes = [
     },
     { 
         path: 'quiz', 
-        component: QuestionComponent 
+        component: QuizComponent 
     },
     { 
         path: 'scores', 
@@ -37,8 +38,9 @@ const appRoutes: Routes = [
     ],
     declarations: [
         AppComponent,
-        QuestionComponent,
-        ScoresComponent
+        QuizComponent,
+        ScoresComponent,
+        QuestionComponent
     ],
     providers: [
         StoryService,

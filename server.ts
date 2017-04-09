@@ -56,9 +56,16 @@ export class Server {
     }
 
     public routes() {
-        this.app.get('/', function(req,res) {
+        this.app.get('/', function(req, res) {
             res.render(__dirname + '/client/index.html');
         });
+        // NOTE: These have to match angular routes
+        this.app.get('/quiz', function(req, res) {
+            res.render(__dirname + '/client/index.html');
+        })
+        this.app.get('/scores', function(req, res) {
+            res.render(__dirname + '/client/index.html');
+        })
     }
 
     public api() {
