@@ -36,7 +36,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(["server/\*\*/.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
+	gulp.watch(["server/\*\*/\*.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
 	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client']);
 	gulp.watch(["client/app/\*.less"], ['less']);	
 });

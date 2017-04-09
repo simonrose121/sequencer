@@ -17,8 +17,6 @@ export class ScoresComponent {
     getLogs() {
         console.log('getting logs');
         this.logService.getAll().subscribe(data => {
-            console.log('finished');
-            
             console.log(data);
         });
     }

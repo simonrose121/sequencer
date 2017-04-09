@@ -21,7 +21,7 @@ export class LogModel {
         log.dateTime = b.dateTime;
         log.timeTaken = b.timeTaken;
 
-        repo.create(log, function(err, doc) {
+        repo.create(log, (err, doc) => {
             if (err) {
                 throw err;
             }
@@ -33,17 +33,12 @@ export class LogModel {
     static getAll(req, res) {
         let repo = new LogRepository();
 
-        repo.find({}, function(err, docs) {
+        repo.find({}).exec((err, docs) => {
             if (err) {
-                console.log(err);
-                
                 throw err;
             }
 
-            console.log(docs);
-            
-
-            res.send(docs);
+            res.json(docs);
         });
     }
 }
