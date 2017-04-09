@@ -69,7 +69,8 @@ export class Server {
     }
 
     public api() {
-        this.app.post('/log/create', LogModel.create);
+        this.app.post('/logs/create', LogModel.create);
+        this.app.get('/logs/all', LogModel.getAll);
     }
 }
 

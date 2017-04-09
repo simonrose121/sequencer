@@ -27,6 +27,10 @@ let log = new mongoose.Schema({
         type: Number,
         required: true
     },
+    dateTime: {
+        type: Date,
+        required: true
+    },
     timeTaken: {
         type: Number,
         required: true

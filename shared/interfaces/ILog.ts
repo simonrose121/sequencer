@@ -3,5 +3,6 @@ export interface ILog {
     questionId: number;
     type: string;
     score: number;
+    dateTime: Date;
     timeTaken: number;
 }
