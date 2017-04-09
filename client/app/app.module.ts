@@ -13,8 +13,19 @@ import { UtilitiesService } from './utilities.service';
 import { ConfigService } from './config.service';
 
 const appRoutes: Routes = [
-    { path: 'quiz', component: QuestionComponent },
-    { path: 'scores', component: ScoresComponent }
+    { 
+        path: '', 
+        redirectTo: '/quiz', 
+        pathMatch: 'full'
+    },
+    { 
+        path: 'quiz', 
+        component: QuestionComponent 
+    },
+    { 
+        path: 'scores', 
+        component: ScoresComponent 
+    }
 ]
 
 @NgModule({
