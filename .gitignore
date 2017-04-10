@@ -4,6 +4,7 @@ client/app/models/*.js
 client/app/*.css
 shared/**/*.js
 server/**/*.js
+server.js
 *.map
 
 node_modules

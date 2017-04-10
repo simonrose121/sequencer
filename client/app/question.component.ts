@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from "@angular/router";
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { QuestionService } from './question.service';
@@ -33,25 +34,43 @@ export class QuestionComponent implements OnInit {
     activeCard : Card = null;
     timeLimit : number;
     id : number;
+    demo : boolean;
 
     constructor(private questionService: QuestionService, 
                 private logService: AnswerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
-                private slimLoadingBarService: SlimLoadingBarService) {
+                private slimLoadingBarService: SlimLoadingBarService,
+                private activatedRoute: ActivatedRoute) {
 
         this.id = logService.getId();
 
         configService.getConfig().subscribe(config => {
-            console.log(config);
-            
             this.timeLimit = config.timeLimit;
         });
     }
 
     ngOnInit() : void {
-        this.getStories();
-        this.startTimer();
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            this.demo = params['demo'];
+        });
+
+        if (this.demo) {
+            // load test story
+            this.getDemoStory();
+        } else {
+            this.getStories();
+            this.startTimer();
+        }
+    }
+
+    getDemoStory() : void {
+        this.questionService.getDemoStory()
+            .subscribe(stories => {
+                this.stories = stories;
+                this.finalQuestion = true;
+                this.nextStory();
+            });
     }
 
     getStories() : void {
