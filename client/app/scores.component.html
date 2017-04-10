@@ -1,22 +1,20 @@
-<div class="col-md-12">
-    <table class="table">
-        <tr>
-            <th>Id</th>
-            <th>Score</th>
-        </tr>
-        <tr *ngFor="let player of players" class="hover">
-            <td>{{ player.playerId }}</td>
-            <td>{{ player.score }}/{{ player.possibleScore }}</td>
-            <td class="hide">
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table">
+            <thead>
                 <tr>
-                    <th>Question</th>
+                    <th>PlayerId</th>
                     <th>Score</th>
+                    <th>Time Taken</th>
                 </tr>
-                <tr *ngFor="let answer of player.answers">
-                    <td>{{ answer.questionId }}</td>
-                    <td>{{ answer.score }}</td>
+            </thead>
+            <tbody>
+                <tr *ngFor="let player of players" class="hover">
+                    <td>{{ player.playerId }}</td>
+                    <td>{{ player.score }}/{{ player.possibleScore }}</td>
+                    <td>{{ player.timeTaken | number : '1.2-2' }} seconds</td>
                 </tr>
-            </td>
-        </tr>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
