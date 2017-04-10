@@ -25,15 +25,6 @@ export class LogService {
         return this.id;
     }
 
-    // storeMark(story : Story, mark : number) {
-    //     console.log('---------------');
-    //     console.log('user: ' + this.id);
-    //     console.log('question: ' + story.action);
-    //     console.log('type: ' + story.type);
-    //     console.log('score: ' + mark);
-    //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
-    // }
-
     mark(story : Story, cards : Card[]) : Observable<Log> {
         /* logic for this:
           Correct sequence - 2 points
@@ -53,12 +44,18 @@ export class LogService {
         }
 
         // post mark
-        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+        const log = new Log(this.id, 1, story.type, mark, new Date(), this.utilitiesService.secondsElapsed(new Date()));
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('/log/create', log, options).map(this.extractData);
+        return this.http.post('/logs/create', log, options).map(this.extractData);
+    }
+
+    getAll() : Observable<Log[]> {
+        console.log('getting all');
+        
+        return this.http.get('/logs/all').map(this.extractData);
     }
 
     private extractData(res: Response) {

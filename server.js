@@ -42,9 +42,17 @@ class Server {
         this.app.get('/', function (req, res) {
             res.render(__dirname + '/client/index.html');
         });
+        // NOTE: These have to match angular routes
+        this.app.get('/quiz', function (req, res) {
+            res.render(__dirname + '/client/index.html');
+        });
+        this.app.get('/scores', function (req, res) {
+            res.render(__dirname + '/client/index.html');
+        });
     }
     api() {
-        this.app.post('/log/create', LogModel_1.LogModel.create);
+        this.app.post('/logs/create', LogModel_1.LogModel.create);
+        this.app.get('/logs/all', LogModel_1.LogModel.getAll);
     }
 }
 exports.Server = Server;

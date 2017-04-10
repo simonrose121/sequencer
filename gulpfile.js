@@ -9,6 +9,11 @@ var runSequence = require('run-sequence');
 var tsProject = tsc.createProject('client/tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
+function swallowError(error) {
+	console.log(error.toString())
+	this.emit('end')
+}
+
 gulp.task('default', ['watch']);
 
 gulp.task('tsc-client', function() {
@@ -32,11 +37,12 @@ gulp.task('tsc-server', function() {
 gulp.task('less', function() {
     return gulp.src('client/app/*.less')
         .pipe(less())
+		.on('error', swallowError)
         .pipe(gulp.dest('client/app'))
 });
 
 gulp.task('watch', function() {
-	gulp.watch(["server/\*\*/.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
+	gulp.watch(["server/\*\*/\*.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
 	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client']);
 	gulp.watch(["client/app/\*.less"], ['less']);	
 });
