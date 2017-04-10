@@ -1,11 +1,11 @@
-export class User {
-    public userId: number;
+export class Player {
+    public playerId: number;
     public score: number;
     public questionsAnswered: number;
     public possibleScore: number;
 
-    constructor(userId: number, score: number, questionsAnswered: number, possibleScore: number) {
-        this.userId = userId;
+    constructor(playerId: number, score: number, questionsAnswered: number, possibleScore: number) {
+        this.playerId = playerId;
         this.score = score;
         this.questionsAnswered = questionsAnswered;
         this.possibleScore = possibleScore;

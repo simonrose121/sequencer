@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { LogService } from "./log.service";
 
 import { Log } from './models/Log';
-import { User } from "./models/User";
+import { Player } from "./models/Player";
 
 @Component({
     templateUrl: 'app/scores.component.html',
@@ -12,9 +12,10 @@ import { User } from "./models/User";
     ]
 })
 export class ScoresComponent {
-    users : User[] = [];
+    players : Player[];
 
     constructor(private logService: LogService) { 
+        this.players = [];
         this.getLogs();
     }
 
@@ -28,19 +29,19 @@ export class ScoresComponent {
 
     process(data : Log[]) {
         data.forEach(element => {
-            // check if id exists in users array
-            let user = this.users.find(x => x.userId === element.userId);
+            // check if id exists in players array
+            let player = this.players.find(x => x.playerId === element.userId);
 
             // add the score and total questions to an array of objects with that id
-            if (user) {
-                user.score += element.score;
-                user.possibleScore += 2;
-                user.questionsAnswered++;
+            if (player) {
+                player.score += element.score;
+                player.possibleScore += 2;
+                player.questionsAnswered++;
             } else {
-                user = new User(element.userId, element.score, 1, 2);
-                this.users.push(user);
+                player = new Player(element.userId, element.score, 1, 2);
+                this.players.push(player);
             }
         });
-        console.log(this.users);
+        console.log(this.players);
     }
 }
