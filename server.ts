@@ -6,7 +6,7 @@ import * as ejs from "ejs";
 declare var __dirname;
 
 // models
-import { LogModel } from './server/models/LogModel';
+import { AnswerModel } from './server/models/AnswerModel';
 
 export class Server {
     public app;
@@ -69,8 +69,8 @@ export class Server {
     }
 
     public api() {
-        this.app.post('/logs/create', LogModel.create);
-        this.app.get('/logs/all', LogModel.getAll);
+        this.app.post('/answers/add', AnswerModel.create);
+        this.app.get('/answers/all', AnswerModel.getAll);
     }
 }
 

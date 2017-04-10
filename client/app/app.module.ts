@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz.component';
 import { QuestionComponent } from "./question.component";
 import { ScoresComponent } from './scores.component';
-import { StoryService } from './story.service';
-import { LogService } from './log.service';
+import { QuestionService } from './question.service';
+import { AnswerService } from './answer.service';
 import { UtilitiesService } from './utilities.service';
 import { ConfigService } from './config.service';
 
@@ -43,8 +43,8 @@ const appRoutes: Routes = [
         QuestionComponent
     ],
     providers: [
-        StoryService,
-        LogService,
+        QuestionService,
+        AnswerService,
         UtilitiesService,
         ConfigService
     ],

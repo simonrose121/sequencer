@@ -1,8 +1,31 @@
 {
+    "types": [
+        { 
+            "typeId": 1,
+            "type": "Mechanical1"
+        },
+        { 
+            "typeId": 2,
+            "type": "Mechanical2"
+        },
+        { 
+            "typeId": 3,
+            "type": "Behavioural1"
+        },
+        { 
+            "typeId": 4,
+            "type": "Behavioural2"
+        },
+        { 
+            "typeId": 5,
+            "type": "Intentional"
+        }
+    ],
     "stories": [
         {
+            "questionId": 0,
             "action": "Kicking ball in to river",
-            "type": "Mechanical2",
+            "typeId": 2,
             "cards": [
                 {
                     "position": 1,
@@ -23,8 +46,9 @@
             ]
         },
         {
+            "questionId": 1,
             "action": "Stealing toy train",
-            "type": "Behavioural2",
+            "typeId": 4,
             "cards": [
                 {
                     "position": 1,
@@ -45,8 +69,9 @@
             ]
         },
         {
+            "questionId": 2,
             "action": "aking ice cream",
-            "type": "Behavioural2",
+            "typeId": 4,
             "cards": [
                 {
                     "position": 1,
@@ -67,8 +92,9 @@
             ]
         },
         {
+            "questionId": 3,
             "action": "Going to bed",
-            "type": "Behavioural1",
+            "typeId": 3,
             "cards": [
                 {
                     "position": 1,
@@ -89,8 +115,9 @@
             ]
         },
         {
+            "questionId": 4,
             "action": "Planting flowers",
-            "type": "Mechanical2",
+            "typeId": 2,
             "cards": [
                 {
                     "position": 1,
@@ -111,8 +138,9 @@
             ]
         },
         {
+            "questionId": 5,
             "action": "Winning a race",
-            "type": "Behavioural1",
+            "typeId": 3,
             "cards": [
                 {
                     "position": 1,
@@ -133,8 +161,9 @@
             ]
         },
         {
+            "questionId": 6,
             "action": "Builing a snowman",
-            "type": "Behavioural2",
+            "typeId": 4,
             "cards": [
                 {
                     "position": 1,
@@ -155,8 +184,9 @@
             ]
         },
         {
+            "questionId": 7,
             "action": "Log falling off waterfall",
-            "type": "Mechanical1",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
@@ -177,8 +207,9 @@
             ]
         },
         {
+            "questionId": 8,
             "action": "Taking bear when not looking",
-            "type": "Intentional",
+            "typeId": 5,
             "cards": [
                 {
                     "position": 1,
