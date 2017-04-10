@@ -4,9 +4,19 @@
             <th>Id</th>
             <th>Score</th>
         </tr>
-        <tr *ngFor="let player of players">
+        <tr *ngFor="let player of players" class="hover">
             <td>{{ player.playerId }}</td>
             <td>{{ player.score }}/{{ player.possibleScore }}</td>
+            <td class="hide">
+                <tr>
+                    <th>Question</th>
+                    <th>Score</th>
+                </tr>
+                <tr *ngFor="let answer of player.answers">
+                    <td>{{ answer.questionId }}</td>
+                    <td>{{ answer.score }}</td>
+                </tr>
+            </td>
         </tr>
     </table>
 </div>

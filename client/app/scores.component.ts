@@ -21,14 +21,13 @@ export class ScoresComponent {
 
     // pull through log files and create score for user
     getLogs() {
-        console.log('getting logs');
         this.logService.getAll().subscribe(data => {
             this.process(data);
         });
     }
 
     process(data : Log[]) {
-        data.forEach(element => {
+        data.sort((p1 , p2) => p1.userId - p2.userId).forEach(element => {
             // check if id exists in players array
             let player = this.players.find(x => x.playerId === element.userId);
 
@@ -37,8 +36,10 @@ export class ScoresComponent {
                 player.score += element.score;
                 player.possibleScore += 2;
                 player.questionsAnswered++;
+                player.answers.push(element);
             } else {
                 player = new Player(element.userId, element.score, 1, 2);
+                player.answers.push(element);
                 this.players.push(player);
             }
         });
