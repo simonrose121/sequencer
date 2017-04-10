@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 import { LogService } from "./log.service";
+
 import { Log } from './models/Log';
+import { User } from "./models/User";
 
 @Component({
     templateUrl: 'app/scores.component.html',
@@ -10,6 +12,8 @@ import { Log } from './models/Log';
     ]
 })
 export class ScoresComponent {
+    users : User[] = [];
+
     constructor(private logService: LogService) { 
         this.getLogs();
     }
@@ -23,15 +27,20 @@ export class ScoresComponent {
     }
 
     process(data : Log[]) {
-        // list for each id the total score and questions answered
-        let users = [];
-
-        // for each element
         data.forEach(element => {
-            // get it's id
+            // check if id exists in users array
+            let user = this.users.find(x => x.userId === element.userId);
 
             // add the score and total questions to an array of objects with that id
-
+            if (user) {
+                user.score += element.score;
+                user.possibleScore += 2;
+                user.questionsAnswered++;
+            } else {
+                user = new User(element.userId, element.score, 1, 2);
+                this.users.push(user);
+            }
         });
+        console.log(this.users);
     }
 }
