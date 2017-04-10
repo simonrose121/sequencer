@@ -9,6 +9,11 @@ var runSequence = require('run-sequence');
 var tsProject = tsc.createProject('client/tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
+function swallowError(error) {
+	console.log(error.toString())
+	this.emit('end')
+}
+
 gulp.task('default', ['watch']);
 
 gulp.task('tsc-client', function() {
@@ -32,6 +37,7 @@ gulp.task('tsc-server', function() {
 gulp.task('less', function() {
     return gulp.src('client/app/*.less')
         .pipe(less())
+		.on('error', swallowError)
         .pipe(gulp.dest('client/app'))
 });
 
