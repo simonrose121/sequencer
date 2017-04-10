@@ -7,17 +7,17 @@ import 'rxjs/add/operator/map';
 import { UtilitiesService } from './utilities.service';
 
 import { Card } from './models/card';
-import { Story } from './models/story';
+import { Question } from './models/question';
 
 @Injectable()
-export class StoryService {
+export class QuestionService {
 
     private storiesUrl = 'app/stories.json';
 
     constructor(private http: Http) {}
 
     // public methods
-    public getStories() : Observable<Story[]> {
+    public getStories() : Observable<Question[]> {
         return this.http.get(this.storiesUrl).map(this.extractData);
     }
 

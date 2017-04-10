@@ -1,8 +1,8 @@
 import { ICard } from './../interfaces/ICard';
 
-export interface IStory {
-
+export interface IQuestion {
+    questionId: number;
     action: string;
-    type: string;
+    typeId: number;
     cards: Array<ICard>;
 }

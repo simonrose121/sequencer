@@ -5,12 +5,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
-import { Story } from './models/Story';
-import { Log } from './models/Log';
+import { Question } from './models/Question';
+import { Answer } from './models/Answer';
 import { Card } from './models/Card';
 
 @Injectable()
-export class LogService {
+export class AnswerService {
 
     constructor(private utilitiesService: UtilitiesService,
                 private http: Http) {}
@@ -25,16 +25,7 @@ export class LogService {
         return this.id;
     }
 
-    // storeMark(story : Story, mark : number) {
-    //     console.log('---------------');
-    //     console.log('user: ' + this.id);
-    //     console.log('question: ' + story.action);
-    //     console.log('type: ' + story.type);
-    //     console.log('score: ' + mark);
-    //     console.log('time taken: ' + this.utilitiesService.secondsElapsed(new Date()));
-    // }
-
-    mark(story : Story, cards : Card[]) : Observable<Log> {
+    mark(story : Question, cards : Card[]) : Observable<Answer> {
         /* logic for this:
           Correct sequence - 2 points
           Correct beginning and end - 1 point
@@ -53,12 +44,18 @@ export class LogService {
         }
 
         // post mark
-        const log = new Log(this.id, 1, story.type, mark, this.utilitiesService.secondsElapsed(new Date()));
+        const log = new Answer(this.id, story.questionId, story.typeId, mark, new Date(), this.utilitiesService.secondsElapsed(new Date()));
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('/log/create', log, options).map(this.extractData);
+        return this.http.post('/answers/add', log, options).map(this.extractData);
+    }
+
+    getAll() : Observable<Answer[]> {
+        console.log('getting all');
+        
+        return this.http.get('/answers/all').map(this.extractData);
     }
 
     private extractData(res: Response) {

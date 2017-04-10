@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 // models
-const LogModel_1 = require("./server/models/LogModel");
+const AnswerModel_1 = require("./server/models/AnswerModel");
 class Server {
     constructor() {
         this.port = 3000;
@@ -42,9 +42,17 @@ class Server {
         this.app.get('/', function (req, res) {
             res.render(__dirname + '/client/index.html');
         });
+        // NOTE: These have to match angular routes
+        this.app.get('/quiz', function (req, res) {
+            res.render(__dirname + '/client/index.html');
+        });
+        this.app.get('/scores', function (req, res) {
+            res.render(__dirname + '/client/index.html');
+        });
     }
     api() {
-        this.app.post('/log/create', LogModel_1.LogModel.create);
+        this.app.post('/answers/add', AnswerModel_1.AnswerModel.create);
+        this.app.get('/answers/all', AnswerModel_1.AnswerModel.getAll);
     }
 }
 exports.Server = Server;

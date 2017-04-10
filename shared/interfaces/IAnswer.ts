@@ -1,7 +1,8 @@
-export interface ILog {
+export interface IAnswer {
     userId: number;
     questionId: number;
-    type: string;
+    typeId: number;
     score: number;
+    dateTime: Date;
     timeTaken: number;
 }

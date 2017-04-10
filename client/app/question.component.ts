@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
-import { StoryService } from './story.service';
+import { QuestionService } from './question.service';
 import { UtilitiesService } from './utilities.service';
-import { LogService } from './log.service';
+import { AnswerService } from './answer.service';
 import { ConfigService } from './config.service';
 
 import { Card } from './models/card';
-import { Story } from './models/story';
+import { Question } from './models/question';
 
 @Component({
     selector: 'question',
@@ -19,14 +18,14 @@ import { Story } from './models/story';
 })
 export class QuestionComponent implements OnInit {
     mode = 'Observable';
-    stories : Story[];
-    story : Story;
+    stories : Question[];
+    story : Question;
     firstCard : Card;
     a1 = [];
     a2 = [];
     a3 = [];
     error : boolean = false;
-    finished : boolean = true;
+    finished : boolean = false;
     finalQuestion : boolean = false;
     activeStoryIndex : number = 0;
     activeHover : string = null;
@@ -35,8 +34,8 @@ export class QuestionComponent implements OnInit {
     timeLimit : number;
     id : number;
 
-    constructor(private storyService: StoryService, 
-                private logService: LogService,
+    constructor(private questionService: QuestionService, 
+                private logService: AnswerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService) {
@@ -56,7 +55,7 @@ export class QuestionComponent implements OnInit {
     }
 
     getStories() : void {
-        this.storyService.getStories()
+        this.questionService.getStories()
             .subscribe(stories => {
                 this.stories = this.utilitiesService.shuffle(stories);
                 this.nextStory();

@@ -6,7 +6,7 @@ import * as ejs from "ejs";
 declare var __dirname;
 
 // models
-import { LogModel } from './server/models/LogModel';
+import { AnswerModel } from './server/models/AnswerModel';
 
 export class Server {
     public app;
@@ -56,13 +56,21 @@ export class Server {
     }
 
     public routes() {
-        this.app.get('/', function(req,res) {
+        this.app.get('/', function(req, res) {
             res.render(__dirname + '/client/index.html');
         });
+        // NOTE: These have to match angular routes
+        this.app.get('/quiz', function(req, res) {
+            res.render(__dirname + '/client/index.html');
+        })
+        this.app.get('/scores', function(req, res) {
+            res.render(__dirname + '/client/index.html');
+        })
     }
 
     public api() {
-        this.app.post('/log/create', LogModel.create);
+        this.app.post('/answers/add', AnswerModel.create);
+        this.app.get('/answers/all', AnswerModel.getAll);
     }
 }
 

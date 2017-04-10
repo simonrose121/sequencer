@@ -1,0 +1,20 @@
+<div *ngIf="!this.id" class="full-width">
+    <div class="form">       
+        <form>
+            <div class="form-group">
+                <input class="form-control" type="text" #id>
+                <span class="btn btn-default margin" (click)="setId(id.value)">Submit</span>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="this.startScreen" class="full-width">
+    <div class="form">       
+        <form>
+            <div class="form-group">
+                <span class="btn btn-default margin" (click)="countdown()">{{ countdownText }}</span>
+            </div>
+        </form>
+    </div>
+</div>
+<question class="col-md-12" *ngIf="!this.startScreen && this.id">

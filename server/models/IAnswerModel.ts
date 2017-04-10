@@ -1,8 +1,8 @@
 import * as mongoose from "mongoose";
 
-import { ILog } from './../../shared/interfaces/ILog';
+import { IAnswer } from './../../shared/interfaces/IAnswer';
 
-export interface ILogModel extends ILog, mongoose.Document {
+export interface IAnswerModel extends IAnswer, mongoose.Document {
     userId: number;
     questionId: number;
     type: string;
@@ -10,7 +10,7 @@ export interface ILogModel extends ILog, mongoose.Document {
     timeTaken: number;
 }
 
-let log = new mongoose.Schema({
+let answer = new mongoose.Schema({
     userId: {
         type: Number,
         required: true
@@ -19,12 +19,16 @@ let log = new mongoose.Schema({
         type: Number,
         required: true
     },
-    type: {
-        type: String,
+    typeId: {
+        type: Number,
         required: true
     },
     score: {
         type: Number,
+        required: true
+    },
+    dateTime: {
+        type: Date,
         required: true
     },
     timeTaken: {
@@ -33,10 +37,10 @@ let log = new mongoose.Schema({
     }
 }).pre('save', function(next) {
     if (this._doc) {
-        let doc = <ILogModel>this._doc;
+        let doc = <IAnswerModel>this._doc;
     }
     next();
     return this;
 });
 
-export let LogSchema = mongoose.model<ILogModel>('log', log, 'logs', true);
+export let AnswerSchema = mongoose.model<IAnswerModel>('answer', answer, 'answers', true);
