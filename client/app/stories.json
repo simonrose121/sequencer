@@ -21,7 +21,7 @@
             "type": "Intentional"
         }
     ],
-    "stories": [
+    "demoStory": [
         {
             "questionId": 0,
             "action": "Kicking ball in to river",
@@ -44,7 +44,9 @@
                     "imageUrl": "0/4"
                 }
             ]
-        },
+        }
+    ],
+    "stories": [
         {
             "questionId": 1,
             "action": "Stealing toy train",

@@ -18,11 +18,15 @@ export class QuestionService {
 
     // public methods
     public getStories() : Observable<Question[]> {
-        return this.http.get(this.storiesUrl).map(this.extractData);
+        return this.http.get(this.storiesUrl).map((res : Response) => {
+            return res.json().stories;
+        });
     }
 
-    private extractData(res: Response) {
-        return res.json().stories;
+    public getDemoStory() : Observable<Question[]> {
+        return this.http.get(this.storiesUrl).map((res : Response) => {
+            return res.json().demoStory;
+        });
     }
 
     private handleError(error: any): Promise<any> {
