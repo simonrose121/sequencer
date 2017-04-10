@@ -1,3 +1,12 @@
 <div class="col-md-12">
-    <ng-
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Score</th>
+        </tr>
+        <tr *ngFor="let player of players">
+            <td>{{ player.playerId }}</td>
+            <td>{{ player.score }}/{{ player.possibleScore }}</td>
+        </tr>
+    </table>
 </div>
