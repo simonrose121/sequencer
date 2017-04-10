@@ -36,9 +36,10 @@ export class ScoresComponent {
                 player.score += element.score;
                 player.possibleScore += 2;
                 player.questionsAnswered++;
+                player.timeTaken += element.timeTaken;
                 player.answers.push(element);
             } else {
-                player = new Player(element.userId, element.score, 1, 2);
+                player = new Player(element.userId, element.score, 1, element.timeTaken, 2);
                 player.answers.push(element);
                 this.players.push(player);
             }
