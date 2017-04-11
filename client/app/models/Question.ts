@@ -7,7 +7,7 @@ export class Question implements IQuestion {
     public typeId: number;
     public cards: Array<Card>;
 
-    constructor(questionId: number; action: string, typeId: number, cards: Array<Card>) {
+    constructor(questionId: number, action: string, typeId: number, cards: Array<Card>) {
         this.questionId = questionId;
         this.action = action;
         this.typeId = typeId;
