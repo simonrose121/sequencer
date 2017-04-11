@@ -95,8 +95,8 @@
         },
         {
             "questionId": 3,
-            "action": "Going to bed",
-            "typeId": 3,
+            "action": "Egg falling off table",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
