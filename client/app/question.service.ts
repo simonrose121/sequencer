@@ -11,18 +11,12 @@ import { Question } from './models/question';
 
 @Injectable()
 export class QuestionService {
-
-    private storiesUrl = 'app/stories.json';
+    private storiesUrl: string = 'app/stories.json';
 
     constructor(private httpService: HttpService) {}
 
     // public methods
     public getStoriesData() : Observable<any> {
         return this.httpService.get(this.storiesUrl);
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
     }
 }

@@ -25,17 +25,17 @@ export class QuestionComponent implements OnInit {
     a1 = [];
     a2 = [];
     a3 = [];
-    error : boolean = false;
-    finished : boolean = false;
-    finalQuestion : boolean = false;
-    activeStoryIndex : number = 0;
-    activeHover : string = null;
-    activeRemoveHover : string = null;
-    activeCard : Card = null;
-    timeLimit : number;
-    id : number;
-    demo : boolean;
-    cardSet : number;
+    error: boolean = false;
+    finished: boolean = false;
+    finalQuestion: boolean = false;
+    activeStoryIndex: number = 0;
+    activeHover: string = null;
+    activeRemoveHover: string = null;
+    activeCard: Card = null;
+    timeLimit: number;
+    id: number;
+    demo: boolean;
+    cardSet: number;
 
     constructor(private questionService: QuestionService, 
                 private answerService: AnswerService,
@@ -171,8 +171,6 @@ export class QuestionComponent implements OnInit {
     }
 
     private clickToAddOrRemove(pos) {
-        console.log('clicked to add or remove');
-        
         if (this.activeCard) {
             switch(pos) {
                 case "a1":
