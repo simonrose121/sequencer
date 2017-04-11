@@ -76,7 +76,8 @@ export class QuestionComponent implements OnInit {
     getStories() : void {
         this.questionService.getStories()
             .subscribe(stories => {
-                this.stories = this.utilitiesService.shuffle(stories);
+                //this.stories = this.utilitiesService.shuffle(stories);
+                this.stories = stories;
                 this.nextStory();
             });
     }

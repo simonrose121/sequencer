@@ -49,8 +49,8 @@
     "stories": [
         {
             "questionId": 1,
-            "action": "Stealing toy train",
-            "typeId": 4,
+            "action": "Apple falling from tree",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
@@ -72,8 +72,8 @@
         },
         {
             "questionId": 2,
-            "action": "aking ice cream",
-            "typeId": 4,
+            "action": "Log falling off waterfall",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
