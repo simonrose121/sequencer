@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Response } from "@angular/http";
 
 @Injectable()
 export class UtilitiesService {
@@ -29,5 +30,9 @@ export class UtilitiesService {
         }
 
         return array;
+    }
+
+    public extractData(res : Response) {
+        return res.json();
     }
 }
