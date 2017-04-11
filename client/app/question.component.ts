@@ -35,6 +35,7 @@ export class QuestionComponent implements OnInit {
     timeLimit : number;
     id : number;
     demo : boolean;
+    cardSet : number;
 
     constructor(private questionService: QuestionService, 
                 private answerService: AnswerService,
@@ -47,7 +48,7 @@ export class QuestionComponent implements OnInit {
 
         configService.getConfig().subscribe(config => {
             this.timeLimit = config.timeLimit;
-            questionService.setStorySet(config.cardSet)
+            this.cardSet = config.cardSet;
         });
     }
 
@@ -66,18 +67,22 @@ export class QuestionComponent implements OnInit {
     }
 
     getDemoStory() : void {
-        this.questionService.getDemoStory()
-            .subscribe(stories => {
-                this.stories = stories;
+        this.questionService.getStoriesData()
+            .subscribe(data => {
+                this.stories = data.stories.demoStory;
                 this.finalQuestion = true;
                 this.nextStory();
             });
     }
 
     getStories() : void {
-        this.questionService.getStories()
-            .subscribe(stories => {
-                this.stories = this.utilitiesService.shuffle(stories);
+        this.questionService.getStoriesData()
+            .subscribe(data => {
+                if (this.cardSet === 1) {
+                    this.stories = this.utilitiesService.shuffle(data.stories.firstSet);
+                } else {
+                    this.stories = this.utilitiesService.shuffle(data.stories.secondSet);                    
+                }
                 this.nextStory();
             });
     }

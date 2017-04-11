@@ -5,17 +5,21 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class HttpService {
 
-    constructor(private http: Http) {
+    constructor(private http: Http) { }
 
+    public get(url: string) : Observable<any> {
+         return this.http.get(url)
+                         .map(this.extractData)
+                         .catch(this.handleError);
     }
 
-    public get(url : string) : Observable<any> {
-         return this.http.get(url)
-                        .map(this.extractData)
+    public getWithMap(url: string, map: (res: Response) => any) : Observable<any> {
+        return this.http.get(url)
+                        .map(map)
                         .catch(this.handleError);
     }
 
-    public post(url : string, data : any) : Observable<any> {
+    public post(url: string, data: any) : Observable<any> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
