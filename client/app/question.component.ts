@@ -37,13 +37,13 @@ export class QuestionComponent implements OnInit {
     demo : boolean;
 
     constructor(private questionService: QuestionService, 
-                private logService: AnswerService,
+                private answerService: AnswerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService,
                 private activatedRoute: ActivatedRoute) {
 
-        this.id = logService.getId();
+        this.id = answerService.getId();
 
         configService.getConfig().subscribe(config => {
             this.timeLimit = config.timeLimit;
@@ -108,7 +108,7 @@ export class QuestionComponent implements OnInit {
             if (answer.length === 3) {
                 answer.unshift(this.firstCard);
                 if (!this.finalQuestion) {
-                    this.logService.mark(this.story, answer).subscribe(data => {
+                    this.answerService.mark(this.story, answer).subscribe(data => {
                         console.log(data);
                     });
                     this.a1 = [];
