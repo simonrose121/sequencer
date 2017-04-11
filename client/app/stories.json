@@ -118,8 +118,8 @@
         },
         {
             "questionId": 4,
-            "action": "Planting flowers",
-            "typeId": 2,
+            "action": "Rock hitting tree",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
@@ -141,8 +141,8 @@
         },
         {
             "questionId": 5,
-            "action": "Winning a race",
-            "typeId": 3,
+            "action": "Snowball rolling down hill",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
@@ -164,8 +164,8 @@
         },
         {
             "questionId": 6,
-            "action": "Builing a snowman",
-            "typeId": 4,
+            "action": "Balloon bursting in tree",
+            "typeId": 1,
             "cards": [
                 {
                     "position": 1,
