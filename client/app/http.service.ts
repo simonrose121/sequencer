@@ -12,13 +12,7 @@ export class HttpService {
                          .map(this.extractData)
                          .catch(this.handleError);
     }
-
-    public getWithMap(url: string, map: (res: Response) => any) : Observable<any> {
-        return this.http.get(url)
-                        .map(map)
-                        .catch(this.handleError);
-    }
-
+    
     public post(url: string, data: any) : Observable<any> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
