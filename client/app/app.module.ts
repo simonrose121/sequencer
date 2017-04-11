@@ -12,6 +12,7 @@ import { QuestionService } from './question.service';
 import { AnswerService } from './answer.service';
 import { UtilitiesService } from './utilities.service';
 import { ConfigService } from './config.service';
+import { HttpService } from './http.service';
 
 const appRoutes: Routes = [
     { 
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
         QuestionService,
         AnswerService,
         UtilitiesService,
-        ConfigService
+        ConfigService,
+        HttpService
     ],
     bootstrap: [
         AppComponent

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
+import { HttpService } from "./http.service";
+
 import { Question } from './models/Question';
 import { Answer } from './models/Answer';
 import { Card } from './models/Card';
@@ -17,8 +19,7 @@ export class AnswerService {
     private getAllAnswersUrl : string;
 
     constructor(private utilitiesService: UtilitiesService,
-                private http: Http) {
-        
+                private httpService: HttpService) {
         this.addAnswerUrl = '/answers/add';
         this.getAllAnswersUrl = '/answers/all';
     }
@@ -60,21 +61,10 @@ export class AnswerService {
                                 new Date(), 
                                 this.utilitiesService.secondsElapsed(new Date()));
 
-        return this.saveAnswer(answer);
+        return this.httpService.post(this.addAnswerUrl, answer);
     }
 
     public getAll() : Observable<Answer[]> {
-        return this.http.get(this.getAllAnswersUrl)
-                        .map(this.utilitiesService.extractData)
-                        .catch(this.utilitiesService.handleError);
-    }
-
-    private saveAnswer(answer : Answer) : Observable<Answer> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post(this.addAnswerUrl, answer, options)
-                        .map(this.utilitiesService.extractData)
-                        .catch(this.utilitiesService.handleError);
+        return this.httpService.get(this.getAllAnswersUrl);
     }
 }

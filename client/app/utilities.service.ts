@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Response } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UtilitiesService {
     private startDate;
 
-    public startTimer() {
+    public startTimer() : void {
         this.startDate = new Date();
     }
 
-    public secondsElapsed(endDate: Date) {
+    public secondsElapsed(endDate: Date) : number {
         return (endDate.getTime() - this.startDate.getTime()) / 1000;
     }
 
@@ -32,22 +30,4 @@ export class UtilitiesService {
 
         return array;
     }
-
-    public extractData(res : Response) {
-        let body = res.json()
-        return body || { };
-    }
-
-    public handleError(error: Response | any) {
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable.throw(errMsg);
-  }
 }
