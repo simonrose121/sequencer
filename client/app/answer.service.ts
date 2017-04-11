@@ -53,7 +53,6 @@ export class AnswerService {
             mark = 0;
         }
 
-         // post mark
         const answer = new Answer( this.id, 
                                 story.questionId, 
                                 story.typeId, 
@@ -65,13 +64,17 @@ export class AnswerService {
     }
 
     public getAll() : Observable<Answer[]> {
-        return this.http.get(this.getAllAnswersUrl).map(this.utilitiesService.extractData);
+        return this.http.get(this.getAllAnswersUrl)
+                        .map(this.utilitiesService.extractData)
+                        .catch(this.utilitiesService.handleError);
     }
 
     private saveAnswer(answer : Answer) : Observable<Answer> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.addAnswerUrl, answer, options).map(this.utilitiesService.extractData);
+        return this.http.post(this.addAnswerUrl, answer, options)
+                        .map(this.utilitiesService.extractData)
+                        .catch(this.utilitiesService.handleError);
     }
 }
