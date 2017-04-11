@@ -47,6 +47,7 @@ export class QuestionComponent implements OnInit {
 
         configService.getConfig().subscribe(config => {
             this.timeLimit = config.timeLimit;
+            questionService.setStorySet(config.cardSet)
         });
     }
 
@@ -76,8 +77,7 @@ export class QuestionComponent implements OnInit {
     getStories() : void {
         this.questionService.getStories()
             .subscribe(stories => {
-                //this.stories = this.utilitiesService.shuffle(stories);
-                this.stories = stories;
+                this.stories = this.utilitiesService.shuffle(stories);
                 this.nextStory();
             });
     }
