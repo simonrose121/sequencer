@@ -1,6 +1,6 @@
 {
   "name": "sequencer",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -24,16 +24,13 @@
     "mongoose": "^4.8.7"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.8",
     "codelyzer": "^2.1.1",
-    "concurrently": "^3.4.0",
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.0",
     "gulp-nodemon": "^2.2.1",
     "gulp-sourcemaps": "2.4.1",
     "gulp-typescript": "^3.1.5",
     "gulp-watch": "^4.3.11",
-    "run-sequence": "^1.2.2",
     "typescript": "^2.2.1"
   }
 }
