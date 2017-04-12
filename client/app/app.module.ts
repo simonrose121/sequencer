@@ -6,28 +6,29 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz.component';
-import { QuestionComponent } from "./question.component";
+import { QuestionComponent } from './question.component';
 import { ScoresComponent } from './scores.component';
 import { QuestionService } from './question.service';
 import { AnswerService } from './answer.service';
 import { UtilitiesService } from './utilities.service';
 import { ConfigService } from './config.service';
+import { HttpService } from './http.service';
 
 const appRoutes: Routes = [
-    { 
-        path: '', 
-        redirectTo: '/quiz', 
+    {
+        path: '',
+        redirectTo: '/quiz',
         pathMatch: 'full'
     },
-    { 
-        path: 'quiz', 
-        component: QuizComponent 
+    {
+        path: 'quiz',
+        component: QuizComponent
     },
-    { 
-        path: 'scores', 
-        component: ScoresComponent 
+    {
+        path: 'scores',
+        component: ScoresComponent
     }
-]
+];
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
         QuestionService,
         AnswerService,
         UtilitiesService,
-        ConfigService
+        ConfigService,
+        HttpService
     ],
     bootstrap: [
         AppComponent
