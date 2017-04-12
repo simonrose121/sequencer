@@ -233,7 +233,6 @@ export class QuestionComponent implements OnInit {
     }
 
     private hover(pos) {
-        console.log('hovering...');
         // handle if activeCard is selected
         if (this.activeCard) {
             // highlight cell
