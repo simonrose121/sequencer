@@ -4,7 +4,6 @@ var watch = require('gulp-watch');
 var path = require('path');
 var nodemon = require('gulp-nodemon');
 var tsc = require('gulp-typescript');
-var runSequence = require('run-sequence');
 var tsProject = tsc.createProject('client/tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
