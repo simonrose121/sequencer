@@ -18,13 +18,12 @@ import { Question } from './models/question';
     ]
 })
 export class QuestionComponent implements OnInit {
-    mode = 'Observable';
     stories : Question[];
     story : Question;
-    firstCard : Card;
-    a1 = [];
-    a2 = [];
-    a3 = [];
+    card1 : Card = null;
+    card2 : Card = null;
+    card3 : Card = null;
+    card4 : Card = null;
     error: boolean = false;
     finished: boolean = false;
     finalQuestion: boolean = false;
@@ -52,13 +51,13 @@ export class QuestionComponent implements OnInit {
         });
     }
 
-    ngOnInit() : void {
+    public ngOnInit() : void {
+        // get query string
         this.activatedRoute.queryParams.subscribe((params: Params) => {
             this.demo = params['demo'];
         });
 
         if (this.demo) {
-            // load test story
             this.getDemoStory();
         } else {
             this.getStories();
@@ -66,16 +65,17 @@ export class QuestionComponent implements OnInit {
         }
     }
 
-    getDemoStory() : void {
+    private getDemoStory() : void {
         this.questionService.getStoriesData()
             .subscribe(data => {
                 this.stories = data.stories.demoStory;
+                // don't want to save this result in the database
                 this.finalQuestion = true;
                 this.nextStory();
             });
     }
 
-    getStories() : void {
+    private getStories() : void {
         this.questionService.getStoriesData()
             .subscribe(data => {
                 if (this.cardSet === 1) {
@@ -87,12 +87,12 @@ export class QuestionComponent implements OnInit {
             });
     }
 
-    private nextStory() {
+    private nextStory() : void {
         if (typeof this.stories[this.activeStoryIndex] !== "undefined") {
             // get the first story
             this.story = this.stories[this.activeStoryIndex];
             // save the first card
-            this.firstCard = this.story.cards[0];
+            this.card1 = this.story.cards[0];
             // remove the first card from the array`
             this.story.cards.shift();
             // randomly sort the rest of the cards
@@ -105,21 +105,21 @@ export class QuestionComponent implements OnInit {
     }
 
     private submit() {
-        if (this.a1.length === 0 || this.a2.length === 0 || this.a3.length === 0) {
+        if (this.card2 === null || this.card3 === null || this.card4 === null) {
             // change div colour in a transition
             this.error = true;
         } else {
             // create an answer array
-            const answer = [ this.a1[0], this.a2[0], this.a3[0] ];
+            const answer = [ this.card2, this.card3, this.card4 ];
             if (answer.length === 3) {
-                answer.unshift(this.firstCard);
+                answer.unshift(this.card1);
                 if (!this.finalQuestion) {
                     this.answerService.mark(this.story, answer).subscribe(data => {
                         console.log(data);
                     });
-                    this.a1 = [];
-                    this.a2 = [];
-                    this.a3 = [];
+                    this.card2 = null;
+                    this.card3 = null;
+                    this.card4 = null;
                     this.activeStoryIndex++;
                     this.nextStory();
                 } else {
@@ -173,26 +173,26 @@ export class QuestionComponent implements OnInit {
     private clickToAddOrRemove(pos) {
         if (this.activeCard) {
             switch(pos) {
-                case "a1":
-                    if (this.a1.length === 0) {
-                        this.a1 = [];
-                        this.a1.push(this.activeCard);
+                case "card2":
+                    if (this.card2 === null) {
+                        this.card2 = null;
+                        this.card2 = this.activeCard;
                         this.removeCardFromOptions(this.activeCard);
                     }               
                     break;
-                case "a2":
-                    if (this.a2.length === 0) {
-                        this.a2 = [];
-                        this.a2.push(this.activeCard);
+                case "card3":
+                    if (this.card3 === null) {
+                        this.card3 = null;
+                        this.card3 = this.activeCard;
                         this.removeCardFromOptions(this.activeCard);
-                    }       
+                    }         
                     break;
-                case "a3":
-                    if (this.a3.length === 0) {
-                        this.a3 = [];
-                        this.a3.push(this.activeCard);
+                case "card4":
+                    if (this.card4 === null) {
+                        this.card4 = null;
+                        this.card4 = this.activeCard;
                         this.removeCardFromOptions(this.activeCard);
-                    }       
+                    }        
                     break;
             }
 
@@ -204,22 +204,22 @@ export class QuestionComponent implements OnInit {
 
     private removeCard(pos) {
         switch(pos) {
-            case "a1":
-                if (this.a1.length > 0) {
-                    this.story.cards.push(this.a1[0]);
-                    this.a1 = [];
+            case "card2":
+                if (this.card2 !== null) {
+                    this.story.cards.push(this.card2);
+                    this.card2 = null;
                 }
                 break;
-            case "a2":
-                if (this.a2.length > 0) {
-                    this.story.cards.push(this.a2[0]);
-                    this.a2 = [];
+            case "card3":
+                if (this.card3 !== null) {
+                    this.story.cards.push(this.card3);
+                    this.card3 = null;
                 }
                 break;
-            case "a3":
-                if (this.a3.length > 0) {
-                    this.story.cards.push(this.a3[0]);
-                    this.a3 = [];
+            case "card4":
+                if (this.card4 !== null) {
+                    this.story.cards.push(this.card4);
+                    this.card4 = null
                 }
                 break;
         }
@@ -238,26 +238,26 @@ export class QuestionComponent implements OnInit {
         if (this.activeCard) {
             // highlight cell
             switch(pos) {
-                case "a1":
-                    this.activeHover = 'a1';
+                case "card2":
+                    this.activeHover = 'card2';
                     break;
-                case "a2":
-                    this.activeHover = 'a2';
+                case "card3":
+                    this.activeHover = 'card3';
                     break;
-                case "a3":
-                    this.activeHover = 'a3';
+                case "card4":
+                    this.activeHover = 'card4';
                     break;
             }
         } else {
             switch(pos) {
-                case "a1":
-                    this.activeRemoveHover = 'a1';
+                case "card2":
+                    this.activeRemoveHover = 'card2';
                     break;
-                case "a2":
-                    this.activeRemoveHover = 'a2';
+                case "card3":
+                    this.activeRemoveHover = 'card3';
                     break;
-                case "a3":
-                    this.activeRemoveHover = 'a3';
+                case "card4":
+                    this.activeRemoveHover = 'card4';
                     break;
             }
         }

@@ -22,51 +22,51 @@
             </div>
         </div>
     </div>
-    <div class="row" *ngIf="firstCard != null">
+    <div class="row" *ngIf="card1 != null">
         <div class="col-md-12">
             <div class="first-image">
                 <div class="card-count">1</div>
                 <div    class="image no-move" 
-                        [ngStyle]="{'background-image': 'url(assets/' + firstCard?.imageUrl + '.png)'}">
+                        [ngStyle]="{'background-image': 'url(assets/' + card1?.imageUrl + '.png)'}">
                 </div>
             </div>
-            <div id="a1" 
+            <div id="card2" 
                  class="image-box" 
-                 [ngClass]="{empty: error && a1.length === 0, 'hover': activeCard && activeHover === 'a1'}"
-                 (click)="clickToAddOrRemove('a1')"
-                 (mouseover)="hover('a1')"
+                 [ngClass]="{empty: error && card2 === null, 'hover': activeCard && activeHover === 'card2'}"
+                 (click)="clickToAddOrRemove('card2')"
+                 (mouseover)="hover('card2')"
                  (mouseleave)="unhover()">
                 <div class="card-count">2</div>
-                <div class="image" 
-                     *ngFor="let card of a1" 
-                     [ngClass]="{'remove': activeRemoveHover === 'a1'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                <div class="image"
+                     *ngIf="card2 !== null" 
+                     [ngClass]="{'remove': activeRemoveHover === 'card2'}"
+                     [ngStyle]="{'background-image': 'url(assets/' + card2?.imageUrl + '.png)'}">
                 </div>
             </div>
-            <div id="a2" 
+            <div id="card3" 
                  class="image-box" 
-                 [ngClass]="{empty: error && a2.length === 0, 'hover': activeCard && activeHover === 'a2'}" 
-                 (click)="clickToAddOrRemove('a2')"
-                 (mouseover)="hover('a2')"
+                 [ngClass]="{empty: error && card3 === null, 'hover': activeCard && activeHover === 'card3'}" 
+                 (click)="clickToAddOrRemove('card3')"
+                 (mouseover)="hover('card3')"
                  (mouseleave)="unhover()">
                 <div class="card-count">3</div>
                 <div class="image" 
-                     *ngFor="let card of a2"
-                     [ngClass]="{'remove': activeRemoveHover === 'a2'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                     *ngIf="card3 !== null" 
+                     [ngClass]="{'remove': activeRemoveHover === 'card3'}"
+                     [ngStyle]="{'background-image': 'url(assets/' + card3?.imageUrl + '.png)'}">
                 </div>
             </div>
-            <div id="a3" 
+            <div id="card4" 
                  class="image-box" 
-                 [ngClass]="{empty: error && a3.length === 0, 'hover': activeCard && activeHover === 'a3'}" 
-                 (click)="clickToAddOrRemove('a3')"
-                 (mouseover)="hover('a3')"
+                 [ngClass]="{empty: error && card4 === null, 'hover': activeCard && activeHover === 'card4'}" 
+                 (click)="clickToAddOrRemove('card4')"
+                 (mouseover)="hover('card4')"
                  (mouseleave)="unhover()">
                 <div class="card-count">4</div>
                 <div class="image" 
-                     *ngFor="let card of a3" 
-                     [ngClass]="{'remove': activeRemoveHover === 'a3'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}">
+                     *ngIf="card4 !== null"
+                     [ngClass]="{'remove': activeRemoveHover === 'card4'}"
+                     [ngStyle]="{'background-image': 'url(assets/' + card4?.imageUrl + '.png)'}">
                 </div>
             </div>
         </div>
