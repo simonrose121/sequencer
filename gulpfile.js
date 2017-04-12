@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var watch = require('gulp-watch');
 var path = require('path');
-var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
 var tsc = require('gulp-typescript');
 var runSequence = require('run-sequence');
