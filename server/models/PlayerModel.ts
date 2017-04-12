@@ -1,20 +1,27 @@
-import { AnswerRepository } from './../repositories/AnswerRepository';
-import { IAnswerModel, AnswerSchema } from './IAnswerModel';
+import { PlayerRepository } from './../repositories/PlayerRepository';
+import { IPlayerModel, PlayerSchema, AnswerSchema } from './IPlayerModel';
 
-export class AnswerModel {
-    private _answerModel: IAnswerModel;
+export class PlayerModel {
+    private _playerModel: IPlayerModel;
 
-    constructor(answerModel: IAnswerModel) {
-        this._answerModel = answerModel;
+    constructor(playerModel: IPlayerModel) {
+        this._playerModel = playerModel;
     }
 
-    static create(req, res) {
-        let repo = new AnswerRepository();
+    static playerExists(req, res) {
+
+    }
+
+    static createPlayer(req, res) {
+
+    }
+
+    static addAnswer(req, res) {
+        let repo = new PlayerRepository();
 
         const b = req.body;
 
         let answer = new AnswerSchema();
-        answer.userId = b.userId;
         answer.questionId = b.questionId;
         answer.typeId = b.typeId;
         answer.score = b.score;
@@ -31,7 +38,7 @@ export class AnswerModel {
     }
 
     static getAll(req, res) {
-        let repo = new AnswerRepository();
+        let repo = new PlayerRepository();
 
         repo.find({}).exec((err, docs) => {
             if (err) {
@@ -43,4 +50,4 @@ export class AnswerModel {
     }
 }
 
-Object.seal(AnswerModel);
+Object.seal(PlayerModel);

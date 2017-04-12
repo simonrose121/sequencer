@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
 import { UtilitiesService } from './utilities.service';
 import { HttpService } from './http.service';
 
@@ -11,7 +8,7 @@ import { Answer } from './models/Answer';
 import { Card } from './models/Card';
 
 @Injectable()
-export class AnswerService {
+export class PlayerService {
 
     id: number;
     addAnswerUrl: string;
@@ -31,7 +28,7 @@ export class AnswerService {
         return this.id;
     }
 
-    public mark(story: Question, cards: Card[]): Observable<Answer> {
+    public markAnswer(story: Question, cards: Card[]): Observable<Answer> {
         /*
           Correct sequence - 2 points
           Correct beginning and end - 1 point

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ConfigService } from './config.service';
-import { AnswerService } from './answer.service';
+import { PlayerService } from './player.service';
 
 @Component({
     templateUrl: 'app/quiz.component.html',
@@ -14,7 +14,7 @@ export class QuizComponent {
     startScreen: boolean;
     countdownText: string;
 
-    constructor(private answerService: AnswerService,
+    constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
         this.countdownText = 'Start';
 
@@ -31,7 +31,7 @@ export class QuizComponent {
 
     private setId(id): void {
         this.id = id;
-        this.answerService.setId(id);
+        this.playerService.setId(id);
         this.startScreen = true;
     }
 

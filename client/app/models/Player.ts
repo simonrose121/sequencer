@@ -8,7 +8,11 @@ export class Player {
     public timeTaken: number;
     public answers: Answer[];
 
-    constructor(playerId: number, score: number, questionsAnswered: number, timeTaken: number, possibleScore: number) {
+    constructor(playerId: number,
+                score: number,
+                questionsAnswered: number,
+                timeTaken: number,
+                possibleScore: number) {
         this.playerId = playerId;
         this.score = score;
         this.questionsAnswered = questionsAnswered;

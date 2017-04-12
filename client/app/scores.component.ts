@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AnswerService } from './answer.service';
+import { PlayerService } from './player.service';
 
 import { Answer } from './models/Answer';
 import { Player } from './models/Player';
@@ -14,14 +14,14 @@ import { Player } from './models/Player';
 export class ScoresComponent {
     players: Player[];
 
-    constructor(private logService: AnswerService) {
+    constructor(private playerService: PlayerService) {
         this.players = [];
         this.getLogs();
     }
 
     // pull through log files and create score for user
     private getLogs() {
-        this.logService.getAll().subscribe(data => {
+        this.playerService.getAll().subscribe(data => {
             this.process(data);
         });
     }

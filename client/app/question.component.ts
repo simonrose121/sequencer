@@ -4,7 +4,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 import { QuestionService } from './question.service';
 import { UtilitiesService } from './utilities.service';
-import { AnswerService } from './answer.service';
+import { PlayerService } from './player.service';
 import { ConfigService } from './config.service';
 
 import { Card } from './models/card';
@@ -37,7 +37,7 @@ export class QuestionComponent implements OnInit {
     cardSet: number;
 
     constructor(private questionService: QuestionService,
-                private answerService: AnswerService,
+                private answerService: PlayerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService,
@@ -116,7 +116,7 @@ export class QuestionComponent implements OnInit {
             if (answer.length === 3) {
                 answer.unshift(this.card1);
                 if (!this.finalQuestion) {
-                    this.answerService.mark(this.story, answer).subscribe(data => {
+                    this.answerService.markAnswer(this.story, answer).subscribe(data => {
                         console.log(data);
                     });
                     this.card2 = null;

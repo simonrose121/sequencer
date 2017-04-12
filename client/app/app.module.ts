@@ -9,8 +9,8 @@ import { QuizComponent } from './quiz.component';
 import { QuestionComponent } from './question.component';
 import { ScoresComponent } from './scores.component';
 import { QuestionService } from './question.service';
-import { AnswerService } from './answer.service';
 import { UtilitiesService } from './utilities.service';
+import { PlayerService } from './player.service';
 import { ConfigService } from './config.service';
 import { HttpService } from './http.service';
 
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     ],
     providers: [
         QuestionService,
-        AnswerService,
+        PlayerService,
         UtilitiesService,
         ConfigService,
         HttpService
