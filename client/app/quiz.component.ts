@@ -19,8 +19,8 @@ export class QuizComponent {
         this.countdownText = 'Start';
         
         configService.getConfig().subscribe(config => {
-            console.log(config);
             if (!config.id) {
+                // set a defaultId
                 this.setId(1);
             }
             if (!config.countdown) {
