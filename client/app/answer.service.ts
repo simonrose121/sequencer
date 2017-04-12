@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -32,7 +31,7 @@ export class AnswerService {
         return this.id;
     }
 
-    public mark(story : Question, cards : Card[]) : Observable<Answer> {
+    public mark(story: Question, cards: Card[]): Observable<Answer> {
         /*
           Correct sequence - 2 points
           Correct beginning and end - 1 point
