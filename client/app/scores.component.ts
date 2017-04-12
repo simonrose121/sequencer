@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { AnswerService } from "./answer.service";
+import { AnswerService } from './answer.service';
 
 import { Answer } from './models/Answer';
-import { Player } from "./models/Player";
+import { Player } from './models/Player';
 
 @Component({
     templateUrl: 'app/scores.component.html',
@@ -12,21 +12,21 @@ import { Player } from "./models/Player";
     ]
 })
 export class ScoresComponent {
-    players : Player[];
+    players: Player[];
 
-    constructor(private logService: AnswerService) { 
+    constructor(private logService: AnswerService) {
         this.players = [];
         this.getLogs();
     }
 
     // pull through log files and create score for user
-    getLogs() {
+    private getLogs() {
         this.logService.getAll().subscribe(data => {
             this.process(data);
         });
     }
 
-    process(data : Answer[]) {
+    private process(data: Answer[]) {
         data.sort((p1 , p2) => p1.userId - p2.userId).forEach(element => {
             // check if id exists in players array
             let player = this.players.find(x => x.playerId === element.userId);

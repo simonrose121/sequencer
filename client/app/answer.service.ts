@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { UtilitiesService } from './utilities.service';
+import { HttpService } from './http.service';
+
 import { Question } from './models/Question';
 import { Answer } from './models/Answer';
 import { Card } from './models/Card';
@@ -12,53 +14,57 @@ import { Card } from './models/Card';
 @Injectable()
 export class AnswerService {
 
+    id: number;
+    addAnswerUrl: string;
+    getAllAnswersUrl: string;
+
     constructor(private utilitiesService: UtilitiesService,
-                private http: Http) {}
+                private httpService: HttpService) {
+        this.addAnswerUrl = '/answers/add';
+        this.getAllAnswersUrl = '/answers/all';
+    }
 
-    private id;
-
-    setId(id : number) {
+    public setId(id: number): void {
         this.id = id;
     }
 
-    getId() : number {
+    public getId(): number {
         return this.id;
     }
 
-    mark(story : Question, cards : Card[]) : Observable<Answer> {
-        /* logic for this:
+    public mark(story : Question, cards : Card[]) : Observable<Answer> {
+        /*
           Correct sequence - 2 points
           Correct beginning and end - 1 point
           Incorrect sequence - 0 points
         */
         let mark;
+
         if ((cards[0].position === 1) &&
             (cards[1].position === 2) &&
             (cards[2].position === 3) &&
             (cards[3].position === 4)) {
+            // if correct sequence
             mark = 2;
-        } else if ((cards[0].position === 1) && (cards[3].position === 4)) {
+        } else if ((cards[0].position === 1) &&
+                   (cards[3].position === 4)) {
+            // if start and end cards are correct
             mark = 1;
         } else {
             mark = 0;
         }
 
-        // post mark
-        const log = new Answer(this.id, story.questionId, story.typeId, mark, new Date(), this.utilitiesService.secondsElapsed(new Date()));
+        const answer = new Answer( this.id,
+                                story.questionId,
+                                story.typeId,
+                                mark,
+                                new Date(),
+                                this.utilitiesService.secondsElapsed(new Date()));
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post('/answers/add', log, options).map(this.extractData);
+        return this.httpService.post(this.addAnswerUrl, answer);
     }
 
-    getAll() : Observable<Answer[]> {
-        console.log('getting all');
-        
-        return this.http.get('/answers/all').map(this.extractData);
-    }
-
-    private extractData(res: Response) {
-        return res.json();
+    public getAll(): Observable<Answer[]> {
+        return this.httpService.get(this.getAllAnswersUrl);
     }
 }

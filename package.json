@@ -1,6 +1,6 @@
 {
   "name": "sequencer",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",
+    "codelyzer": "^2.1.1",
     "concurrently": "^3.4.0",
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.0",
