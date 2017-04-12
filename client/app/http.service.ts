@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Response, Http, RequestOptions, Headers } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Response, Http, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class HttpService {
 
     constructor(private http: Http) { }
 
-    public get(url: string) : Observable<any> {
+    public get(url: string): Observable<any> {
          return this.http.get(url)
                          .map(this.extractData)
                          .catch(this.handleError);
     }
-    
-    public post(url: string, data: any) : Observable<any> {
+
+    public post(url: string, data: any): Observable<any> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -22,8 +22,8 @@ export class HttpService {
                         .catch(this.handleError);
     }
 
-    private extractData(res : Response) {
-        let body = res.json()
+    private extractData(res: Response) {
+        let body = res.json();
         return body || { };
     }
 

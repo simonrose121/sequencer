@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
         'app/app.component.css',
     ]
 })
-export class AppComponent { 
-    
-}
+export class AppComponent { }

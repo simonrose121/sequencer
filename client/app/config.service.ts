@@ -8,11 +8,10 @@ import 'rxjs/add/operator/map';
 export class ConfigService {
     private configUrl = 'app/config.json';
 
-    constructor(private http: Http) { 
-    }
+    constructor(private http: Http) { }
 
     // public methods
-    public getConfig() : Observable<any> {
+    public getConfig(): Observable<any> {
         return this.http.get(this.configUrl).map(this.extractData);
     }
 
