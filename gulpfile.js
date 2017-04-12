@@ -42,9 +42,9 @@ gulp.task('less', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(["server/\*\*/\*.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server']);
-	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client']);
-	gulp.watch(["client/app/\*.less"], ['less']);	
+	gulp.watch(["server/\*\*/\*.ts", "\*.ts", "shared/\*\*/\*.ts"], ['tsc-server'], { interval: 500 });
+	gulp.watch(["client/app/\*.ts", "client/app/models/\*.ts"], ['tsc-client'], { interval: 500 });
+	gulp.watch(["client/app/\*.less"], ['less'], { interval: 500 });	
 });
 
 gulp.task('nodemon', ['tsc-server', 'tsc-client', 'less'], function (cb) {
