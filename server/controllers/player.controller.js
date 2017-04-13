@@ -22,7 +22,7 @@ module.exports.createPlayer = function(req, res) {
             })
         } else {
             res.send({
-                'error': 'player already exists'
+                'error': 'Player already exists'
             });
         }   
     });
@@ -37,8 +37,6 @@ module.exports.addAnswer = function(req, res) {
         }
 
         if (doc) {
-            console.log(doc);
-            console.log(body);
             // update and save player
             doc.answers.push(body.answer);
 
@@ -51,8 +49,8 @@ module.exports.addAnswer = function(req, res) {
             })
         } else {
             res.send({
-                'error': 'player not found'
-            })
+                'error': 'Player not found'
+            });
         }
     });
 }
