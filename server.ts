@@ -4,9 +4,11 @@ import * as mongoose from "mongoose";
 import * as ejs from "ejs";
 
 declare var __dirname;
+declare var require;
+declare var static;
 
 // models
-import { PlayerController } from './server/controllers/PlayerController';
+var playerController = require('./server/controllers/player.controller');
 
 export class Server {
     public app;
@@ -69,9 +71,9 @@ export class Server {
     }
 
     public api() {
-        this.app.post('/player/create', PlayerController.createPlayer)
-        this.app.post('/player/addAnswer', PlayerController.addAnswer);
-        this.app.get('/player/getAll', PlayerController.getAll);
+        this.app.post('/player/create', playerController.createPlayer)
+        // this.app.post('/player/addAnswer', PlayerController.addAnswer);
+        // this.app.get('/player/getAll', PlayerController.getAll);
     }
 }
 
