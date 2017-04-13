@@ -50,7 +50,7 @@ module.exports.addAnswer = function(req, res) {
         } else {
             res.send({
                 'error': 'Player not found'
-            })
+            });
         }
     });
 }
