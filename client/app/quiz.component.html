@@ -6,6 +6,9 @@
                     <div class="form-group">
                         <input class="form-control" type="text" #id>
                         <span class="btn btn-default margin" (click)="setId(id.value)">Submit</span>
+                        <div class="error" *ngIf="error">
+                            {{ error }}
+                        </div>
                     </div>
                 </form>
             </div>

@@ -13,6 +13,7 @@ export class QuizComponent {
     id: Number;
     startScreen: boolean;
     countdownText: string;
+    error: string;
 
     constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
@@ -32,14 +33,12 @@ export class QuizComponent {
 
     private setId(id): void {
         this.playerService.createPlayer(id).subscribe(res => {
-            console.log(res);
             if (res.playerId) {
-                console.log(res);
                 this.id = id;
                 this.playerService.id = id;
                 this.startScreen = true;
             } else {
-                console.log(res.error);
+                this.error = res.error;
             }
         });
     }
