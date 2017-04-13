@@ -8,16 +8,12 @@ export class Player {
     public timeTaken: number;
     public answers: Answer[];
 
-    // constructor(playerId: number,
-    //             score: number,
-    //             questionsAnswered: number,
-    //             timeTaken: number,
-    //             possibleScore: number) {
-    //     this.playerId = playerId;
-    //     this.score = score;
-    //     this.questionsAnswered = questionsAnswered;
-    //     this.possibleScore = possibleScore;
-    //     this.timeTaken = timeTaken;
-    //     this.answers = [];
-    // }
+    constructor(playerId: number) {
+        this.playerId = playerId;
+        this.score = 0;
+        this.questionsAnswered = 0;
+        this.possibleScore = 0;
+        this.timeTaken = 0;
+        this.answers = [];
+    }
 }

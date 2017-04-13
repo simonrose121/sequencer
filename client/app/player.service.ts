@@ -13,19 +13,18 @@ export class PlayerService {
 
     id: number;
     addAnswerUrl: string;
-    getAllAnswersUrl: string;
+    getAllPlayersUrl: string;
     createPlayerUrl: string;
 
     constructor(private utilitiesService: UtilitiesService,
                 private httpService: HttpService) {
         this.addAnswerUrl = '/player/addAnswer';
-        this.getAllAnswersUrl = '/player/getAll';
+        this.getAllPlayersUrl = '/player/getAll';
         this.createPlayerUrl = '/player/create';
     }
 
     public createPlayer(id: number): Observable<any> {
-        let player = new Player();
-        player.playerId = id;
+        let player = new Player(id);
 
         return this.httpService.post(this.createPlayerUrl, player);
     }
@@ -71,7 +70,7 @@ export class PlayerService {
         return this.httpService.post(this.addAnswerUrl, body);
     }
 
-    public getAll(): Observable<Answer[]> {
-        return this.httpService.get(this.getAllAnswersUrl);
+    public getAll(): Observable<Player[]> {
+        return this.httpService.get(this.getAllPlayersUrl);
     }
 }
