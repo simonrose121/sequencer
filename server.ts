@@ -72,8 +72,8 @@ export class Server {
 
     public api() {
         this.app.post('/player/create', playerController.createPlayer)
-        // this.app.post('/player/addAnswer', PlayerController.addAnswer);
-        // this.app.get('/player/getAll', PlayerController.getAll);
+        this.app.post('/player/addAnswer', playerController.addAnswer);
+        //this.app.get('/player/getAll', PlayerController.getAll);
     }
 }
 

@@ -63,7 +63,12 @@ export class PlayerService {
                                 new Date(),
                                 this.utilitiesService.secondsElapsed(new Date()));
 
-        return this.httpService.post(this.addAnswerUrl, answer);
+        const body = {
+            answer: answer,
+            playerId: this.id
+        };
+
+        return this.httpService.post(this.addAnswerUrl, body);
     }
 
     public getAll(): Observable<Answer[]> {
