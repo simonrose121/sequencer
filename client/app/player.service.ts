@@ -23,7 +23,7 @@ export class PlayerService {
         this.createPlayerUrl = '/player/create';
     }
 
-    public createPlayer(id: number): Observable<Player> {
+    public createPlayer(id: number): Observable<any> {
         let player = new Player();
         player.playerId = id;
 

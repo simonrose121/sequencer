@@ -32,13 +32,15 @@ export class QuizComponent {
     }
 
     private setId(id): void {
-        this.playerService.createPlayer(id).subscribe(player => {
-            if (player) {
-                console.log(player);
+        this.playerService.createPlayer(id).subscribe(res => {
+            console.log(res);
+            
+            if (res.playerId) {
+                console.log(res);
                 this.id = id;
                 this.startScreen = true;
             } else {
-                console.log('error creating player');
+                console.log(res.error);
             }
         });
     }
