@@ -1,37 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
 import { UtilitiesService } from './utilities.service';
 import { HttpService } from './http.service';
 
 import { Question } from './models/Question';
 import { Answer } from './models/Answer';
 import { Card } from './models/Card';
+import { Player } from './models/Player';
 
 @Injectable()
-export class AnswerService {
+export class PlayerService {
 
     id: number;
     addAnswerUrl: string;
-    getAllAnswersUrl: string;
+    getAllPlayersUrl: string;
+    createPlayerUrl: string;
 
     constructor(private utilitiesService: UtilitiesService,
                 private httpService: HttpService) {
-        this.addAnswerUrl = '/answers/add';
-        this.getAllAnswersUrl = '/answers/all';
+        this.addAnswerUrl = '/player/addAnswer';
+        this.getAllPlayersUrl = '/player/getAll';
+        this.createPlayerUrl = '/player/create';
     }
 
-    public setId(id: number): void {
-        this.id = id;
+    public createPlayer(id: number): Observable<any> {
+        let player = new Player(id);
+
+        return this.httpService.post(this.createPlayerUrl, player);
     }
 
     public getId(): number {
         return this.id;
     }
 
-    public mark(story: Question, cards: Card[]): Observable<Answer> {
+    public markAnswer(story: Question, cards: Card[]): Observable<Answer> {
         /*
           Correct sequence - 2 points
           Correct beginning and end - 1 point
@@ -60,10 +62,15 @@ export class AnswerService {
                                 new Date(),
                                 this.utilitiesService.secondsElapsed(new Date()));
 
-        return this.httpService.post(this.addAnswerUrl, answer);
+        const body = {
+            answer: answer,
+            playerId: this.id
+        };
+
+        return this.httpService.post(this.addAnswerUrl, body);
     }
 
-    public getAll(): Observable<Answer[]> {
-        return this.httpService.get(this.getAllAnswersUrl);
+    public getAll(): Observable<Player[]> {
+        return this.httpService.get(this.getAllPlayersUrl);
     }
 }

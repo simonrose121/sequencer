@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ConfigService } from './config.service';
-import { AnswerService } from './answer.service';
+import { PlayerService } from './player.service';
 
 @Component({
     templateUrl: 'app/quiz.component.html',
@@ -14,14 +14,15 @@ export class QuizComponent {
     startScreen: boolean;
     countdownText: string;
 
-    constructor(private answerService: AnswerService,
+    constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
         this.countdownText = 'Start';
 
         configService.getConfig().subscribe(config => {
             if (!config.id) {
                 // set a defaultId
-                this.setId(1);
+                this.id = 1;
+                playerService.id = 1;
             }
             if (!config.countdown) {
                 this.startScreen = false;
@@ -30,9 +31,17 @@ export class QuizComponent {
     }
 
     private setId(id): void {
-        this.id = id;
-        this.answerService.setId(id);
-        this.startScreen = true;
+        this.playerService.createPlayer(id).subscribe(res => {
+            console.log(res);
+            if (res.playerId) {
+                console.log(res);
+                this.id = id;
+                this.playerService.id = id;
+                this.startScreen = true;
+            } else {
+                console.log(res.error);
+            }
+        });
     }
 
     private countdown(): void {
