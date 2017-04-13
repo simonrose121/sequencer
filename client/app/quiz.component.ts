@@ -36,6 +36,7 @@ export class QuizComponent {
             if (res.playerId) {
                 console.log(res);
                 this.id = id;
+                this.playerService.id = id;
                 this.startScreen = true;
             } else {
                 console.log(res.error);
