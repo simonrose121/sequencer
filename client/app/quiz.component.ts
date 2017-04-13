@@ -13,6 +13,7 @@ export class QuizComponent {
     id: Number;
     startScreen: boolean;
     countdownText: string;
+    idCheck = true;
 
     constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
@@ -21,6 +22,7 @@ export class QuizComponent {
         configService.getConfig().subscribe(config => {
             if (!config.id) {
                 // set a defaultId
+                this.idCheck = false;
                 this.setId(1);
             }
             if (!config.countdown) {
@@ -30,9 +32,15 @@ export class QuizComponent {
     }
 
     private setId(id): void {
-        this.id = id;
-        this.playerService.setId(id);
-        this.startScreen = true;
+        this.playerService.createPlayer(id).subscribe(player => {
+            if (player) {
+                console.log(player);
+                this.id = id;
+                this.startScreen = true;
+            } else {
+                console.log('error creating player');
+            }
+        });
     }
 
     private countdown(): void {

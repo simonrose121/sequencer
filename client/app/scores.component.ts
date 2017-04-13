@@ -39,9 +39,9 @@ export class ScoresComponent {
                 player.timeTaken += element.timeTaken;
                 player.answers.push(element);
             } else {
-                player = new Player(element.userId, element.score, 1, element.timeTaken, 2);
-                player.answers.push(element);
-                this.players.push(player);
+                //player = new Player(element.userId, element.score, 1, element.timeTaken, 2);
+                //player.answers.push(element);
+                //this.players.push(player);
             }
         });
         console.log(this.players);

@@ -6,6 +6,7 @@ import { HttpService } from './http.service';
 import { Question } from './models/Question';
 import { Answer } from './models/Answer';
 import { Card } from './models/Card';
+import { Player } from './models/Player';
 
 @Injectable()
 export class PlayerService {
@@ -13,15 +14,20 @@ export class PlayerService {
     id: number;
     addAnswerUrl: string;
     getAllAnswersUrl: string;
+    createPlayerUrl: string;
 
     constructor(private utilitiesService: UtilitiesService,
                 private httpService: HttpService) {
-        this.addAnswerUrl = '/answers/add';
-        this.getAllAnswersUrl = '/answers/all';
+        this.addAnswerUrl = '/player/addAnswer';
+        this.getAllAnswersUrl = '/player/getAll';
+        this.createPlayerUrl = '/player/create';
     }
 
-    public setId(id: number): void {
-        this.id = id;
+    public createPlayer(id: number): Observable<Player> {
+        let player = new Player();
+        player.playerId = id;
+
+        return this.httpService.post(this.createPlayerUrl, player);
     }
 
     public getId(): number {

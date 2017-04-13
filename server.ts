@@ -6,7 +6,7 @@ import * as ejs from "ejs";
 declare var __dirname;
 
 // models
-import { PlayerModel } from './server/models/PlayerModel';
+import { PlayerController } from './server/controllers/PlayerController';
 
 export class Server {
     public app;
@@ -69,8 +69,9 @@ export class Server {
     }
 
     public api() {
-        this.app.post('/answers/add', PlayerModel.addAnswer);
-        this.app.get('/answers/all', PlayerModel.getAll);
+        this.app.post('/player/create', PlayerController.createPlayer)
+        this.app.post('/player/addAnswer', PlayerController.addAnswer);
+        this.app.get('/player/getAll', PlayerController.getAll);
     }
 }
 
