@@ -18,8 +18,8 @@ import { Question } from './models/question';
     ]
 })
 export class QuestionComponent implements OnInit {
-    stories: Question[];
-    story: Question;
+    questions: Question[];
+    question: Question;
     card1: Card = null;
     card2: Card = null;
     card3: Card = null;
@@ -37,7 +37,7 @@ export class QuestionComponent implements OnInit {
     cardSet: string;
 
     constructor(private questionService: QuestionService,
-                private answerService: PlayerService,
+            private answerService: PlayerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService,
@@ -68,7 +68,7 @@ export class QuestionComponent implements OnInit {
     private getDemoStory(): void {
         this.questionService.getStoriesData()
             .subscribe(data => {
-                this.stories = data.stories.demoStory;
+                this.questions = data.stories.demo;
                 // don't want to save this result in the database
                 this.finalQuestion = true;
                 this.nextStory();
@@ -78,21 +78,25 @@ export class QuestionComponent implements OnInit {
     private getStories(): void {
         this.questionService.getStoriesData()
             .subscribe(data => {
-                this.stories = this.utilitiesService.shuffle(data.stories[this.cardSet]);
+                this.questions = this.utilitiesService.shuffle(data.stories[this.cardSet]);
                 this.nextStory();
             });
     }
 
     private nextStory(): void {
-        if (typeof this.stories[this.activeStoryIndex] !== 'undefined') {
+        if (typeof this.questions[this.activeStoryIndex] !== 'undefined') {
             // get the first story
-            this.story = this.stories[this.activeStoryIndex];
+            this.question = this.questions[this.activeStoryIndex];
+
+            // create cards from questionId
+            this.questionService.addCards(this.question);
+
             // save the first card
-            this.card1 = this.story.cards[0];
+            this.card1 = this.question.cards[0];
             // remove the first card from the array`
-            this.story.cards.shift();
+            this.question.cards.shift();
             // randomly sort the rest of the cards
-            this.story.cards = this.utilitiesService.shuffle(this.story.cards);
+            this.question.cards = this.utilitiesService.shuffle(this.question.cards);
             this.utilitiesService.startTimer();
         } else {
             // display well done message
@@ -112,7 +116,7 @@ export class QuestionComponent implements OnInit {
             if (answer.length === 3) {
                 answer.unshift(this.card1);
                 if (!this.finalQuestion) {
-                    this.answerService.markAnswer(this.story, answer).subscribe(data => {
+                    this.answerService.markAnswer(this.question, answer).subscribe(data => {
                         console.log(data);
                     });
                     this.card2 = null;
@@ -197,19 +201,19 @@ export class QuestionComponent implements OnInit {
         switch (pos) {
             case 'card2':
                 if (this.card2 !== null) {
-                    this.story.cards.push(this.card2);
+                    this.question.cards.push(this.card2);
                     this.card2 = null;
                 }
                 break;
             case 'card3':
                 if (this.card3 !== null) {
-                    this.story.cards.push(this.card3);
+                    this.question.cards.push(this.card3);
                     this.card3 = null;
                 }
                 break;
             case 'card4':
                 if (this.card4 !== null) {
-                    this.story.cards.push(this.card4);
+                    this.question.cards.push(this.card4);
                     this.card4 = null;
                 }
                 break;
@@ -217,9 +221,9 @@ export class QuestionComponent implements OnInit {
     }
 
     private removeCardFromOptions(card): void {
-        var index: number = this.story.cards.indexOf(card, 0);
+        var index: number = this.question.cards.indexOf(card, 0);
         if (index > -1) {
-            this.story.cards.splice(index, 1);
+            this.question.cards.splice(index, 1);
         }
     }
 

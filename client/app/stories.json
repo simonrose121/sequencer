@@ -21,218 +21,56 @@
             "type": "Intentional"
         }
     ],
-    "demoStory": [
-        {
-            "questionId": 0,
-            "action": "Kicking ball in to river",
-            "typeId": 2,
-            "cards": [
-                {
-                    "position": 1,
-                    "imageUrl": "0/1"
-                },
-                {
-                    "position": 2,
-                    "imageUrl": "0/2"
-                },
-                {
-                    "position": 3,
-                    "imageUrl": "0/3"
-                },
-                {
-                    "position": 4,
-                    "imageUrl": "0/4"
-                }
-            ]
-        }
-    ],
     "stories": {
+        "demo": [
+            {
+                "questionId": 0,
+                "action": "Kicking ball in to river",
+                "typeId": 2
+            }
+        ],
         "A": [
             {
                 "questionId": 1,
                 "action": "Apple falling from tree",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "1/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "1/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "1/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "1/4"
-                    }
-                ]
+                "typeId": 1
             },
             {
                 "questionId": 2,
                 "action": "Log falling off waterfall",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "2/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "2/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "2/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "2/4"
-                    }
-                ]
+                "typeId": 1
             },
             {
                 "questionId": 3,
                 "action": "Egg falling off table",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "3/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "3/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "3/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "3/4"
-                    }
-                ]
+                "typeId": 1
             },
             {
                 "questionId": 7,
                 "action": "Man walking and falling over",
-                "typeId": 2,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "7/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "7/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "7/7"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "7/4"
-                    }
-                ]
+                "typeId": 2
             },
             {
                 "questionId": 9,
                 "action": "Man pushing rock in to water",
-                "typeId": 2,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "9/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "9/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "9/7"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "9/4"
-                    }
-                ]
+                "typeId": 2
             }
         ],
         "B": [
             {
                 "questionId": 4,
                 "action": "Rock hitting tree",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "4/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "4/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "4/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "4/4"
-                    }
-                ]
+                "typeId": 1
             },
             {
                 "questionId": 5,
                 "action": "Snowball rolling down hill",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "5/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "5/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "5/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "5/4"
-                    }
-                ]
+                "typeId": 1
             },
             {
                 "questionId": 6,
                 "action": "Balloon bursting in tree",
-                "typeId": 1,
-                "cards": [
-                    {
-                        "position": 1,
-                        "imageUrl": "6/1"
-                    },
-                    {
-                        "position": 2,
-                        "imageUrl": "6/2"
-                    },
-                    {
-                        "position": 3,
-                        "imageUrl": "6/3"
-                    },
-                    {
-                        "position": 4,
-                        "imageUrl": "6/4"
-                    }
-                ]
+                "typeId": 1
             }
         ]
     }
