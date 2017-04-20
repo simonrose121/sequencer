@@ -5,7 +5,8 @@ var answerSchema = mongoose.Schema({
     typeId: Number,
     score: Number,
     dateTime: Date,
-    timeTaken: Number
+    timeTaken: Number,
+    cardSet: String
 });
 
 var playerSchema = mongoose.Schema({

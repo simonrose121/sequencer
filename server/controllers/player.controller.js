@@ -3,14 +3,15 @@ var players = require('../models/player.schema.js');
 module.exports.createPlayer = function(req, res) {
     var body = req.body;
 
-    players.find({playerId: body.playerId}).exec((err, doc) => {
+    players.find({playerId: body.player.playerId}).exec((err, doc) => {
         if (err) {
             throw err;
         }
 
         if (doc.length === 0) {
+
             var player = {
-                playerId: body.playerId
+                playerId: body.player.playerId
             };
 
             players.create(player, (err, doc) => {
@@ -21,9 +22,21 @@ module.exports.createPlayer = function(req, res) {
                 res.send(doc);
             })
         } else {
-            res.send({
-                'error': 'Player already exists'
-            });
+            var found = false;
+
+            doc[0].answers.forEach((element) => {
+                if (element.cardSet === body.cardSet) {
+                    found = true;
+                }
+            }); 
+
+            if (found) {
+                doc = {
+                    'error': 'Player already exists'
+                };
+            }
+
+            res.send(doc);
         }   
     });
 }
