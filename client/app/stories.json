@@ -116,6 +116,52 @@
                         "imageUrl": "3/4"
                     }
                 ]
+            },
+            {
+                "questionId": 7,
+                "action": "Man walking and falling over",
+                "typeId": 2,
+                "cards": [
+                    {
+                        "position": 1,
+                        "imageUrl": "7/1"
+                    },
+                    {
+                        "position": 2,
+                        "imageUrl": "7/2"
+                    },
+                    {
+                        "position": 3,
+                        "imageUrl": "7/7"
+                    },
+                    {
+                        "position": 4,
+                        "imageUrl": "7/4"
+                    }
+                ]
+            },
+            {
+                "questionId": 9,
+                "action": "Man pushing rock in to water",
+                "typeId": 2,
+                "cards": [
+                    {
+                        "position": 1,
+                        "imageUrl": "9/1"
+                    },
+                    {
+                        "position": 2,
+                        "imageUrl": "9/2"
+                    },
+                    {
+                        "position": 3,
+                        "imageUrl": "9/7"
+                    },
+                    {
+                        "position": 4,
+                        "imageUrl": "9/4"
+                    }
+                ]
             }
         ],
         "B": [
