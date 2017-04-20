@@ -1,9 +1,21 @@
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
         <table class="table">
             <thead>
                 <tr>
                     <th>PlayerId</th>
+                    <th colspan="7">Pre-test</th>
+                    <th colspan="7">Post-test</th>
+                </tr>
+                <tr>
+                    <th>PlayerId</th>
+                    <th>Score</th>
+                    <th>Time Taken</th>
+                    <th>Mech 1</th>
+                    <th>Mech 2</th>
+                    <th>Be 1</th>
+                    <th>Be 2</th>
+                    <th>Int</th>
                     <th>Score</th>
                     <th>Time Taken</th>
                     <th>Mech 1</th>
@@ -16,10 +28,15 @@
             <tbody>
                 <tr *ngFor="let player of players" class="hover">
                     <td>{{ player.playerId }}</td>
-                    <td>{{ player.score }}/{{ player.possibleScore }}</td>
-                    <td>{{ player.timeTaken | number : '1.2-2' }} s</td>
-                    <td *ngFor="let type of player.typeScore">
-                        {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }} s)
+                    <td>{{ player.pre.score }}/{{ player.pre.possibleScore }}</td>
+                    <td>{{ player.pre.timeTaken | number : '1.2-2' }}s</td>
+                    <td *ngFor="let type of player.pre.typeScore">
+                        {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
+                    </td>
+                    <td>{{ player.post.score }}/{{ player.post.possibleScore }}</td>
+                    <td>{{ player.post.timeTaken | number : '1.2-2' }}s</td>
+                    <td *ngFor="let type of player.post.typeScore">
+                        {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
                     </td>
                 </tr>
             </tbody>

@@ -11,7 +11,7 @@ import { Player } from './models/Player';
     ]
 })
 export class ScoresComponent {
-    players: Player[];
+    players: any[];
 
     constructor(private playerService: PlayerService) {
         this.players = [];
@@ -25,39 +25,134 @@ export class ScoresComponent {
         });
     }
 
-    private process(data: Player[]) {
+    private process(data: any[]) {
         data.sort((p1 , p2) => p1.playerId - p2.playerId).forEach(player => {
             // add the score and total questions to an array of objects with that id
-            let newPlayer = new Player(player.playerId);
+            let newPlayer = {
+                playerId: player.playerId,
+                pre: {
+                    score: 0,
+                    questionsAnswered: 0,
+                    possibleScore: 0,
+                    timeTaken: 0,
+                    typeScore: [
+                        {
+                            typeId: 1,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 2,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 3,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 4,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 5,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        }
+                    ]
+                },
+                post: {
+                    score: 0,
+                    questionsAnswered: 0,
+                    possibleScore: 0,
+                    timeTaken: 0,
+                    typeScore: [
+                        {
+                            typeId: 1,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 2,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 3,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 4,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        },
+                        {
+                            typeId: 5,
+                            score: 0,
+                            questionsAnswered: 0,
+                            possibleScore: 0,
+                            timeTaken: 0,
+                        }
+                    ]
+                }
+            };
 
-            player.answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
-                newPlayer.score += element.score;
-                newPlayer.questionsAnswered++;
-                newPlayer.possibleScore += 2;
-                newPlayer.timeTaken += element.timeTaken;
+            player.cardSets[0].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
+                newPlayer.pre.score += element.score;
+                newPlayer.pre.questionsAnswered++;
+                newPlayer.pre.possibleScore += 2;
+                newPlayer.pre.timeTaken += element.timeTaken;
 
                 // push answers for each type
                 // if type exists
-                let typeScore = newPlayer.typeScore.find(obj => obj.typeId == element.typeId);
+                let typeScore = newPlayer.pre.typeScore.find(obj => obj.typeId == element.typeId);
 
                 if (typeScore) {
                     typeScore.score += element.score;
                     typeScore.questionsAnswered++;
                     typeScore.possibleScore += 2;
                     typeScore.timeTaken += element.timeTaken;
-                } else {
-                    typeScore = {
-                        typeId: element.typeId,
-                        score: element.score,
-                        questionsAnswered: 1,
-                        possibleScore: 2,
-                        timeTaken: element.timeTaken
-                    };
-                    newPlayer.typeScore.push(typeScore);
                 }
             });
 
-            console.log(newPlayer);
+            player.cardSets[1].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
+                newPlayer.post.score += element.score;
+                newPlayer.post.questionsAnswered++;
+                newPlayer.post.possibleScore += 2;
+                newPlayer.post.timeTaken += element.timeTaken;
+
+                // push answers for each type
+                // if type exists
+                let typeScore = newPlayer.post.typeScore.find(obj => obj.typeId == element.typeId);
+
+                if (typeScore) {
+                    typeScore.score += element.score;
+                    typeScore.questionsAnswered++;
+                    typeScore.possibleScore += 2;
+                    typeScore.timeTaken += element.timeTaken;
+                }
+            });
 
             this.players.push(newPlayer);
         });
