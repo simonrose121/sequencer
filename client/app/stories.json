@@ -52,8 +52,28 @@
             },
             {
                 "questionId": 9,
-                "action": "Man pushing rock in to water",
+                "action": "Man kicking rock in to water",
                 "typeId": 2
+            },
+            {
+                "questionId": 11,
+                "action": "Planting a flower",
+                "typeId": 2
+            },
+            {
+                "questionId": 13,
+                "action": "Boy washing",
+                "typeId": 3
+            },
+            {
+                "questionId": 15,
+                "action": "Cooking a meal",
+                "typeId": 3
+            },
+            {
+                "questionId": 16,
+                "action": "Washing up",
+                "typeId": 3
             }
         ],
         "B": [
@@ -71,6 +91,36 @@
                 "questionId": 6,
                 "action": "Balloon bursting in tree",
                 "typeId": 1
+            },
+            {
+                "questionId": 8,
+                "action": "Rock knocking man over",
+                "typeId": 2
+            },
+            {
+                "questionId": 10,
+                "action": "Throwing ball",
+                "typeId": 2
+            },
+            {
+                "questionId": 12,
+                "action": "Cleaning a window",
+                "typeId": 2
+            },
+            {
+                "questionId": 14,
+                "action": "Boy dressing himself",
+                "typeId": 3
+            },
+            {
+                "questionId": 17,
+                "action": "Eating a meal",
+                "typeId": 3
+            },
+            {
+                "questionId": 18,
+                "action": "Going to bed",
+                "typeId": 3
             }
         ]
     }
