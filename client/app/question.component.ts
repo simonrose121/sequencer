@@ -34,7 +34,7 @@ export class QuestionComponent implements OnInit {
     timeLimit: number;
     id: number;
     demo: boolean;
-    cardSet: number;
+    cardSet: string;
 
     constructor(private questionService: QuestionService,
                 private answerService: PlayerService,
@@ -78,11 +78,7 @@ export class QuestionComponent implements OnInit {
     private getStories(): void {
         this.questionService.getStoriesData()
             .subscribe(data => {
-                if (this.cardSet === 1) {
-                    this.stories = this.utilitiesService.shuffle(data.stories.firstSet);
-                } else {
-                    this.stories = this.utilitiesService.shuffle(data.stories.secondSet);
-                }
+                this.stories = this.utilitiesService.shuffle(data.stories[this.cardSet]);
                 this.nextStory();
             });
     }

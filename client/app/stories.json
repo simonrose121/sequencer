@@ -47,7 +47,7 @@
         }
     ],
     "stories": {
-        "firstSet": [
+        "A": [
             {
                 "questionId": 1,
                 "action": "Apple falling from tree",
@@ -118,7 +118,7 @@
                 ]
             }
         ],
-        "secondSet": [
+        "B": [
             {
                 "questionId": 4,
                 "action": "Rock hitting tree",
