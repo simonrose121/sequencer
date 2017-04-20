@@ -11,7 +11,17 @@ module.exports.createPlayer = function(req, res) {
         if (doc.length === 0) {
 
             var player = {
-                playerId: body.player.playerId
+                playerId: body.player.playerId,
+                cardSets: [
+                    {
+                        cardSet: "A",
+                        answers: []
+                    },
+                    {
+                        cardSet: "B",
+                        answers: []
+                    }
+                ]
             };
 
             players.create(player, (err, doc) => {
@@ -24,11 +34,14 @@ module.exports.createPlayer = function(req, res) {
         } else {
             var found = false;
 
-            doc[0].answers.forEach((element) => {
-                if (element.cardSet === body.cardSet) {
-                    found = true;
-                }
-            }); 
+            var index = 0;
+            if (body.cardSet === "B") {
+                index = 1;
+            }
+
+            if(doc[0].cardSets[index].answers.length > 0) {
+                found = true;
+            };
 
             if (found) {
                 doc = {
@@ -51,7 +64,12 @@ module.exports.addAnswer = function(req, res) {
 
         if (doc) {
             // update and save player
-            doc.answers.push(body.answer);
+            var index = 0;
+            if (body.answer.cardSet === "B") {
+                index = 1;
+            }
+
+            doc.cardSets[index].answers.push(body.answer);
 
             doc.save(function(err, updatedDoc) {
                 if (err) {

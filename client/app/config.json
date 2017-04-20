@@ -2,5 +2,5 @@
     "id": true,
     "countdown": false,
     "timeLimit": 300000,
-    "cardSet": "B"
+    "cardSet": "A"
 }

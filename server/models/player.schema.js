@@ -5,13 +5,17 @@ var answerSchema = mongoose.Schema({
     typeId: Number,
     score: Number,
     dateTime: Date,
-    timeTaken: Number,
+    timeTaken: Number
+});
+
+var cardSetSchema = mongoose.Schema({
+    answers: [answerSchema],
     cardSet: String
 });
 
 var playerSchema = mongoose.Schema({
     playerId: Number,
-    answers: [answerSchema]
+    cardSets: [cardSetSchema]
 })
 
 module.exports = mongoose.model('Player', playerSchema);
