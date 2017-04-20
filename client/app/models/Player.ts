@@ -7,6 +7,7 @@ export class Player {
     public possibleScore: number;
     public timeTaken: number;
     public answers: Answer[];
+    public typeScore: any[];
 
     constructor(playerId: number) {
         this.playerId = playerId;
@@ -15,5 +16,6 @@ export class Player {
         this.possibleScore = 0;
         this.timeTaken = 0;
         this.answers = [];
+        this.typeScore = [];
     }
 }

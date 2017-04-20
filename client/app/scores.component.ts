@@ -30,12 +30,34 @@ export class ScoresComponent {
             // add the score and total questions to an array of objects with that id
             let newPlayer = new Player(player.playerId);
 
-            player.answers.forEach(element => {
+            player.answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
                 newPlayer.score += element.score;
                 newPlayer.questionsAnswered++;
                 newPlayer.possibleScore += 2;
                 newPlayer.timeTaken += element.timeTaken;
+
+                // push answers for each type
+                // if type exists
+                let typeScore = newPlayer.typeScore.find(obj => obj.typeId == element.typeId);
+
+                if (typeScore) {
+                    typeScore.score += element.score;
+                    typeScore.questionsAnswered++;
+                    typeScore.possibleScore += 2;
+                    typeScore.timeTaken += element.timeTaken;
+                } else {
+                    typeScore = {
+                        typeId: element.typeId,
+                        score: element.score,
+                        questionsAnswered: 1,
+                        possibleScore: 2,
+                        timeTaken: element.timeTaken
+                    };
+                    newPlayer.typeScore.push(typeScore);
+                }
             });
+
+            console.log(newPlayer);
 
             this.players.push(newPlayer);
         });
