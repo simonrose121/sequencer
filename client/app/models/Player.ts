@@ -1,21 +1,14 @@
-import { Answer } from './answer';
+import { Answer } from './Answer';
+import { PlayerResult } from './PlayerResult';
 
 export class Player {
     public playerId: number;
-    public score: number;
-    public questionsAnswered: number;
-    public possibleScore: number;
-    public timeTaken: number;
-    public answers: Answer[];
-    public typeScore: any[];
+    public preTestResults: PlayerResult;
+    public postTestResults: PlayerResult;
 
     constructor(playerId: number) {
         this.playerId = playerId;
-        this.score = 0;
-        this.questionsAnswered = 0;
-        this.possibleScore = 0;
-        this.timeTaken = 0;
-        this.answers = [];
-        this.typeScore = [];
+        this.preTestResults = new PlayerResult();
+        this.postTestResults = new PlayerResult();
     }
 }

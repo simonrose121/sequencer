@@ -28,14 +28,14 @@
             <tbody>
                 <tr *ngFor="let player of players" class="hover">
                     <td>{{ player.playerId }}</td>
-                    <td>{{ player.pre.score }}/{{ player.pre.possibleScore }}</td>
-                    <td>{{ player.pre.timeTaken | number : '1.2-2' }}s</td>
-                    <td *ngFor="let type of player.pre.typeScore">
+                    <td>{{ player.preTestResults.score }}/{{ player.preTestResults.possibleScore }}</td>
+                    <td>{{ player.preTestResults.timeTaken | number : '1.2-2' }}s</td>
+                    <td *ngFor="let type of player.preTestResults.typeResults">
                         {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
                     </td>
-                    <td>{{ player.post.score }}/{{ player.post.possibleScore }}</td>
-                    <td>{{ player.post.timeTaken | number : '1.2-2' }}s</td>
-                    <td *ngFor="let type of player.post.typeScore">
+                    <td>{{ player.postTestResults.score }}/{{ player.postTestResults.possibleScore }}</td>
+                    <td>{{ player.postTestResults.timeTaken | number : '1.2-2' }}s</td>
+                    <td *ngFor="let type of player.postTestResults.typeResults">
                         {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
                     </td>
                 </tr>
