@@ -1,6 +1,6 @@
 {
-    "id": false,
+    "id": true,
     "countdown": false,
     "timeLimit": 300000,
-    "cardSet": "A"
+    "cardSet": "B"
 }
