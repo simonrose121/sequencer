@@ -11,7 +11,7 @@ import { Player } from './models/Player';
     ]
 })
 export class ScoresComponent {
-    players: Player[];
+    players: any[];
 
     constructor(private playerService: PlayerService) {
         this.players = [];
@@ -25,16 +25,49 @@ export class ScoresComponent {
         });
     }
 
-    private process(data: Player[]) {
+    private process(data: any[]) {
         data.sort((p1 , p2) => p1.playerId - p2.playerId).forEach(player => {
             // add the score and total questions to an array of objects with that id
             let newPlayer = new Player(player.playerId);
 
-            player.answers.forEach(element => {
-                newPlayer.score += element.score;
-                newPlayer.questionsAnswered++;
-                newPlayer.possibleScore += 2;
-                newPlayer.timeTaken += element.timeTaken;
+            // get the pre-test results
+            player.cardSets[0].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
+                newPlayer.preTestResults.score += element.score;
+                newPlayer.preTestResults.questionsAnswered++;
+                newPlayer.preTestResults.possibleScore += 2;
+                newPlayer.preTestResults.timeTaken += element.timeTaken;
+
+                // push answers for each type
+                // if type exists
+                let typeScore =
+                    newPlayer.preTestResults.typeResults.find(obj => obj.typeId == element.typeId);
+
+                if (typeScore) {
+                    typeScore.score += element.score;
+                    typeScore.questionsAnswered++;
+                    typeScore.possibleScore += 2;
+                    typeScore.timeTaken += element.timeTaken;
+                }
+            });
+
+            // get the post-test results
+            player.cardSets[1].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
+                newPlayer.postTestResults.score += element.score;
+                newPlayer.postTestResults.questionsAnswered++;
+                newPlayer.postTestResults.possibleScore += 2;
+                newPlayer.postTestResults.timeTaken += element.timeTaken;
+
+                // push answers for each type
+                // if type exists
+                let typeScore =
+                    newPlayer.postTestResults.typeResults.find(obj => obj.typeId == element.typeId);
+
+                if (typeScore) {
+                    typeScore.score += element.score;
+                    typeScore.questionsAnswered++;
+                    typeScore.possibleScore += 2;
+                    typeScore.timeTaken += element.timeTaken;
+                }
             });
 
             this.players.push(newPlayer);

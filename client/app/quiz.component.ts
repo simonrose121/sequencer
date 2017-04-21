@@ -28,17 +28,18 @@ export class QuizComponent {
             if (!config.countdown) {
                 this.startScreen = false;
             }
+            playerService.cardSet = config.cardSet;
         });
     }
 
     private setId(id): void {
         this.playerService.createPlayer(id).subscribe(res => {
-            if (res.playerId) {
+            if (res.error) {
+                this.error = res.error;
+            } else {
                 this.id = id;
                 this.playerService.id = id;
                 this.startScreen = true;
-            } else {
-                this.error = res.error;
             }
         });
     }

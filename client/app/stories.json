@@ -74,6 +74,21 @@
                 "questionId": 16,
                 "action": "Washing up",
                 "typeId": 3
+            },
+            {
+                "questionId": 19,
+                "action": "Girl buying sweets",
+                "typeId": 4
+            },
+            {
+                "questionId": 22,
+                "action": "Winning a race",
+                "typeId": 4
+            },
+            {
+                "questionId": 23,
+                "action": "Lunch time at school",
+                "typeId": 4
             }
         ],
         "B": [
@@ -121,6 +136,21 @@
                 "questionId": 18,
                 "action": "Going to bed",
                 "typeId": 3
+            },
+            {
+                "questionId": 20,
+                "action": "Buying food at the supermarket",
+                "typeId": 4
+            },
+            {
+                "questionId": 21,
+                "action": "Taking ice cream from somebody else",
+                "typeId": 4
+            },
+            {
+                "questionId": 24,
+                "action": "Building a snowman",
+                "typeId": 4
             }
         ]
     }

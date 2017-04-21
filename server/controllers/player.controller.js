@@ -3,14 +3,25 @@ var players = require('../models/player.schema.js');
 module.exports.createPlayer = function(req, res) {
     var body = req.body;
 
-    players.find({playerId: body.playerId}).exec((err, doc) => {
+    players.find({playerId: body.player.playerId}).exec((err, doc) => {
         if (err) {
             throw err;
         }
 
         if (doc.length === 0) {
+
             var player = {
-                playerId: body.playerId
+                playerId: body.player.playerId,
+                cardSets: [
+                    {
+                        cardSet: "A",
+                        answers: []
+                    },
+                    {
+                        cardSet: "B",
+                        answers: []
+                    }
+                ]
             };
 
             players.create(player, (err, doc) => {
@@ -21,9 +32,24 @@ module.exports.createPlayer = function(req, res) {
                 res.send(doc);
             })
         } else {
-            res.send({
-                'error': 'Player already exists'
-            });
+            var found = false;
+
+            var index = 0;
+            if (body.cardSet === "B") {
+                index = 1;
+            }
+
+            if(doc[0].cardSets[index].answers.length > 0) {
+                found = true;
+            };
+
+            if (found) {
+                doc = {
+                    'error': 'Player already exists'
+                };
+            }
+
+            res.send(doc);
         }   
     });
 }
@@ -38,7 +64,12 @@ module.exports.addAnswer = function(req, res) {
 
         if (doc) {
             // update and save player
-            doc.answers.push(body.answer);
+            var index = 0;
+            if (body.answer.cardSet === "B") {
+                index = 1;
+            }
+
+            doc.cardSets[index].answers.push(body.answer);
 
             doc.save(function(err, updatedDoc) {
                 if (err) {

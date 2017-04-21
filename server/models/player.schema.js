@@ -8,9 +8,14 @@ var answerSchema = mongoose.Schema({
     timeTaken: Number
 });
 
+var cardSetSchema = mongoose.Schema({
+    answers: [answerSchema],
+    cardSet: String
+});
+
 var playerSchema = mongoose.Schema({
     playerId: Number,
-    answers: [answerSchema]
+    cardSets: [cardSetSchema]
 })
 
 module.exports = mongoose.model('Player', playerSchema);

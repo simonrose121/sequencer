@@ -12,6 +12,7 @@ import { Player } from './models/Player';
 export class PlayerService {
 
     id: number;
+    cardSet: string;
     addAnswerUrl: string;
     getAllPlayersUrl: string;
     createPlayerUrl: string;
@@ -24,9 +25,12 @@ export class PlayerService {
     }
 
     public createPlayer(id: number): Observable<any> {
-        let player = new Player(id);
+        let body = {
+            player: new Player(id),
+            cardSet: this.cardSet
+        };
 
-        return this.httpService.post(this.createPlayerUrl, player);
+        return this.httpService.post(this.createPlayerUrl, body);
     }
 
     public getId(): number {
@@ -60,7 +64,8 @@ export class PlayerService {
                                 story.typeId,
                                 mark,
                                 new Date(),
-                                this.utilitiesService.secondsElapsed(new Date()));
+                                this.utilitiesService.secondsElapsed(new Date()),
+                                this.cardSet);
 
         const body = {
             answer: answer,
