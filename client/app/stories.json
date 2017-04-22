@@ -89,6 +89,21 @@
                 "questionId": 23,
                 "action": "Lunch time at school",
                 "typeId": 4
+            },
+            {
+                "questionId": 25,
+                "action": "Sweets falling out of bag",
+                "typeId": 5
+            },
+            {
+                "questionId": 27,
+                "action": "Mum eats boy's chocolate",
+                "typeId": 5
+            },
+            {
+                "questionId": 29,
+                "action": "Losing mum in supermarket",
+                "typeId": 5
             }
         ],
         "B": [
@@ -151,6 +166,21 @@
                 "questionId": 24,
                 "action": "Building a snowman",
                 "typeId": 4
+            },
+            {
+                "questionId": 26,
+                "action": "Stealing teddy",
+                "typeId": 5
+            },
+            {
+                "questionId": 28,
+                "action": "Leaving a toy on the bus",
+                "typeId": 5
+            },
+            {
+                "questionId": 30,
+                "action": "Stealing train",
+                "typeId": 5
             }
         ]
     }
