@@ -5,7 +5,13 @@
                 <form>
                     <div class="form-group">
                         <input class="form-control" type="text" #id>
-                        <span class="btn btn-default margin" (click)="setId(id.value)">Submit</span>
+                        <br/>
+                        <select name="cardSet" id="cardSet" #cardSet>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                        <br/>
+                        <span class="btn btn-default margin" (click)="setPlayerDetails(id.value, cardSet.value)">Submit</span>
                         <div class="error" *ngIf="error">
                             {{ error }}
                         </div>

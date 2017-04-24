@@ -28,11 +28,11 @@ export class QuizComponent {
             if (!config.countdown) {
                 this.startScreen = false;
             }
-            playerService.cardSet = config.cardSet;
         });
     }
 
-    private setId(id): void {
+    private setPlayerDetails(id, cardSet): void {
+        this.playerService.cardSet = cardSet;
         this.playerService.createPlayer(id).subscribe(res => {
             if (res.error) {
                 this.error = res.error;
