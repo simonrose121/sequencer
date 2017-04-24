@@ -37,17 +37,17 @@ export class QuestionComponent implements OnInit {
     cardSet: string;
 
     constructor(private questionService: QuestionService,
-            private answerService: PlayerService,
+                private playerService: PlayerService,
                 private utilitiesService: UtilitiesService,
                 private configService: ConfigService,
                 private slimLoadingBarService: SlimLoadingBarService,
                 private activatedRoute: ActivatedRoute) {
 
-        this.id = answerService.getId();
+        this.id = playerService.getId();
+        this.cardSet = playerService.cardSet;
 
         configService.getConfig().subscribe(config => {
             this.timeLimit = config.timeLimit;
-            this.cardSet = config.cardSet;
         });
     }
 
@@ -78,7 +78,7 @@ export class QuestionComponent implements OnInit {
     private getStories(): void {
         this.questionService.getStoriesData()
             .subscribe(data => {
-                this.questions = this.utilitiesService.shuffle(data.stories[this.cardSet]);
+                this.questions = this.utilitiesService.shuffleQuestions(data.stories[this.cardSet]);
                 this.nextStory();
             });
     }
@@ -116,7 +116,7 @@ export class QuestionComponent implements OnInit {
             if (answer.length === 3) {
                 answer.unshift(this.card1);
                 if (!this.finalQuestion) {
-                    this.answerService.markAnswer(this.question, answer).subscribe(data => {
+                    this.playerService.markAnswer(this.question, answer).subscribe(data => {
                         console.log(data);
                     });
                     this.card2 = null;
