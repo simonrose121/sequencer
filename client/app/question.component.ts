@@ -78,7 +78,7 @@ export class QuestionComponent implements OnInit {
     private getStories(): void {
         this.questionService.getStoriesData()
             .subscribe(data => {
-                this.questions = this.utilitiesService.shuffle(data.stories[this.cardSet]);
+                this.questions = this.utilitiesService.shuffleQuestions(data.stories[this.cardSet]);
                 this.nextStory();
             });
     }
