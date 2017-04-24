@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
+import { Question } from './models/Question';
+
 @Injectable()
 export class UtilitiesService {
     startDate: Date;
+    typeCount = 5;
 
     public startTimer(): void {
         this.startDate = new Date();
@@ -29,6 +32,29 @@ export class UtilitiesService {
         }
 
         return array;
+    }
+
+    public shuffleQuestions(questions: Array<Question>): Array<Question> {
+        let orderedQuestions: Array<Question> = [];
+
+        // come in with 15 questions
+
+        // for each type
+        for (let questionsInSet = 0; questionsInSet <= 2; questionsInSet++) {
+            for (let typeId = 1; typeId <= this.typeCount; typeId++) {
+                const typeQuestions = questions.filter(obj => obj.typeId == typeId);
+
+                const rand = Math.floor(Math.random() * typeQuestions.length);
+                orderedQuestions.push(typeQuestions[rand]);
+
+                const index = questions.indexOf(typeQuestions[rand]);
+                if (index > -1) {
+                    questions.splice(index, 1);
+                }
+            }
+        }
+
+        return orderedQuestions;
     }
 
     public interval(milliseconds, callback): void {
