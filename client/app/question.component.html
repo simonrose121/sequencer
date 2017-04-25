@@ -16,7 +16,7 @@
                 <div    *ngFor="let card of question?.cards" 
                         (click)="setActiveCard(card)"
                         class="image" 
-                        [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.png)'}"
+                        [ngStyle]="{'background-image': 'url(assets/' + card.imageUrl + '.jpg)'}"
                         [ngClass]="{'active-card': activeCard === card}">
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="first-image">
                 <div class="card-count">1</div>
                 <div    class="image no-move" 
-                        [ngStyle]="{'background-image': 'url(assets/' + card1?.imageUrl + '.png)'}">
+                        [ngStyle]="{'background-image': 'url(assets/' + card1?.imageUrl + '.jpg)'}">
                 </div>
             </div>
             <div id="card2" 
@@ -40,7 +40,7 @@
                 <div class="image"
                      *ngIf="card2 !== null" 
                      [ngClass]="{'remove': activeRemoveHover === 'card2'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card2?.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card2?.imageUrl + '.jpg)'}">
                 </div>
             </div>
             <div id="card3" 
@@ -53,7 +53,7 @@
                 <div class="image" 
                      *ngIf="card3 !== null" 
                      [ngClass]="{'remove': activeRemoveHover === 'card3'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card3?.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card3?.imageUrl + '.jpg)'}">
                 </div>
             </div>
             <div id="card4" 
@@ -66,7 +66,7 @@
                 <div class="image" 
                      *ngIf="card4 !== null"
                      [ngClass]="{'remove': activeRemoveHover === 'card4'}"
-                     [ngStyle]="{'background-image': 'url(assets/' + card4?.imageUrl + '.png)'}">
+                     [ngStyle]="{'background-image': 'url(assets/' + card4?.imageUrl + '.jpg)'}">
                 </div>
             </div>
         </div>
