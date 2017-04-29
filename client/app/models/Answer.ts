@@ -3,6 +3,7 @@ import { IAnswer } from './../../../shared/interfaces/IAnswer';
 export class Answer implements IAnswer {
     userId: number;
     questionId: number;
+    action: string;
     typeId: number;
     score: number;
     dateTime: Date;
@@ -11,6 +12,7 @@ export class Answer implements IAnswer {
 
     constructor(userId: number,
                 questionId: number,
+                action: string,
                 typeId: number,
                 score: number,
                 dateTime: Date,
@@ -18,6 +20,7 @@ export class Answer implements IAnswer {
                 cardSet: string) {
         this.userId = userId;
         this.questionId = questionId;
+        this.action = action;
         this.typeId = typeId;
         this.score = score;
         this.dateTime = dateTime;

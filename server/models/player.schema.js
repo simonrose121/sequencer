@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var answerSchema = mongoose.Schema({
     questionId: Number,
+    action: String,
     typeId: Number,
     score: Number,
     dateTime: Date,

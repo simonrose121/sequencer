@@ -61,6 +61,7 @@ export class PlayerService {
 
         const answer = new Answer( this.id,
                                 story.questionId,
+                                story.action,
                                 story.typeId,
                                 mark,
                                 new Date(),
