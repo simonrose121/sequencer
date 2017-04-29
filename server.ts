@@ -34,7 +34,7 @@ export class Server {
     }
 
     public connect() {
-        let uri = 'mongodb://localhost:27017/sequencer-test';
+        let uri = 'mongodb://localhost:27017/sequencer';
         mongoose.connect(uri, (err) => {
             if (err) {
                 console.log(err.message);
