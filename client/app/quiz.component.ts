@@ -29,6 +29,8 @@ export class QuizComponent {
                 this.startScreen = false;
             }
         });
+
+        this.loadImages();
     }
 
     private setPlayerDetails(id, cardSet): void {
@@ -55,5 +57,36 @@ export class QuizComponent {
         setTimeout(() => {
             this.startScreen = false;
         }, 3000);
+    }
+
+    private loadImages() {
+        let images = [];
+        for (let i = 1; i <= 30; i++) {
+            for (let j = 1; j <= 4; j++) {
+                const imageName = 'assets/' + i + '/' + j + '.jpg';
+                images.push(imageName);
+            }
+        }
+        this.preloadImages(images);
+    }
+
+    private preloadImages(array) {
+        if (!this.preloadImages.list) {
+            this.preloadImages.list = [];
+        }
+        var list = this.preloadImages.list;
+        for (var i = 0; i < array.length; i++) {
+            var img = new Image();
+            img.onload = function() {
+                var index = list.indexOf(this);
+                if (index !== -1) {
+                    // remove image from the array once it's loaded
+                    // for memory consumption reasons
+                    list.splice(index, 1);
+                }
+            };
+            list.push(img);
+            img.src = array[i];
+        }
     }
 }
