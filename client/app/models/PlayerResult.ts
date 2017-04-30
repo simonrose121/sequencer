@@ -2,6 +2,7 @@ import { TypeResult } from './TypeResult';
 import { Answer } from './Answer';
 
 export class PlayerResult {
+    public cardSet: string;
     public score: number;
     public questionsAnswered: number;
     public possibleScore: number;
