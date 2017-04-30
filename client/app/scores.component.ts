@@ -30,47 +30,56 @@ export class ScoresComponent {
             // add the score and total questions to an array of objects with that id
             let newPlayer = new Player(player.playerId);
 
-            // get the pre-test results
-            player.cardSets[0].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
-                newPlayer.preTestResults.score += element.score;
-                newPlayer.preTestResults.questionsAnswered++;
-                newPlayer.preTestResults.possibleScore += 2;
-                newPlayer.preTestResults.timeTaken += element.timeTaken;
+            // get date from set A
+            let setADate = new Date();
+            if (player.cardSets[0].answers.length > 0) {
+                setADate = new Date(player.cardSets[0].answers[0].dateTime);
+            }
 
-                // push answers for each type
-                // if type exists
-                let typeScore =
-                    newPlayer.preTestResults.typeResults.find(obj => obj.typeId == element.typeId);
+            // get date from set B
+            let setBDate = new Date();
+            if (player.cardSets[1].answers.length > 0) {
+                setBDate = new Date(player.cardSets[1].answers[0].dateTime);
+            }
 
-                if (typeScore) {
-                    typeScore.score += element.score;
-                    typeScore.questionsAnswered++;
-                    typeScore.possibleScore += 2;
-                    typeScore.timeTaken += element.timeTaken;
-                }
-            });
-
-            // get the post-test results
-            player.cardSets[1].answers.sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
-                newPlayer.postTestResults.score += element.score;
-                newPlayer.postTestResults.questionsAnswered++;
-                newPlayer.postTestResults.possibleScore += 2;
-                newPlayer.postTestResults.timeTaken += element.timeTaken;
-
-                // push answers for each type
-                // if type exists
-                let typeScore =
-                    newPlayer.postTestResults.typeResults.find(obj => obj.typeId == element.typeId);
-
-                if (typeScore) {
-                    typeScore.score += element.score;
-                    typeScore.questionsAnswered++;
-                    typeScore.possibleScore += 2;
-                    typeScore.timeTaken += element.timeTaken;
-                }
-            });
+            // load results depending which card set was done first
+            if (setADate < setBDate) {
+                this.addResultsToPlayer(player, newPlayer, 0, 'preTestResults');
+                this.addResultsToPlayer(player, newPlayer, 1, 'postTestResults');
+            } else {
+                this.addResultsToPlayer(player, newPlayer, 1, 'preTestResults');
+                this.addResultsToPlayer(player, newPlayer, 0, 'postTestResults');
+            }
 
             this.players.push(newPlayer);
+        });
+    }
+
+    private addResultsToPlayer( player: any,
+                                newPlayer: Player,
+                                cardTypeIndex: number,
+                                testType: string) {
+
+        player.cardSets[cardTypeIndex].answers
+            .sort((a1, a2) => a1.typeId - a2.typeId).forEach(element => {
+
+                newPlayer[testType].score += element.score;
+                newPlayer[testType].questionsAnswered++;
+                newPlayer[testType].possibleScore += 2;
+                newPlayer[testType].timeTaken += element.timeTaken;
+                newPlayer[testType].cardSet = cardTypeIndex == 0 ? 'A' : 'B';
+
+                // push answers for each type
+                // if type exists
+                let typeScore =
+                    newPlayer[testType].typeResults.find(obj => obj.typeId == element.typeId);
+
+                if (typeScore) {
+                    typeScore.score += element.score;
+                    typeScore.questionsAnswered++;
+                    typeScore.possibleScore += 2;
+                    typeScore.timeTaken += element.timeTaken;
+                }
         });
     }
 }

@@ -3,41 +3,50 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>PlayerId</th>
-                    <th colspan="7">Pre-test</th>
-                    <th colspan="7">Post-test</th>
+                    <th></th>
+                    <th colspan="4">Pre-test</th>
+                    <th colspan="4">Post-test</th>
                 </tr>
                 <tr>
                     <th>PlayerId</th>
+                    <th>Card Set</th>
                     <th>Score</th>
-                    <th>Time Taken</th>
-                    <th>Mech 1</th>
+                    <th>Possible Score</th>
+                    <th>Time Taken(s)</th>
+                    <!--<th>Mech 1</th>
                     <th>Mech 2</th>
                     <th>Be 1</th>
                     <th>Be 2</th>
-                    <th>Int</th>
+                    <th>Int</th>-->
+                    
+                    <th>Card Set</th>
                     <th>Score</th>
-                    <th>Time Taken</th>
-                    <th>Mech 1</th>
+                    <th>Possible Score</th>
+                    <th>Time Taken(s)</th>
+                    <!--<th>Mech 1</th>
                     <th>Mech 2</th>
                     <th>Be 1</th>
                     <th>Be 2</th>
-                    <th>Int</th>
+                    <th>Int</th>-->
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let player of players" class="hover">
                     <td>{{ player.playerId }}</td>
-                    <td>{{ player.preTestResults.score }}/{{ player.preTestResults.possibleScore }}</td>
-                    <td>{{ player.preTestResults.timeTaken | number : '1.2-2' }}s</td>
-                    <td *ngFor="let type of player.preTestResults.typeResults">
+                    <td>{{ player.preTestResults.cardSet }}</td>
+                    <td>{{ player.preTestResults.score }}</td>
+                    <td>{{ player.preTestResults.possibleScore }}</td>
+                    <td>{{ player.preTestResults.timeTaken | number : '1.2-2' }}</td>
+                    <!--<td *ngFor="let type of player.preTestResults.typeResults">
                         {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
-                    </td>
-                    <td>{{ player.postTestResults.score }}/{{ player.postTestResults.possibleScore }}</td>
-                    <td>{{ player.postTestResults.timeTaken | number : '1.2-2' }}s</td>
-                    <td *ngFor="let type of player.postTestResults.typeResults">
+                    </td>-->
+                    <td>{{ player.postTestResults.cardSet }}</td>
+                    <td>{{ player.postTestResults.score }}</td>
+                    <td>{{ player.postTestResults.possibleScore }}</td>
+                    <td>{{ player.postTestResults.timeTaken | number : '1.2-2' }}</td>
+                    <!--<td *ngFor="let type of player.postTestResults.typeResults">
                         {{ type.score }}/{{ type.possibleScore }} ({{ type.timeTaken | number : '1.2-2' }})
-                    </td>
+                    </td>-->
                 </tr>
             </tbody>
         </table>
