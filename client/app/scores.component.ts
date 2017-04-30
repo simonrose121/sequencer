@@ -69,17 +69,17 @@ export class ScoresComponent {
                 newPlayer[testType].timeTaken += element.timeTaken;
                 newPlayer[testType].cardSet = cardTypeIndex == 0 ? 'A' : 'B';
 
-                // push answers for each type
-                // if type exists
-                let typeScore =
-                    newPlayer[testType].typeResults.find(obj => obj.typeId == element.typeId);
+                // // push answers for each type
+                // // if type exists
+                // let typeScore =
+                //     newPlayer[testType].typeResults.find(obj => obj.typeId == element.typeId);
 
-                if (typeScore) {
-                    typeScore.score += element.score;
-                    typeScore.questionsAnswered++;
-                    typeScore.possibleScore += 2;
-                    typeScore.timeTaken += element.timeTaken;
-                }
+                // if (typeScore) {
+                //     typeScore.score += element.score;
+                //     typeScore.questionsAnswered++;
+                //     typeScore.possibleScore += 2;
+                //     typeScore.timeTaken += element.timeTaken;
+                // }
         });
     }
 }
