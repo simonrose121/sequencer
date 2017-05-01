@@ -14,6 +14,7 @@ export class QuizComponent {
     startScreen: boolean;
     countdownText: string;
     error: string;
+    cardSet: string;
 
     constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
@@ -35,6 +36,7 @@ export class QuizComponent {
 
     private setPlayerDetails(id, cardSet): void {
         this.playerService.cardSet = cardSet;
+        this.cardSet = cardSet;
         this.playerService.createPlayer(id).subscribe(res => {
             if (res.error) {
                 this.error = res.error;
