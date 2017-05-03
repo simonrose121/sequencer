@@ -1,5 +1,6 @@
 {
     "id": true,
     "countdown": false,
-    "timeLimit": 300000
+    "timeLimit": 240000,
+    "testType": "pre"
 }
