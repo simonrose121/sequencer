@@ -15,6 +15,7 @@ export class QuizComponent {
     countdownText: string;
     error: string;
     cardSet: string;
+    testType: string;
 
     constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
@@ -29,12 +30,27 @@ export class QuizComponent {
             if (!config.countdown) {
                 this.startScreen = false;
             }
+            this.testType = config.testType;
         });
 
         this.loadImages();
     }
 
-    private setPlayerDetails(id, cardSet): void {
+    private setPlayerDetails(id): void {
+        let cardSet;
+        if (this.testType === 'pre') {
+            if (id % 2 === 0) { // if even
+                cardSet = 'A';
+            } else {
+                cardSet = 'B';
+            }
+        } else if (this.testType === 'post') {
+            if (id % 2 === 0) { // if even
+                cardSet = 'B';
+            } else {
+                cardSet = 'A';
+            }
+        }
         this.playerService.cardSet = cardSet;
         this.cardSet = cardSet;
         this.playerService.createPlayer(id).subscribe(res => {
