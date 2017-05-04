@@ -16,6 +16,7 @@ export class QuizComponent {
     error: string;
     cardSet: string;
     testType: string;
+    preloadedImages: any[];
 
     constructor(private playerService: PlayerService,
                 private configService: ConfigService) {
@@ -89,10 +90,10 @@ export class QuizComponent {
     }
 
     private preloadImages(array) {
-        if (!this.preloadImages.list) {
-            this.preloadImages.list = [];
+        if (!this.preloadedImages) {
+            this.preloadedImages = [];
         }
-        var list = this.preloadImages.list;
+        var list = this.preloadedImages;
         for (var i = 0; i < array.length; i++) {
             var img = new Image();
             img.onload = function() {
